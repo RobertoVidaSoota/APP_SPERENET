@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "399835287418",
+    "project_id": "sperenet-483b8",
+    "storage_bucket": "sperenet-483b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399835287418:android:ce5298d6c189307c6a50c3",
+        "android_client_info": {
+          "package_name": "io.ionic.sperenet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399835287418-d68ati6555ldjg4la17cer7seinmb6kp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCSh5IejDu7CwPZ9nV4vijIz1wq3H0Lp0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399835287418-d68ati6555ldjg4la17cer7seinmb6kp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
