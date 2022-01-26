@@ -79,14 +79,6 @@ const routes: Routes = [
     loadChildren: () => import('./checkout/pix/pix.module').then( m => m.PixPageModule)
   },
   {
-    path: 'produto',
-    loadChildren: () => import('./shop/produto/produto.module').then( m => m.ProdutoPageModule)
-  },
-  {
-    path: 'inicio',
-    loadChildren: () => import('./shop/inicio/inicio.module').then( m => m.InicioPageModule)
-  },
-  {
     path: 'lista-desejos',
     loadChildren: () => import('./shop/lista-desejos/lista-desejos.module').then( m => m.ListaDesejosPageModule)
   },
