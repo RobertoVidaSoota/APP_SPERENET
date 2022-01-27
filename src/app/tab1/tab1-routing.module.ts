@@ -18,9 +18,9 @@ const routes: Routes = [
         (m => m.ProdutoPageModule)
       },
       {
-        path: "",
-        redirectTo: "inicio",
-        pathMatch: "full"
+        path: '',
+        redirectTo: '',
+        pathMatch: 'full'
       }
     ]
   }
