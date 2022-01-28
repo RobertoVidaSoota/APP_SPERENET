@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -8,10 +9,14 @@ import { NavController } from '@ionic/angular';
 })
 export class Tab1Page {
 
-  constructor(private navCtrl: NavController) {}
+  constructor(
+    private navCtrl: NavController,
+    private route: Router
+    ) {}
 
   ngOnInit()
   {
-    this.navCtrl.navigateRoot("/tabs/tab1/inicio")
+    this.route.navigate(["/tabs/tab1/inicio"])
   }
+  
 }

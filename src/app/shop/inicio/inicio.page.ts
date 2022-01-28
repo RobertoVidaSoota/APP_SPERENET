@@ -17,9 +17,11 @@ export class InicioPage implements OnInit {
   ngOnInit() {
   }
 
-  // produto()
-  // {
-  //    this.navCtrl.navigateRoot("/tabs/tab1/produto")
-  // }
+  produto()
+  {
+    let navOrigin:any = "cao";
+
+    this.navCtrl.navigateRoot("/tabs/tab1/produto", navOrigin)
+  }
 
 }
