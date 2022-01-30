@@ -16,12 +16,8 @@ const routes: Routes = [
         path: 'produto',
         loadChildren: () => import('../shop/produto/produto.module').then
         (m => m.ProdutoPageModule)
-      },
-      {
-        path: '',
-        redirectTo: '',
-        pathMatch: 'full'
       }
+      // COLOCAR O "directTo" VAZIO, PARA QUE PERMITE A NÃO NAVEGAÇÃO DIRETA PARA A PÁGINA PRINCIPAL ENTRE ABAS
     ]
   }
 ];

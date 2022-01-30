@@ -1,6 +1,8 @@
-<ion-tabs>
+<!-- EVENTO QUE PERMITE A NÃO NAVEGAÇÃO DIRETA PARA A PÁGINA PRINCIPAL ENTRE ABAS -->
+<ion-tabs (ionTabsDidChange)="tabed($event)">
 
   <ion-tab-bar slot="bottom">
+    
     <ion-tab-button tab="tab1">
       <ion-icon name="triangle"></ion-icon>
       <ion-label>Tab 1</ion-label>

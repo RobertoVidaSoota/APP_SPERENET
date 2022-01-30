@@ -7,6 +7,22 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  constructor(
+    )
+  {}
 
+  // FUNÇÃO QUE PERMITE A NÃO NAVEGAÇÃO DIRETA PARA A PÁGINA PRINCIPAL ENTRE ABAS
+  tabed(e)
+  {
+    setTimeout(()=>{
+      localStorage.setItem("tab", e.tab);
+      let myTab = localStorage.getItem("tab")
+    }, 100)
+
+    
+  }
+
+
+
+  
 }
