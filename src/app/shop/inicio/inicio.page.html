@@ -5,17 +5,325 @@
     </ion-buttons>
 
     <ion-title>Inicio</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/carrinho">
+        <b><ion-icon slot="end" name="cart-outline"></ion-icon></b>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h1 style="color: aliceblue;">Oi</h1>
-  <div style="width: 10px; height: 800px; background: #ff9"></div>
-  <ion-button routerLink="/tabs/tab1/produto" expand="block">
-    produto
-  </ion-button>
-  <ion-button (click)="top()" expand="block" fill="clear">
-    Topo
-  </ion-button>
+
+  <!-- SLIDE DE MAIS VENDIDOS -->
+  <h2 class="title-slide">Novos</h2>
+  
+  <ion-slides [options]="opt" >
+    <ion-slide>
+      <div class="img-p-silde" routerLink="/tabs/tab1/produto">
+        <img src="../../../assets/pc-1.png">
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="img-p-silde">
+        <img src="../../../assets/pc-1.png">
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="img-p-silde">
+        <img src="../../../assets/pc-1.png">
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="img-p-silde">
+        <img src="../../../assets/pc-1.png">
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="img-p-silde" routerLink="/tabs/tab1/produto">
+        <img src="../../../assets/pc-1.png">
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="img-p-silde">
+        <img src="../../../assets/pc-1.png">
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="img-p-silde">
+        <img src="../../../assets/pc-1.png">
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="img-p-silde">
+        <img src="../../../assets/pc-1.png">
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="img-p-silde">
+        <img src="../../../assets/pc-1.png">
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="img-p-silde">
+        <img src="../../../assets/pc-1.png">
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+
+
+  <!-- SLIDE DE POPULARES -->
+  <h2 class="title-slide">Populares</h2>
+
+  <ion-slides [options]="opt2">
+    <ion-slide>
+
+          <ion-card color="dark" class="produto" routerLink="/tabs/tab1/produto">
+            <div class="img-produto">
+              <img src="../../../assets/pc-1.png"
+              >
+            </div>
+              
+            <ion-card-content class="produto-content">
+              <ion-card-title>
+                Nome de produto - RTX 9080, 64 RAM, celeron 2000R7
+              </ion-card-title>
+              
+              <div class="box-estrela">
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
+                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
+
+                <p class="numero-ava">
+                  70 avaliações
+                </p>
+              </div>
+
+              <b class="preco">R$ 3.999,00</b><br>
+              <small class="prestacao">
+                 <b>10x de 499,00</b>
+              </small>
+
+            </ion-card-content>
+          </ion-card>
+    </ion-slide>
+          
+
+    <ion-slide>
+          <ion-card color="dark" class="produto" routerLink="/tabs/tab1/produto">
+            <div class="img-produto">
+              <img src="../../../assets/pc-1.png"
+              >
+            </div>
+              
+            <ion-card-content class="produto-content">
+              <ion-card-title>
+                Nome de produto - RTX 9080, 64 RAM, celeron 2000R7
+              </ion-card-title>
+              
+              <div class="box-estrela">
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
+                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
+
+                <p class="numero-ava">
+                  70 avaliações
+                </p>
+              </div>
+
+              <b class="preco">R$ 3.999,00</b><br>
+              <small class="prestacao">
+                 <b>10x de 499,00</b>
+              </small>
+
+            </ion-card-content>
+          </ion-card>
+    </ion-slide>
+
+
+    <ion-slide>
+          <ion-card color="dark" class="produto" routerLink="/tabs/tab1/produto">
+            <div class="img-produto">
+              <img src="../../../assets/pc-1.png"
+              >
+            </div>
+              
+            <ion-card-content class="produto-content">
+              <ion-card-title>
+                Nome de produto - RTX 9080, 64 RAM, celeron 2000R7
+              </ion-card-title>
+              
+              <div class="box-estrela">
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
+                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
+
+                <p class="numero-ava">
+                  70 avaliações
+                </p>
+              </div>
+
+              <b class="preco">R$ 3.999,00</b><br>
+              <small class="prestacao">
+                 <b>10x de 499,00</b>
+              </small>
+
+            </ion-card-content>
+          </ion-card>
+    </ion-slide>
+  </ion-slides>
+  
+
+
+
+  <!-- SLIDE DE OFERTAS -->
+  <h2 class="title-slide">Ofertas</h2>
+
+  <ion-slides [options]="opt2">
+    <ion-slide>
+          <ion-card color="dark" class="produto" routerLink="/tabs/tab1/produto">
+            <div class="img-produto">
+              <img src="../../../assets/pc-1.png"
+              >
+            </div>
+              
+            <ion-card-content class="produto-content">
+              <ion-card-title>
+                Nome de produto - RTX 9080, 64 RAM, celeron 2000R7
+              </ion-card-title>
+              
+              <div class="box-estrela">
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
+                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
+
+                <p class="numero-ava">
+                  70 avaliações
+                </p>
+              </div>
+
+              <b class="preco">R$ 3.999,00</b><br>
+              <small class="prestacao">
+                 <b>10x de 499,00</b>
+              </small>
+
+            </ion-card-content>
+          </ion-card>
+    </ion-slide>
+
+
+    <ion-slide>
+          <ion-card color="dark" class="produto" routerLink="/tabs/tab1/produto">
+            <div class="img-produto">
+              <img src="../../../assets/pc-1.png"
+              >
+            </div>
+              
+            <ion-card-content class="produto-content">
+              <ion-card-title>
+                Nome de produto - RTX 9080, 64 RAM, celeron 2000R7
+              </ion-card-title>
+              
+              <div class="box-estrela">
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
+                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
+
+                <p class="numero-ava">
+                  70 avaliações
+                </p>
+              </div>
+
+              <b class="preco">R$ 3.999,00</b><br>
+              <small class="prestacao">
+                 <b>10x de 499,00</b>
+              </small>
+
+            </ion-card-content>
+          </ion-card>
+    </ion-slide>
+
+
+    <ion-slide>
+          <ion-card color="dark" class="produto" routerLink="/tabs/tab1/produto">
+            <div class="img-produto">
+              <img src="../../../assets/pc-1.png"
+              >
+            </div>
+              
+            <ion-card-content class="produto-content">
+              <ion-card-title>
+                Nome de produto - RTX 9080, 64 RAM, celeron 2000R7
+              </ion-card-title>
+              
+              <div class="box-estrela">
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star"></ion-icon>
+                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
+                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
+
+                <p class="numero-ava">
+                  70 avaliações
+                </p>
+              </div>
+
+              <b class="preco">R$ 3.999,00</b><br>
+              <small class="prestacao">
+                 <b>10x de 499,00</b>
+              </small>
+
+            </ion-card-content>
+          </ion-card>
+    </ion-slide>
+  </ion-slides>
+
+  <!-- 
+    PODE TER LISTA PRA BAIXO
+    
+    <ion-card color="dark" class="produto" routerLink="/tabs/tab1/produto">
+    <div class="img-produto">
+      <img src="../../../assets/pc-1.png"
+      >
+    </div>
+      
+    <ion-card-content class="produto-content">
+      <ion-card-title>
+        Nome de produto - RTX 9080, 64 RAM, celeron 2000R7
+      </ion-card-title>
+      
+      <div class="box-estrela">
+        <ion-icon class="estrela-ava" name="star"></ion-icon>
+        <ion-icon class="estrela-ava" name="star"></ion-icon>
+        <ion-icon class="estrela-ava" name="star"></ion-icon>
+        <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
+        <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
+
+        <p class="numero-ava">
+          70 avaliações
+        </p>
+      </div>
+
+      <b class="preco">R$ 3.999,00</b><br>
+      <small class="prestacao">
+         <b>10x de 499,00</b>
+      </small>
+
+    </ion-card-content>
+  </ion-card> -->
+
+
+
 </ion-content>
-<!-- routerLink="/tabs/tab1/produto" -->

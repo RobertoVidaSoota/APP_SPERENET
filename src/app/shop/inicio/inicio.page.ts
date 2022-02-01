@@ -11,7 +11,17 @@ export class InicioPage implements OnInit {
 
   @ViewChild(IonContent) content: IonContent;
 
-  
+  opt = {
+    freeMode: true,
+    spaceBetween: 10,
+    slidesPerView: 3.2
+  }
+
+  opt2 = {
+    freeMode: true,
+    spaceBetween: 10,
+    slidesPerView: 1.3
+  }
 
   constructor(
     private route: Router,
@@ -32,7 +42,7 @@ export class InicioPage implements OnInit {
       let myTab = localStorage.getItem("tab")
       if(myTab == "tab1")
       {
-        ref.scrollToTop(400)
+        ref.scrollToTop(200)
       }
     });
   }

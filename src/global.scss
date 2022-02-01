@@ -28,6 +28,11 @@
 *
 {
 }
+ion-icon
+{
+    width: 24px;
+    height: 24px;
+}
 ion-title
 {
     text-align: center;
@@ -60,11 +65,11 @@ ion-tab-button
     --color-selected: var(--ion-color-verde1);
     --background: var(--ion-color-preto2);
 }
-ion-button
-{
-    background:  var(--ion-color-verde1);
-    color: var(--ion-color-branco1);
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 17px;
-}
+// ion-button
+// {
+//     background:  var(--ion-color-verde1);
+//     color: var(--ion-color-branco1);
+//     font-weight: bold;
+//     font-size: 14px;
+//     line-height: 17px;
+// }
