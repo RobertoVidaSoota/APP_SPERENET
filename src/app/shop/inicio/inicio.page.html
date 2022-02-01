@@ -9,8 +9,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <h1 style="color: aliceblue;">Oi</h1>
+  <div style="width: 10px; height: 800px; background: #ff9"></div>
   <ion-button routerLink="/tabs/tab1/produto" expand="block">
     produto
+  </ion-button>
+  <ion-button (click)="top()" expand="block" fill="clear">
+    Topo
   </ion-button>
 </ion-content>
 <!-- routerLink="/tabs/tab1/produto" -->

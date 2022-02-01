@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { IonContent, IonTabButton, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-inicio',
@@ -8,6 +8,10 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./inicio.page.scss'],
 })
 export class InicioPage implements OnInit {
+
+  @ViewChild(IonContent) content: IonContent;
+
+  
 
   constructor(
     private route: Router,
@@ -17,11 +21,25 @@ export class InicioPage implements OnInit {
   ngOnInit() {
   }
 
-  produto()
+  // FUNÇÃO PARA COLOCAR ROLAGEM AUTOMÁTICA PARA O TOPO
+  ionViewDidEnter()
   {
-    let navOrigin:any = "cao";
+    let tab = document.querySelector("ion-tab-button")  
+    var ref = this.content 
+    
+    tab.addEventListener("click", function()
+    {    
+      let myTab = localStorage.getItem("tab")
+      if(myTab == "tab1")
+      {
+        ref.scrollToTop(400)
+      }
+    });
+  }
 
-    this.navCtrl.navigateRoot("/tabs/tab1/produto", navOrigin)
+  top()
+  {
+   this.content.scrollToTop(400)
   }
 
 }

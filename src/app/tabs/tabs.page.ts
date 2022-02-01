@@ -16,7 +16,6 @@ export class TabsPage {
   {
     setTimeout(()=>{
       localStorage.setItem("tab", e.tab);
-      let myTab = localStorage.getItem("tab")
     }, 100)
 
     
