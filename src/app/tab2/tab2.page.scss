@@ -1,0 +1,50 @@
+.barra-pesquisa
+{
+    --background: var(--ion-color-preto-0);
+    --color: var(--ion-color-verde1);
+    --cancel--button-color: var(--ion-color-verde1);
+    --icon-color: var(--ion-color-verde1);
+    font-weight: medium;
+}
+.ilustra-pesquisa
+{
+    display: block;
+    width: 220px;
+    height: 200px;
+    margin-top: 90px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+// ITEM ACHADO
+.titulo-item
+{
+    width: 100%;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 15px;
+}
+.ava-item
+{
+    display: inline-block;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--ion-color-cinza1);
+}
+.ava-item ion-icon
+{
+    width: 11px;
+    height: 11px;
+}
+.preco-item
+{
+    display: inline-block;
+    margin-left: 5%;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--ion-color-verde0);
+}

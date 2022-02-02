@@ -47,9 +47,17 @@ ion-toolbar
     --color: var(--ion-color-verde1);
     box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.25);
 }
+ion-item
+{
+    --background: var(--ion-color-preto2);
+    --color: var(--ion-color-branco1);
+    font-weight: bold;
+    font-size: 14pt;
+}
 ion-content
 {
     --background: var(--ion-color-preto2);
+    --color: var(--ion-color-branco1);
 }
 ion-tab-bar
 {
@@ -73,3 +81,15 @@ ion-tab-button
 //     font-size: 14px;
 //     line-height: 17px;
 // }
+
+// CLASSES
+
+.titulo1
+{
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 27px;
+    color: var(--ion-color-verde1);
+}
