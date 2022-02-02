@@ -1,15 +1,86 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon slot="start" name="search"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
     <ion-title>
-      Tab 3
+      Compras realizadas
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/carrinho">
+        <ion-icon slot="start" name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <div class="item-compra">
+
+    <h4 class="data-compra">12/10/2020</h4>
+
+    <ion-row>
+      <!-- IMAGEM DO PRODUTO -->
+      <ion-col size="4">
+        <ion-thumbnail>
+          <img src="../../assets/pc-1.png" />
+        </ion-thumbnail>
+      </ion-col>
+      
+        <!-- DADOS DO PRODUTO -->
+        <ion-col size="8">
+          <h1 class="prod-name-compra">Nome de Produto
+            RTX 9080, 64 RAM, celeron 2000R7
+          </h1>
+        </ion-col>
+
+        <p>
+          <ion-text>
+            Preço: 
+          </ion-text> <b> R$ 3.999,00 , Pix</b>
+        </p>
+
+        <p>
+          <ion-text>
+            Data de compra: 
+          </ion-text> <b> sexta-feira, 09/04/2021</b>
+        </p>
+
+        <p>
+          <ion-text>
+            Status:
+          </ion-text> <b> À confirmar </b>
+        </p>
+
+        <p>
+          <ion-text>
+            Onde ele está:
+          </ion-text> <b> Morgi Mirim, SP </b>
+        </p>
+
+        <p>
+          <ion-text>
+            Data e Local de entrega: 
+          </ion-text> <b> Sexta-feira 23/04/2021, Rua da merda, Belo Horizonte, MG</b>
+        </p>
+    </ion-row>
+
+    <!-- BOTÃO DE CANCELAR -->
+    <ion-button class="botao-compra">
+      <b> cancelar pedido </b>
+    </ion-button>
+
+  </div>
+
+
+
 </ion-content>
