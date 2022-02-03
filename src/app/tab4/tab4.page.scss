@@ -1,0 +1,45 @@
+.nome-com-icone{
+    width: 100%;
+}
+.icone{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.icone ion-avatar{
+    margin-top: 20px;
+    width: 90%;
+    height: 240px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.nome{
+    text-align: center;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 29px;
+    color: var(--ion-color-branco1);
+}
+h6{
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--ion-color-cinza1);
+}
+ion-item{
+    --background: #000;
+    --color: var(--ion-color-branco1);
+}
+ion-item b{
+    color: rgb(4, 70, 15);
+}
+ion-item ion-icon{
+    color: var(--ion-color-branco1);
+}
+.btn-logout{
+    color: #D62525;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    text-transform: capitalize;
+}
