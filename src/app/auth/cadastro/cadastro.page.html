@@ -1,9 +1,105 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>cadastro</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title> Cadastre-se na SPERENET</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <!--  FORMULÁRIO -->
+  <div class="form-cadastro">
+    
+      <ion-row>
+
+
+      <!-- NOME E SOBRE NOME -->
+      <ion-col size="12">
+        <input type="text" placeholder="Informe seus nome e sobrenome" />  
+      </ion-col>
+
+      <!-- E-MAIL -->
+      <ion-col size="12">
+        <input type="email" placeholder="Informe seu e-mail" />  
+      </ion-col>
+
+      <!-- SENHA -->
+      <ion-col size="12">
+        <input type="password" placeholder="Informe sua sanha" />  
+      </ion-col>
+
+      <!-- CONFIRMAR SENHA -->
+      <ion-col size="12">
+        <input type="password" placeholder="Confirme sua senha" /> 
+      </ion-col>
+
+
+      <!-- ENDEREÇO -->
+      <div class="separar-area"></div>
+
+
+      <!-- CEP -->
+      <ion-col size="5">
+        <input type="text" placeholder="CEP" inputmode="decimal" />
+      </ion-col>
+
+      <!-- PAIS -->
+      <ion-col size="7">
+        <input type="text" placeholder="País" /> 
+      </ion-col>
+      
+      <!-- ESTADO -->
+      <ion-col size="2">
+        <input type="text" placeholder="UF" />  
+      </ion-col>
+
+      <!-- CIDADE -->
+      <ion-col size="5">
+        <input type="text" placeholder="Cidade" />  
+      </ion-col>
+
+      <!-- BAIRRO -->
+      <ion-col size="5">
+        <input type="text" placeholder="Bairro" /> 
+      </ion-col>
+
+      <!-- RUA -->
+      <ion-col size="10">
+        <input type="text" placeholder="Rua" />
+      </ion-col>
+
+      <!-- NUMERO DA CASA -->
+      <ion-col size="2">
+        <input type="text" placeholder="Nº" inputmode="numeric" />  
+      </ion-col>
+
+
+      </ion-row>
+
+  </div>
+
+
+  <div class="div_h_center">
+    <ion-row>
+
+      <ion-col size="6">
+        <div class="no-centro-dentro">
+          <ion-button routerLink="/tabs/tab1" class="btn_login">
+            Confirmar
+          </ion-button>
+        </div>
+      </ion-col>
+
+      <ion-col size="6">
+        <div class="no-centro-dentro">
+          <ion-button routerLink="/login" class="btn_nav_cadastro" fill="clear">
+            Login
+          </ion-button>
+        </div>
+      </ion-col>
+
+    </ion-row>
+  </div>
 </ion-content>
