@@ -25,9 +25,9 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-*
-{
-}
+// *
+// {
+// }
 ion-icon
 {
     width: 24px;
@@ -73,14 +73,39 @@ ion-tab-button
     --color-selected: var(--ion-color-verde1);
     --background: var(--ion-color-preto2);
 }
-// ion-button
-// {
-//     background:  var(--ion-color-verde1);
-//     color: var(--ion-color-branco1);
-//     font-weight: bold;
-//     font-size: 14px;
-//     line-height: 17px;
-// }
+ion-button
+{
+    --border-radius: 0;
+    --padding-bottom: 22px;
+    --padding-top: 22px;
+    --padding-end: 42px;
+    --padding-start: 42px;
+    --background: var(--ion-color-verde1);
+    --color: var(--icon-color-branco1);
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+input
+{
+    display: block;
+    width: 82%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    padding-bottom: 18px;
+    padding-top: 18px;
+    padding-left: 20px;
+    font-size: 14px;
+    line-height: 17px;
+}
+::placeholder
+{
+    color: var(--ion-color-cinza1);
+    font-weight: bold;
+}
 
 // CLASSES
 
@@ -92,4 +117,11 @@ ion-tab-button
     font-size: 22px;
     line-height: 27px;
     color: var(--ion-color-verde1);
+}
+.no-centro-dentro{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    min-width: 0;
 }
