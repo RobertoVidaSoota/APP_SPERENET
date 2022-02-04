@@ -1,0 +1,51 @@
+ion-title
+{
+    text-align: left;
+}
+h3
+{
+    width: 100%;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 10px;
+}
+p
+{
+    display: inline-block;
+}
+p ion-icon
+{
+    width: 11px;
+    height: 11px;
+}
+p.ava-item
+{
+    display: inline-block;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--ion-color-cinza1);
+}
+p.preco-item
+{
+    margin-left: 5%;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--ion-color-verde0);
+}
+.close_button
+{
+    --padding-bottom: 0;
+    --padding-top: 0;
+    --padding-end: 0;
+    --padding-start: 0;
+    --background: transparent;
+}
+.close_button ion-icon
+{
+    width: 15px;
+    height: 15px;
+    color: var(--ion-color-cinza1);
+}
