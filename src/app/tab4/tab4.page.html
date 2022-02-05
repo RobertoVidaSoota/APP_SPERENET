@@ -26,56 +26,56 @@
 
   <h6 style="margin-left: 20px;">Informações de Usuario</h6>
 
-  <ion-item button (click)="mudarInfoGerais()">
+  <ion-item button (click)="mudarInfoGerais()" routerLink="/info-pessoais">
     <ion-label>Gerais </ion-label>
     <ion-icon slot="end" name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <ion-item button (click)="mudarEmail()">
+  <ion-item button (click)="mudarEmail()" routerLink="/email">
     <ion-label>Email </ion-label>
     <ion-icon slot="end" name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <ion-item button (click)="mudarSenha()">
+  <ion-item button (click)="mudarSenha()" routeLink="/senha">
     <ion-label>Senha </ion-label>
     <ion-icon slot="end" name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <ion-item button (click)="mudarChave()">
-    <ion-label>Chave de dois Fatores </ion-label>
+  <ion-item button (click)="mudarChave()" routerLink="/dois-fatores">
+    <ion-label>Dois fatores </ion-label>
     <ion-icon slot="end" name="chevron-forward"></ion-icon>
   </ion-item>
 
   <h6 style="margin-left: 20px;">Notificções</h6>
 
-  <ion-item button (click)="notfPreferencias()">
+  <ion-item button (click)="notfPreferencias()" routerLink="/preferencias">
     <ion-label>Preferências</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <ion-item button (click)="notfrequencia()">
+  <ion-item button (click)="notfrequencia()" routerLink="/frequencia">
     <ion-label>Frequência</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
 
   <h6 style="margin-left: 20px;">Suporte</h6>
 
-  <ion-item button (click)="supAjuda()">
+  <ion-item button (click)="supAjuda()" routerLink="/ajuda">
     <ion-label>Ajuda</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <ion-item button (click)="supFeedback()">
+  <ion-item button (click)="supFeedback()" routerLink="/feedback">
     <ion-label>Feedback</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <ion-item button (click)="supTermos()">
+  <ion-item button (click)="supTermos()" routerLink="/termos-serviços">
     <ion-label>Termos de Serviço</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <ion-item button (click)="supPrivacidade()">
+  <ion-item button (click)="supPrivacidade()" routerLink="/privacidade">
     <ion-label>Privacidade</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
