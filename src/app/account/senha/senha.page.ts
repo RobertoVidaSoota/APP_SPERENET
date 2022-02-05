@@ -12,4 +12,11 @@ export class SenhaPage implements OnInit {
   ngOnInit() {
   }
 
+  ionViewDidEnter()
+  {
+    let input = document.getElementById("myFocus")
+
+    input.focus()
+  }
+
 }
