@@ -12,4 +12,11 @@ export class EmailPage implements OnInit {
   ngOnInit() {
   }
 
+  ionViewDidEnter()
+  {
+    let input = document.querySelector("input")
+
+    input.focus()
+  }
+
 }

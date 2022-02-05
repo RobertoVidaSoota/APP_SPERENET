@@ -7,7 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class InfoPessoaisPage implements OnInit {
 
-  // @Input() myfocus:string
   constructor() { }
 
   ngOnInit() {
