@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FrequenciaPage implements OnInit {
 
-  constructor() { }
+  constructor(){}
 
   ngOnInit() {
   }

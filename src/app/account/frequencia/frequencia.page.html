@@ -3,10 +3,35 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>frequencia</ion-title>
+    <ion-title>Frequencia</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  
+  <ion-item>
+      <ion-label>
+        Máximo de vezes
+      </ion-label>
+      <ion-select multiple="false" value="1 vez">
+        <ion-select-option value="1 vez">1 vez</ion-select-option>
+        <ion-select-option value="2 vezes">2 vezes</ion-select-option>
+        <ion-select-option value="3 vezes">3 vezes</ion-select-option>
+        <ion-select-option value="4 vezes">4 vezes</ion-select-option>
+      </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      Tempo
+    </ion-label>
+    <ion-select multiple="false" value="Por dia">
+      <ion-select-option value="Por dia">Por dia</ion-select-option>
+      <ion-select-option value="Por semana">Por semana</ion-select-option>
+      <ion-select-option value="Por mês">Por mês</ion-select-option>
+    </ion-select>
+</ion-item>
+
 
 </ion-content>
