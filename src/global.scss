@@ -86,6 +86,13 @@ ion-button
     font-size: 14px;
     text-transform: capitalize;
 }
+ion-toggle
+{
+    --background: var(--ion-color-cinza1);
+    --background-checked: var(--ion-color-branco1);
+    --handle-background: var(--ion-color-cinza2);
+    --handle-background-checked: var(--ion-color-verde1);
+}
 button
 {
     display: block;
