@@ -126,6 +126,33 @@ input
     color: var(--ion-color-cinza1);
     font-weight: bold;
 }
+// ACCODION CLOSED
+ion-accordion::part(content)
+{
+    background: var(--ion-color-preto2);
+}
+ion-accordion::part(header)
+{
+    border: 1px solid var(--ion-color-branco1);
+}
+ion-accordion ion-icon[slot="end"]
+{
+    color: var(--ion-color-branco1);
+}
+// ACCORDION OPENED
+ion-accordion.accordion-expanding ion-item[slot="header"],
+ion-accordion.accordion-expanded ion-item[slot="header"]
+{
+    --border-width: 1px;
+    --border-style: solid;
+    --border-color: var(--ion-color-branco1);
+}
+ion-accordion.accordion-expanding div[slot="content"],
+ion-accordion.accordion-expanded div[slot="content"]
+{
+    background: var(--ion-color-preto2);
+    border: 1px solid var(--ion-color-branco1);
+}
 
 // CLASSES
 
@@ -148,6 +175,10 @@ input
 .mb-30
 {
     margin-bottom: 30px;
+}
+.w-82
+{
+    width: 82%;
 }
 .select-text
 {
