@@ -3,10 +3,97 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>carrinho</ion-title>
+
+    <ion-title>Carrinho</ion-title>
+
+    <div class="numero-items" slot="end">
+      <p>Itens:</p>
+      <p>3</p>
+    </div>
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content>
 
+
+  <ion-row>
+
+    <ion-col size="6">
+
+      <div class="card-item">
+        <img class="img-item" src="../../../assets/CAIXA_DE_SOM_1.png">
+        <p class="pruduto-item">
+          Caixa de som
+        </p>
+        <p class="preco-item">
+          R$ 338,99
+        </p>
+        <div class="meu_grid">
+          <ion-label>
+            <ion-button fill="clear">
+              <ion-icon class="remove-item" name="remove"></ion-icon>
+            </ion-button>
+          </ion-label>
+
+          <ion-label class="quantidade-item">2</ion-label>
+
+          <ion-label>
+            <ion-button fill="clear">
+              <ion-icon class="add-item" name="add"></ion-icon>
+            </ion-button>
+          </ion-label>
+        </div>
+      </div>
+
+    </ion-col>
+
+
+    <ion-col size="6">
+
+      <div class="card-item">
+        <img class="img-item" src="../../../assets/NOTEBOOK_1.png">
+        <p class="pruduto-item">
+          Notebooke Gamer
+        </p>
+        <p class="preco-item">
+          R$ 7,499,99
+        </p>
+        <div class="meu_grid">
+          <ion-label>
+            <ion-button fill="clear">
+              <ion-icon class="remove-item" name="remove"></ion-icon>
+            </ion-button>
+          </ion-label>
+
+          <ion-label class="quantidade-item">1</ion-label>
+
+          <ion-label>
+            <ion-button fill="clear">
+              <ion-icon class="add-item" name="add"></ion-icon>
+            </ion-button>
+          </ion-label>
+        </div>
+      </div>
+
+    </ion-col>
+  </ion-row>
+
+
 </ion-content>
+
+
+
+<ion-footer>
+
+  <ion-toolbar>
+    <h1>
+      Total: <b>7.838,98</b>
+    </h1>
+  </ion-toolbar>
+
+  <button>
+    PAGAR
+  </button>
+</ion-footer>
