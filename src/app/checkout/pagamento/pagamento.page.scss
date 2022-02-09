@@ -1,0 +1,30 @@
+ion-title
+{
+    text-align: left;
+}
+ion-content
+{
+    --padding-top: 20px;
+}
+.img-ilustra
+{
+    width: 75%;
+    height: auto;
+    margin-top: 2em;
+    margin-bottom: 4em;
+}
+ion-icon
+{
+    color: var(--ion-color-branco1);
+}
+ion-icon, ion-img
+{
+    width: 27px;
+    height: 27px;
+}
+ion-label
+{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+}

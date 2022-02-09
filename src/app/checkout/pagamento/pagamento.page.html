@@ -3,10 +3,29 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>pagamento</ion-title>
+
+    <ion-title>Pagamento</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+
+  <img class="img-ilustra no-centro-dentro" src="../../../assets/pay.png">
+
+  <ion-item button routerLink="/pix">
+    <ion-img src="../../../assets/PIX ICON 1.png" slot="start"></ion-img>
+    <ion-label>Pix</ion-label>
+  </ion-item>
+
+  <ion-item button routerLink="/cartao">
+    <ion-icon slot="start" name="card"></ion-icon>
+    <ion-label>Cartão de crédito</ion-label>
+  </ion-item>
+
+  <ion-item button routerLink="/boleto">
+    <ion-icon slot="start" name="document-text"></ion-icon>
+    <ion-label>Boleto</ion-label>
+  </ion-item>
 </ion-content>
