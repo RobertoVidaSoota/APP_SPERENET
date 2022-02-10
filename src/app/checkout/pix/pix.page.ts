@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pix',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PixPage implements OnInit {
 
-  constructor() { }
+  isOpen:boolean = false;
 
-  ngOnInit() {
+  constructor(
+  ) { }
+
+  ngOnInit(){
   }
+
+  myPopover()
+  {
+    this.isOpen = !this.isOpen;
+  }
+
 
 }

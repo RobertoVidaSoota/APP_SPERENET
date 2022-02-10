@@ -161,6 +161,16 @@ ion-accordion.accordion-expanded div[slot="content"]
     background: var(--ion-color-preto2);
     border: 1px solid var(--ion-color-branco1);
 }
+// POPOVER
+ion-popover
+{
+    --backdrop-opacity: 0.6;
+    --width: 85%;
+}
+ion-popover::part(content)
+{
+    border: 1px solid var(--ion-color-verde2);
+}
 
 // CLASSES
 

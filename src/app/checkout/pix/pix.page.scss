@@ -1,0 +1,81 @@
+ion-title
+{
+    text-align: left;
+}
+ion-content
+{
+    --padding-top: 20px;
+}
+.titulo1
+{
+    margin-bottom: 3.2em;
+}
+.qr
+{
+    width: 75%;
+    height: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+button
+{
+    width: 90%;
+    margin-bottom: 5em;
+}
+.detalhes
+{
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--ion-color-cinza1);
+}
+ion-icon
+{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 1em;
+    vertical-align: middle;
+}
+span
+{
+    vertical-align: middle;
+}
+
+// POPOVER PEDIDO
+p.link-alterar
+{
+    margin-left: 1em;
+    margin-bottom: 2.5em;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: var(--ion-color-cinza1);
+}
+p.link-alterar ion-icon
+{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+p.link-alterar span
+{
+    vertical-align: middle;
+}
+h3
+{
+    width: 100%;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 10px;
+}
+p.preco-item
+{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--ion-color-verde0);
+}
