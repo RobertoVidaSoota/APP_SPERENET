@@ -1,9 +1,116 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>cartao</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Cartao</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+
+  <h2 class="titulo1">
+    Preenchar aqui os dados do cartão de crédito.
+  </h2>
+
+
+  <ion-row>
+
+    <ion-col size="12">
+      <input type="text">
+    </ion-col>
+
+    <ion-col size="12">
+      <input type="text">
+    </ion-col>
+
+    <ion-col size="12">
+      <input type="text">
+    </ion-col>
+
+    <ion-col size="6">
+      <input type="text">
+    </ion-col>
+
+    <ion-col size="6">
+      <input type="text">
+    </ion-col>
+
+    <ion-col size="12">
+      <input type="text">
+    </ion-col>
+
+  </ion-row>
+
+
+  <button>
+    Confirmar
+  </button>
+
+
+  <!-- POPOVER -->
+  <p class="detalhes" (click)="myPopover()">
+    <ion-icon name="information-circle"></ion-icon>
+    <span>
+      Detalhes do pedido
+    </span>
+  </p>
+
+
+  <ion-popover [isOpen]="isOpen" (didDismiss)="myPopover()">
+    <ng-template>
+      <ion-content>
+
+
+        <p class="link-alterar" routerLink="/carrinho">
+          <ion-icon name="create-outline"></ion-icon>
+          <span>
+            Alterar pedido
+          </span>
+        </p>
+
+
+        <ion-item class="item-detalhes" button>
+          <ion-thumbnail slot="start" routerLink="/tabs/tab1/produto">
+            <img src="../../../assets/NOTEBOOK_1.png" />
+          </ion-thumbnail>
+
+          <ion-label>
+            <h3 routerLink="/tabs/tab1/produto"> 
+              Notebook Gamer 
+            </h3>
+            <p class="preco-item"> R$ 7.499,00 </p>
+          </ion-label>
+      
+          <h2 slot="end">
+            1
+          </h2>
+        </ion-item>
+
+
+        <ion-item class="item-detalhes" button>
+          <ion-thumbnail slot="start" routerLink="/tabs/tab1/produto">
+            <img src="../../../assets/CAIXA_DE_SOM_1.png" />
+          </ion-thumbnail>
+
+          <ion-label>
+            <h3 routerLink="/tabs/tab1/produto"> 
+              Caixa de som
+            </h3>
+            <p class="preco-item"> R$ 338,99 </p>
+          </ion-label>
+      
+          <h2 slot="end">
+            2
+          </h2>
+        </ion-item>
+
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+
 
 </ion-content>

@@ -17,10 +17,14 @@ ion-content
     margin-top: 2em;
     margin-bottom: 2em;
 }
+.voltar-inicio
+{
+    margin-bottom: 3em;
+    margin-top: 2em;
+}
 button
 {
     width: 90%;
-    margin-bottom: 5em;
 }
 .detalhes
 {
@@ -33,13 +37,15 @@ button
 ion-icon
 {
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right: 1em;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    margin-right: 0.6em;
     vertical-align: middle;
 }
 span
 {
+    display: inline-block;
     vertical-align: middle;
 }
 

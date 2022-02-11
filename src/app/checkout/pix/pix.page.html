@@ -8,9 +8,13 @@
 
   <img class="qr no-centro-dentro" src="../../../assets/QR-code PIX 2.png">
 
-  <button>
+  <button (click)="myLoading()">
     COPIAR
   </button>
+
+  <b class="voltar-inicio no-centro-dentro" routerLink="/tabs/tab1/inicio">
+    voltar para o inicio
+  </b>
 
   <p class="detalhes" (click)="myPopover()">
     <ion-icon name="information-circle"></ion-icon>

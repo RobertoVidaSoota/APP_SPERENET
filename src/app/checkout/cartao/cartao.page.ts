@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartaoPage implements OnInit {
 
+  isOpen:boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  myPopover()
+  {
+    this.isOpen = !this.isOpen;
   }
 
 }

@@ -207,3 +207,8 @@ ion-popover::part(content)
     font-size: 18px;
     line-height: 22px;
 }
+.toast-class
+{
+    --background: var(--ion-color-branco1);
+    --color: var(--ion-color-preto2);
+}
