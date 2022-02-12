@@ -6,6 +6,13 @@
     para esse QR-code.
   </h2>
 
+  <p class="detalhes" (click)="myPopover()">
+    <ion-icon name="information-circle"></ion-icon>
+    <span>
+      Detalhes do pedido
+    </span>
+  </p>
+
   <img class="qr no-centro-dentro" src="../../../assets/QR-code PIX 2.png">
 
   <button (click)="myLoading()">
@@ -16,14 +23,11 @@
     voltar para o inicio
   </b>
 
-  <p class="detalhes" (click)="myPopover()">
-    <ion-icon name="information-circle"></ion-icon>
-    <span>
-      Detalhes do pedido
-    </span>
-  </p>
-
-
+  
+  
+  
+  <!-- POPOVER PEDIDO -->
+  
   <ion-popover [isOpen]="isOpen" (didDismiss)="myPopover()">
     <ng-template>
       <ion-content>

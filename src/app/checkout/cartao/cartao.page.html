@@ -5,42 +5,45 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
 
-    <ion-title>Cartao</ion-title>
+    <ion-title>
+      Cartão
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-
-  <h2 class="titulo1">
-    Preenchar aqui os dados do cartão de crédito.
-  </h2>
-
+  <p class="detalhes" (click)="myPopover()">
+    <ion-icon name="information-circle"></ion-icon>
+    <span>
+      Detalhes do pedido
+    </span>
+  </p>
 
   <ion-row>
 
     <ion-col size="12">
-      <input type="text">
+      <input type="text" placeholder="Nome">
     </ion-col>
 
     <ion-col size="12">
-      <input type="text">
+      <input type="text" placeholder="CPF" inputmode="numeric">
     </ion-col>
 
     <ion-col size="12">
-      <input type="text">
+      <input type="text" placeholder="Número do cartão" inputmode="numeric">
     </ion-col>
 
     <ion-col size="6">
-      <input type="text">
+      <input type="number" placeholder="Código" inputmode="numeric">
     </ion-col>
 
     <ion-col size="6">
-      <input type="text">
+      <input type="text" placeholder="Validade" inputmode="numeric">
     </ion-col>
 
     <ion-col size="12">
-      <input type="text">
+      <input type="number" placeholder="Pacelas" inputmode="numeric">
     </ion-col>
 
   </ion-row>
@@ -51,15 +54,13 @@
   </button>
 
 
+  <b class="voltar-inicio no-centro-dentro" routerLink="/tabs/tab1/inicio">
+    voltar para o inicio
+  </b>
+
+
   <!-- POPOVER -->
-  <p class="detalhes" (click)="myPopover()">
-    <ion-icon name="information-circle"></ion-icon>
-    <span>
-      Detalhes do pedido
-    </span>
-  </p>
-
-
+  
   <ion-popover [isOpen]="isOpen" (didDismiss)="myPopover()">
     <ng-template>
       <ion-content>
