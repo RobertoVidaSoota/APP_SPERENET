@@ -212,3 +212,8 @@ ion-popover::part(content)
     --background: var(--ion-color-branco1);
     --color: var(--ion-color-preto2);
 }
+.load-class
+{
+    --background: rgba(0, 0, 0, 0.5);
+    --backdrop-opacity: 0.5;
+}

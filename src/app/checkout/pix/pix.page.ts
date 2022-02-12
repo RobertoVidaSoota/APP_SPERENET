@@ -32,6 +32,7 @@ export class PixPage implements OnInit {
     let myLoad = this.load.create({
       backdropDismiss: false,
       duration: 100,
+      cssClass: "load-class"
     }).then(res => res.present())
 
     let myToast = this.toast.create({
