@@ -1,12 +1,115 @@
 <ion-header>
   <ion-toolbar>
+
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title id="title_produto">produto</ion-title>
+
+    <ion-title id="title_produto">Nome do produto</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
+
+  <img class="img_produto no-centro-dentro" src="../../../assets/pc-1.png">
+
+  <div class="box_estrelas">
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star-outline"></ion-icon>
+    <ion-icon name="star-outline"></ion-icon>
+  </div>
+
+  <div class="box_buttons_out">
+    <ion-icon name="heart"></ion-icon>
+    <ion-icon name="cart"></ion-icon>
+    <ion-icon name="share-social"></ion-icon>
+  </div>
+
+  <p class="preco">
+    R$ 4.999,00
+  </p>
+
+  <p class="parcelas">
+    12x de R$ 599,00
+  </p>
+
+  <button class="button_comprar">
+    COMPRAR
+  </button>
+
+
+  <!-- OUTRAS INFORMAÇÕES -->
+
+  <h3 class="title_desc">
+    Descrição
+  </h3>
+
+  <p class="text_desc">
+    Desenvolvido por: Tal
+    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their.
+  </p>
+
+  <h3 class="title_especificacoes">
+    Especificações
+  </h3>
+
+  <p class="text_especificacoes">
+    • Memoria RAM: <span>  65 GB </span>
+  </p>
+  <p class="text_especificacoes">
+    • HD: <span> 8 TB </span>
+  </p>
+  <p class="text_especificacoes">
+    • Placa de Video: <span> RTX 9080 </span> 
+  </p>
+  <p class="text_especificacoes">
+    • Processador: <span> INTEL CELERON 2000R7 7GH`z </span>
+  </p>
+  <p class="text_especificacoes">
+    • Sistema Operacional: <span> Linux 1 </span>
+  </p>
+
+
+  <!-- FEEDBACK -->
+
+
+  <h3 class="title_avaliacoes"> Avaliações </h3>
+
+  <ion-button class="button_add_comentario" fill="clear">
+    <ion-icon slot="start" name="add"></ion-icon>
+    <ion-text>
+      Comentar
+    </ion-text>
+  </ion-button>
+
+  <div class="item_comentario">
+    <ion-avatar class="avatar_comentario">
+      <img src="https://images.pexels.com/photos/185481/pexels-photo-185481.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
+    </ion-avatar>
+
+    <ion-label>
+      <h2 class="nome_comentario">Roberta Careta</h2>
+      <div class="box_star_comentario">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <p class="msg_comentario">
+        Essa porcaria queimou depois de dois dias.
+      </p>
+      <p class="responder_button">
+        responder
+      </p>
+    </ion-label>
+  </div>
+
+
+
 
 </ion-content>
