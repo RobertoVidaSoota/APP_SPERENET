@@ -6,6 +6,22 @@ const routes: Routes = [
   {
     path: '',
     component: Tab3Page,
+    children: [
+      {
+        path: 'compras',
+        loadChildren: () => import('../shop/compras/compras.module').then( m => m.ComprasPageModule)
+      },
+      {
+        path: "rastrear",
+        loadChildren: () => import("../shop/rastrear/rastrear.module").then
+        (m => m.RastrearPageModule)
+      },
+      {
+        path: "",
+        redirectTo: "",
+        pathMatch: "full"
+      }
+    ]
   }
 ];
 
