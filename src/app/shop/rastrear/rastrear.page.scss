@@ -2,3 +2,24 @@ ion-title
 {
     text-align: left;
 }
+ion-content
+{
+    --padding-top: 20px;
+}
+.meu_produto
+{
+    margin-bottom: 2em;
+}
+#map
+{
+    height: 15em;
+    // background-color: #fff;
+}
+ion-item.location
+{
+    margin-top: 2em;
+}
+ion-icon[name=location]
+{
+    color: var(--ion-color-verde1);
+}
