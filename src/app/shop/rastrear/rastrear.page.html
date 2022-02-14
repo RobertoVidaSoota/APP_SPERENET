@@ -7,9 +7,6 @@
     <ion-title>Rastrear Produto</ion-title>
 
   </ion-toolbar>
-</ion-header>
-
-<ion-content>
 
   <ion-item class="meu_produto">
     <ion-thumbnail slot="start">
@@ -19,20 +16,31 @@
       Nome de produto - RTX 9080, 64 RAM, celeron 2000R7
     </ion-text>
   </ion-item>
+
+</ion-header>
+
+
+<ion-content>
   
   <div class="map" id="map"></div>
 
-  <ion-item class="location">
-    <ion-icon name="location" slot="start"></ion-icon>
-    <ion-text>
-      Estrada do Côco, Lauro de Freitas - BA, 42700-000
-    </ion-text>
-  </ion-item>
-
-  <ion-item>
-    <img src="../../../assets/truck 2.svg" slot="start">
-    <ion-label>
-      2 horas para chegar.
-    </ion-label>
-  </ion-item>
 </ion-content>
+
+
+<ion-footer>
+
+    <ion-item class="location">
+      <ion-icon name="location" slot="start"></ion-icon>
+      <ion-text>
+        Estrada do Côco, Lauro de Freitas - BA, 42700-000
+      </ion-text>
+    </ion-item>
+  
+    <ion-item class="estimativa">
+      <img src="../../../assets/truck 2.svg" slot="start">
+      <ion-label>
+        2 horas para chegar.
+      </ion-label>
+    </ion-item>
+
+</ion-footer>

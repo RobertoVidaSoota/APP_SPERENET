@@ -8,16 +8,23 @@ ion-content
 }
 .meu_produto
 {
-    margin-bottom: 2em;
+    margin-bottom: 0em;
 }
+
 #map
 {
-    height: 15em;
-    // background-color: #fff;
+    min-height: 100%;
+    overflow: hidden;
+    z-index: 50;
 }
+
 ion-item.location
 {
-    margin-top: 2em;
+    margin-top: 0.6em;
+}
+ion-item.estimativa
+{
+    margin-bottom: 0.6em;
 }
 ion-icon[name=location]
 {
