@@ -4,7 +4,6 @@ import { NavController } from '@ionic/angular';
 import * as L from 'leaflet'
 
 import 'leaflet-routing-machine';
-import "leaflet/dist/leaflet.css";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 
 
@@ -28,23 +27,37 @@ export class RastrearPage implements OnInit {
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
     {
-      // attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
 
-    let myIcon = L.icon({
+    let myIcon1 = L.icon({
       iconUrl: "../../../assets/markericon2x.png",
       iconSize: [38, 45]
     })
 
-    L.marker([-12.879736, -38.312165], {icon: myIcon}).addTo(this.map);
+    // let myIcon2 = L.icon({
+    //   iconUrl: "../../../assets/markericon2x.png",
+    //   iconSize: [38, 45]
+    // })
 
-    L.Routing.control({
+
+    // L.marker([-12.879736, -38.312165], {icon: myIcon1}).addTo(this.map);
+    // L.marker([-12.939894, -38.502955], {icon: myIcon1}).addTo(this.map);
+
+
+    let control = L.Routing.control({
       waypoints: [
-        L.latLng(-12.879736, -38.312165),
-        L.latLng(-12.939894, -38.502955)
+          L.latLng(-12.879736, -38.312165),
+          L.latLng(-12.939894, -38.502955)
       ],
-      routeWhileDragging: true
+      lineOptions: {
+        styles: [{color: 'black'}]
+      },
+      routeWhileDragging: false,
+      show: false,
+      collapsible: false
     }).addTo(this.map);
+
 
     setTimeout(() => {
       this.map.invalidateSize();
