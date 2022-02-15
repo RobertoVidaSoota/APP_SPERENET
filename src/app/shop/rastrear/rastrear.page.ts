@@ -31,18 +31,18 @@ export class RastrearPage implements OnInit {
     }).addTo(this.map);
 
     let myIcon1 = L.icon({
-      iconUrl: "../../../assets/markericon2x.png",
-      iconSize: [38, 45]
+      iconUrl: "../../../assets/truck-64.png",
+      iconSize: [45, 45]
     })
 
-    // let myIcon2 = L.icon({
-    //   iconUrl: "../../../assets/markericon2x.png",
-    //   iconSize: [38, 45]
-    // })
+    let myIcon2 = L.icon({
+      iconUrl: "../../../assets/pessoa-30.png",
+      iconSize: [45, 45]
+    })
 
 
-    // L.marker([-12.879736, -38.312165], {icon: myIcon1}).addTo(this.map);
-    // L.marker([-12.939894, -38.502955], {icon: myIcon1}).addTo(this.map);
+    L.marker([-12.879736, -38.312165], {icon: myIcon1}).addTo(this.map);
+    L.marker([-12.939894, -38.502955], {icon: myIcon2}).addTo(this.map);
 
 
     let control = L.Routing.control({
