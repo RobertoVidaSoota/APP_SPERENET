@@ -57,7 +57,8 @@ export class RastrearPage implements OnInit {
       draggableWaypoints: false,
       routeWhileDragging: false,
       show: false,
-      collapsible: false
+      collapsible: false,
+      createMarker: function() { return null; },
     }).addTo(this.map);
 
 
