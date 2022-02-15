@@ -51,8 +51,10 @@ export class RastrearPage implements OnInit {
           L.latLng(-12.939894, -38.502955)
       ],
       lineOptions: {
+        addWaypoints: false,
         styles: [{color: 'black'}]
       },
+      draggableWaypoints: false,
       routeWhileDragging: false,
       show: false,
       collapsible: false
