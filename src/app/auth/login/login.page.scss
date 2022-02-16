@@ -8,6 +8,19 @@
 {
     margin-top: 3em;
 }
+ion-button
+{
+    --border-radius: 0;
+    --padding-bottom: 22px;
+    --padding-top: 22px;
+    --padding-end: 42px;
+    --padding-start: 42px;
+    --background: var(--ion-color-verde1);
+    --color: var(--icon-color-branco1);
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: capitalize;
+}
 .btn_nav_cadastro
 {
     --background: transparent;

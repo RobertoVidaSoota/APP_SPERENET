@@ -18,11 +18,28 @@ input
 {
     width: 100%;
 }
+input.numero_casa, input.estado
+{
+    padding-left: 1em !important;
+}
 ion-row
 {
     margin-left: auto;
     margin-right: auto;
     width: 82%;
+}
+ion-button
+{
+    --border-radius: 0;
+    --padding-bottom: 22px;
+    --padding-top: 22px;
+    --padding-end: 42px;
+    --padding-start: 42px;
+    --background: var(--ion-color-verde1);
+    --color: var(--icon-color-branco1);
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: capitalize;
 }
 .btn_nav_cadastro
 {
