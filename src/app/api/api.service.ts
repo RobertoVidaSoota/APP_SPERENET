@@ -23,8 +23,7 @@ export class ApiService {
   {
     const myHeaders = new HttpHeaders(
       {
-        Authorization: "C2BEB038D0AB4D77B15CD2A560D3BCBA",
-        "Content-type": "application/json"
+        "Content-Type": "application/json"
       }
     );
     

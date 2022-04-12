@@ -12,30 +12,7 @@ export class CartaoPage implements OnInit {
 
   isOpen:boolean = false;
   bodyTest:object = {
-    "reference_id": "ex-00001",
-    "description": "Motivo do pagamento",
-    "amount": {
-      "value": 499900,
-      "currency": "BRL"
-    },
-    "payment_method": {
-      "type": "CREDIT_CARD",
-      "installments": 1,
-      "capture": false,
-      "soft_descriptor": "My Store",    
-      "card": {
-        "number": "4111111111111111",
-        "exp_month": "12",
-        "exp_year": "2030",
-        "security_code": "123",
-        "holder": {
-          "name": "ROBERTO CARLOS BARBOSA"
-        }
-      }
-    },
-    "notification_urls": [
-      "https://yourserver.com/nas_ecommerce/277be731-3b7c-4dac-8c4e-4c3f4a1fdc46/"
-    ]
+   
   }
 
   constructor(
