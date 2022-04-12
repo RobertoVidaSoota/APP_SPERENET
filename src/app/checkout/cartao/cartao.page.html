@@ -26,9 +26,9 @@
       <input type="text" placeholder="Nome">
     </ion-col>
 
-    <ion-col size="12">
+    <!-- <ion-col size="12">
       <input type="text" placeholder="CPF" inputmode="numeric">
-    </ion-col>
+    </ion-col> -->
 
     <ion-col size="12">
       <input type="text" placeholder="Número do cartão" inputmode="numeric">
@@ -38,8 +38,12 @@
       <input type="number" placeholder="Código" inputmode="numeric">
     </ion-col>
 
-    <ion-col size="6">
-      <input type="text" placeholder="Validade" inputmode="numeric">
+    <ion-col size="3">
+      <input type="text" placeholder="Mês" inputmode="numeric">
+    </ion-col>
+
+    <ion-col size="3">
+      <input type="text" placeholder="Ano" inputmode="numeric">
     </ion-col>
 
     <ion-col size="12">
@@ -49,7 +53,7 @@
   </ion-row>
 
 
-  <button (click)="myLoading()">
+  <button (click)="checkout()">
     Confirmar
   </button>
 
