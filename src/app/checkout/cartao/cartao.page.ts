@@ -3,12 +3,13 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { ApiService } from 'src/app/api/api.service';
+import scriptjs from 'scriptjs';
+import { HttpHeaders, HttpParamsOptions } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators'
 
-// https://github.com/schoolofnetcom/ionic3-pagseguro/blob/master/src/pages/checkout/checkout.ts
 
-declare var PagSeguroDirectPayment;
+declare let PagSeguroDirectPayment;
 
 @Component({
   selector: 'app-cartao',
@@ -40,39 +41,37 @@ export class CartaoPage implements OnInit {
   ) { }
 
   ngOnInit():void {
-    // let pag_id = localStorage.getItem("pag_id")
 
-    PagSeguroDirectPayment.getPaymentMethods({
-      amount: "499900",
-      success: response => {
-        let paymentMethods = response.paymentMethods;
-        // Mapeamento de um objeto transforma em um array
-        this.paymentMethods = Object.keys(paymentMethods).map((k) => paymentMethods[k]);
-        // Detecção de mudanças
-        this.ref.detectChanges();
-        //this.segment.ngAfterContentInit();
-      }
-    });
+    scriptjs('https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js', () => {
+        this.service.getSessionPagseguro()
+            .subscribe(data => {
+                this.initSession(data);
+                  PagSeguroDirectPayment.getPaymentMethods({
+                    amount: "499900",
+                    success: response => {
+                      let paymentMethods = response.paymentMethods;
+                      // Mapeamento de um objeto transforma em um array
+                      this.paymentMethods = Object.keys(paymentMethods).map((k) => 
+                      paymentMethods[k]);
+                      // Detecção de mudanças
+                      this.ref.detectChanges();
+                      //this.segment.ngAfterContentInit();
+                    }
+                  });
+            })
+    })
   }
 
-//   ionViewDidLoad() {
-//     scriptjs('https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js', () => {
-//         this.paymentHttp.getSession()
-//             .subscribe(data => {
-//                 this.initSession(data);
-//                 this.getPaymentMethods();
-//             })
-//     })
-// }
 
-//   initSession(data) {
-//       PagSeguroDirectPayment.setSessionId(data.sessionId);
-//   }
+  initSession(data) {
+      PagSeguroDirectPayment.setSessionId(data.pag_id.sessionID);
+  }
 
-  
+  // INICIAR PAGAMENTO
   paymentCreditCart() {
     this.getCreditCardBrand();
   }
+
   // PEGAR BANDEIRA
   getCreditCardBrand() {
     PagSeguroDirectPayment.getBrand({
@@ -104,6 +103,7 @@ export class CartaoPage implements OnInit {
     });
   }
 
+  // ENVIAR PAGAMENTO AO SERVIDO
   sendPayment() {
     let bodyString = JSON.stringify({
       items: ["roteador", "mouse"],
@@ -112,17 +112,20 @@ export class CartaoPage implements OnInit {
       method: this.paymentMethod,
       total: "499900"
     });
-    // let headers = new Headers({
-    //   'Content-Type': 'application/json'
-    // });
-    //  let options = new Options ({
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    //  let options = new HttpParamsOptions ({
     //    headers: headers
     //  });
-    this.http.post("http://127.0.0.1:8100/api/post_final_payment", bodyString)
+    this.http.post("http://127.0.0.1:8000/api/post_final_payment", 
+      bodyString, { headers: headers })
       .subscribe(response => {
           console.log(JSON.stringify(response));
-      });
-      //.catch((error:any) => Observable.throw(error.json().error || 'Serve Erro'));
+      }, e => {
+        console.log(JSON.stringify(e))
+      })
+      // .error((error:any) => Observable.throw(error.json().error || 'Serve Erro'));
 
   }
 
