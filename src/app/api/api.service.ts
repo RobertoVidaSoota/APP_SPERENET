@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators'
 export class ApiService {
 
   url:string = "http://127.0.0.1:8000/api"
-  pagseguro_uri:string = "https://sandbox.api.pagseguro.com/charges";
+  
 
   constructor(
     private http: HttpClient
@@ -20,14 +20,8 @@ export class ApiService {
 
   // PAGAMENTO CARTÃO
   paymentCard(body:any)
-  {
-    const myHeaders = new HttpHeaders(
-      {
-        "Content-Type": "application/json"
-      }
-    );
-    
-    return this.http.post(this.pagseguro_uri, body, { headers: myHeaders} );
+  {    
+    return this.http.post(this.url, body);
   }
 
 
