@@ -47,7 +47,7 @@ export class CartaoPage implements OnInit {
             .subscribe(data => {
                 this.initSession(data);
                   PagSeguroDirectPayment.getPaymentMethods({
-                    amount: "499900",
+                    amount: "4999",
                     success: response => {
                       let paymentMethods = response.paymentMethods;
                       // Mapeamento de um objeto transforma em um array
@@ -106,11 +106,12 @@ export class CartaoPage implements OnInit {
   // ENVIAR PAGAMENTO AO SERVIDO
   sendPayment() {
     let bodyString = JSON.stringify({
-      items: ["roteador", "mouse"],
+      items: "(roteador, mouse)",
       token: this.creditCard.token,
       hash: PagSeguroDirectPayment.getSenderHash(),
       method: this.paymentMethod,
-      total: "499900"
+      installments: 1,
+      total: "4999"
     });
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'
