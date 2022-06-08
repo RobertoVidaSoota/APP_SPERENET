@@ -106,6 +106,7 @@ export class CartaoPage implements OnInit {
   // ENVIAR PAGAMENTO AO SERVIDO
   sendPayment() {
     let bodyString = JSON.stringify({
+      // FORMAR OBJETO COM OS ATRIBUTOS DOS ITEMS
       items: "(roteador, mouse)",
       token: this.creditCard.token,
       hash: PagSeguroDirectPayment.getSenderHash(),
