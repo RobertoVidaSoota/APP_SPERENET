@@ -94,6 +94,28 @@ ion-content
 
 
 // FEEDBACK
+.box_input_comentario
+{
+    display: flex;
+}
+input.input_comentario
+{
+    width: 80% !important;
+    height: 6.4vh;
+    background: rgba(255, 255, 255, 0);
+    border: 1px solid var(--ion-color-branco1);
+    padding-bottom: 8px;
+    padding-top: 8px;
+    margin: 0;
+}
+.btn_submit_comentario
+{
+    color: var(--ion-color-branco1);
+    --background: var(--ion-color-verde1);
+    height: 6.4vh;
+    margin: 0 0 0 0.9vh;
+}
+
 .title_avaliacoes
 {
     font-weight: bold;
