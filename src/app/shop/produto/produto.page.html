@@ -79,15 +79,22 @@
 
   <h3 class="title_avaliacoes"> Avaliações </h3>
 
-  <ion-button class="button_add_comentario" fill="clear">
-    <ion-icon slot="start" name="add"></ion-icon>
-    <ion-text>
+  <ion-button class="button_add_comentario" fill="clear"
+      (click)="toggleInput()"
+    >
+    <ion-icon *ngIf="inputComentarioFadeIn" slot="start" name="add"></ion-icon>
+
+    <ion-text *ngIf="inputComentarioFadeIn">
       Comentar
+    </ion-text>
+
+    <ion-text *ngIf="!inputComentarioFadeIn">
+      Cancelar
     </ion-text>
   </ion-button>
 
-  <div class="box_input_comentario">
-    <input type="text" class="input_comentario">
+  <div class="box_input_comentario" *ngIf="!inputComentarioFadeIn">
+    <input type="text" placeholder="Comentário" class="input_comentario">
     <ion-button class="btn_submit_comentario">
       <ion-icon name="send"></ion-icon>
     </ion-button>

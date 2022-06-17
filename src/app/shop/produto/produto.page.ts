@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -8,6 +8,9 @@ import { NavController } from '@ionic/angular';
 })
 export class ProdutoPage{
 
+  inputComentarioFadeIn = true;
+  
+  @ViewChild(".input_comentario") inputComentario;
 
   constructor(
     private navCtrl: NavController,
@@ -32,6 +35,12 @@ export class ProdutoPage{
       }
     });
 
+  }
+
+
+  toggleInput()
+  {
+    this.inputComentarioFadeIn = !this.inputComentarioFadeIn;
   }
 
   ngOnInit() {
