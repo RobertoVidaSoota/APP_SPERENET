@@ -2,11 +2,7 @@
 
 Um projeto front-end de um aplicativo de celular como SPERENET para logo fictícia. O tema é uma loja virtual que vende computadores e periféricos para gamers de preferência.
 
-<<<<<<< HEAD
 [image1.png](https://postimg.cc/ftGrf6Cj)
-=======
-![image1.png](https://postimg.cc/ftGrf6Cj)
->>>>>>> 966bf28b99bd8c891ef8cde595dda98f976efdc2
 
 Esse projeto ainda vai consumir uma API para integrar as funcionalidade. Essa API será um projeto a parte
 
