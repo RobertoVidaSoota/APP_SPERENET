@@ -171,7 +171,7 @@ export class CartaoPage implements OnInit {
             "phone": "4738010919",
             "mobilePhone": "4799376637"
         },
-        "creditCardToken": "76496073-536f-4835-80db-c45d00f33695"
+        "creditCardToken": ""
     }
     )
 
