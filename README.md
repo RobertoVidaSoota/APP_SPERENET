@@ -17,7 +17,7 @@ intuito de alavancar minha carreira em TI.
 - HTML/CSS
 - SCSS
 
-![video](https://dms.licdn.com/playlist/C4D05AQFOHptZ3ubezw/mp4-720p-30fp-crf28/0/1656794746806?e=1657422000&v=beta&t=w33pmaJIkTHhL4-SOF0Dr2iotVdUdphGivEE1X0ilak)
+Para visualizar melhor confira o [video demostrativo.](https://dms.licdn.com/playlist/C4D05AQFOHptZ3ubezw/mp4-720p-30fp-crf28/0/1656794746806?e=1657422000&v=beta&t=w33pmaJIkTHhL4-SOF0Dr2iotVdUdphGivEE1X0ilak)
 
 
 Se quiser conhecer minhas habilidades entre no meu [linkedin](https://www.linkedin.com/in/roberto-carlos-677851174/).
