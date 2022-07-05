@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ToastController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/api/api.service';
 
 @Component({
@@ -17,6 +17,7 @@ export class LoginPage implements OnInit {
 
   constructor(
     private api: ApiService,
+    private nav: NavController,
     private toastCrtl: ToastController
   ) { }
 
@@ -41,15 +42,18 @@ export class LoginPage implements OnInit {
       password: this.form.senha
     }
 
-    this.api.apiFazerLogin(formValue).subscribe((res: Object) => {
+    this.api.apiFazerLogin(formValue).subscribe((res) => {
 
-      // if(myRes.msg)
-      // {
-      //   this.toast("", "danger")
+      if(res["msg"])
+      {
+        this.toast(res["msg"], "danger")
+      }
 
-      // }
-
-      // if(res.user)
+      if(res["user"])
+      {
+        this.toast("Login confirmado", "success")
+        this.nav.navigateRoot("/tabs")
+      }
     })
   }
 
@@ -58,7 +62,7 @@ export class LoginPage implements OnInit {
   toast(msg, c)
   {
     const toast = this.toastCrtl.create(
-      {message: msg, duration: 3000, color: c})
+      {message: msg, duration: 3000, color: c, position: "top"})
     .then((res) => {
       res.present()
     })
