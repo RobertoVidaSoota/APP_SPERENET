@@ -7,14 +7,23 @@
     <h1 class="titulo1">
       Faça o login na SPERENET
     </h1>
-  
+
+
     <div class="div_input">
   
-      <!-- E-MAIL -->
-        <input class="mb-30" type="email" placeholder="E-mail"/>
+      
+        <!-- E-MAIL -->
+        <input class="mb-30" type="email" placeholder="E-mail"
+        [(ngModel)]="form.email" 
+        />
+        
   
-      <!-- SENHA -->
-        <input class="mb-30" type="password" placeholder="Senha"/>
+        <!-- SENHA -->
+        <input class="mb-30" type="password" placeholder="Senha"
+        [(ngModel)]="form.senha"
+        />
+      
+      
     </div>
   
     <div class="div_h_center">
@@ -22,7 +31,7 @@
   
         <ion-col size="6">
           <div class="no-centro-dentro">
-            <ion-button routerLink="/tabs/tab1" class="btn_login">
+            <ion-button (click)="fazerLogin()" class="btn_login">
               Login
             </ion-button>
           </div>

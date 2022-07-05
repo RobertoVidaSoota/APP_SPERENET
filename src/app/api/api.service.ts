@@ -18,10 +18,10 @@ export class ApiService {
   ) { }
 
   // PEGAR SESSÃO DA TRANSAÇÃO
-  getSessionPagseguro()
-  {
-    return this.http.get(this.url+"/get_session_pagseguro");
-  }
+  // getSessionPagseguro()
+  // {
+  //   return this.http.get(this.url+"/get_session_pagseguro");
+  // }
   // PAGAMENTO CARTÃO
   // paymentCard(body:any)
   // {    
@@ -30,8 +30,15 @@ export class ApiService {
 
 
   // PEGAR UM USUÁRIO
-  getUser()
+  // getUser()
+  // {
+  //   return this.http.get(this.url+"/get_user_auth");
+  // }
+
+  // AUTH
+
+  apiFazerLogin(formValue)
   {
-    return this.http.get(this.url+"/get_user_auth");
+    return this.http.post(this.url+"/post_login_user", formValue);
   }
 }
