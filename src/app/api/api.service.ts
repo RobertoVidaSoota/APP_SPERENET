@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders, HttpParamsOptions } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
 
 
 @Injectable({
@@ -29,12 +27,7 @@ export class ApiService {
   // }
 
 
-  // PEGAR UM USUÁRIO
-  // getUser()
-  // {
-  //   return this.http.get(this.url+"/get_user_auth");
-  // }
-
+  
   // AUTH
 
   apiFazerLogin(formValue)

@@ -10,10 +10,14 @@ export class ComprasPage implements OnInit {
 
   @ViewChild(IonContent) content: IonContent;
 
+  checkLogin = "";
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit()
+  {
+    this.checkLogin = localStorage.getItem("login_usuario") ?
+    localStorage.getItem("login_usuario") : "";
   }
 
   // FUNÇÃO PARA COLOCAR ROLAGEM AUTOMÁTICA PARA O TOPO

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular';
 
 @Component({
@@ -10,9 +11,16 @@ export class Tab4Page implements OnInit {
 
   @ViewChild(IonContent) content: IonContent
 
-  constructor() { }
+  checkLogin = "";
 
-  ngOnInit() {
+  constructor(
+    private router: Router
+  ){}
+
+  ngOnInit()
+  {
+    this.checkLogin = localStorage.getItem("login_usuario") ?
+    localStorage.getItem("login_usuario") : "";
   }
 
   // FUNÇÃO PARA COLOCAR ROLAGEM AUTOMÁTICA PARA O TOPO
@@ -31,6 +39,17 @@ export class Tab4Page implements OnInit {
       });
       
     }, 80)
+  }
+
+
+  // SAIR DA CONTA
+  logout()
+  {
+    if(this.checkLogin = "true")
+    {
+      localStorage.removeItem("login_usuario");
+      this.router.navigate(["/login"]);
+    }
   }
 
 }

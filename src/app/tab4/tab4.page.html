@@ -1,6 +1,7 @@
 <ion-content>
 
-  <div class="nome-com-icone">
+  <div *ngIf="checkLogin == 'true'"
+  class="nome-com-icone">
     
     <div class="icone">
       <ion-avatar>
@@ -11,11 +12,12 @@
     <h1 class="nome">Roberta Careta</h1>
   </div>
 
-  <ion-item>
+  <ion-item *ngIf="checkLogin == 'true'">
     <ion-col size="5">
     </ion-col>
 
-        <ion-text routerLink="/login" class="btn-logout">
+        <ion-text 
+         (click)="logout()" class="btn-logout">
           Sair
         </ion-text>
 
@@ -24,58 +26,73 @@
   </ion-item>
       
 
-  <h6 style="margin-left: 1em;">Informações de Usuario</h6>
+  <h6 *ngIf="checkLogin == 'true'" 
+  style="margin-left: 1em;">Informações de Usuario
+  </h6>
 
-  <ion-item button (click)="mudarInfoGerais()" routerLink="/info-pessoais">
+  <ion-item *ngIf="checkLogin == 'true'" 
+  button (click)="mudarInfoGerais()" routerLink="/info-pessoais">
     <ion-label>Gerais </ion-label>
     <ion-icon slot="end" name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <ion-item button (click)="mudarEmail()" routerLink="/email">
+  <ion-item *ngIf="checkLogin == 'true'"
+  button (click)="mudarEmail()" routerLink="/email">
     <ion-label>Email </ion-label>
     <ion-icon slot="end" name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <ion-item button (click)="mudarSenha()" routerLink="/senha">
+  <ion-item *ngIf="checkLogin == 'true'"
+  button (click)="mudarSenha()" routerLink="/senha">
     <ion-label>Senha </ion-label>
     <ion-icon slot="end" name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <ion-item button (click)="mudarChave()" routerLink="/dois-fatores">
+  <ion-item *ngIf="checkLogin == 'true'"
+  button (click)="mudarChave()" routerLink="/dois-fatores">
     <ion-label>Dois fatores </ion-label>
     <ion-icon slot="end" name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <h6 style="margin-left: 1em;">Notificções</h6>
+  <h6 *ngIf="checkLogin == 'true'" 
+  style="margin-left: 1em;">
+    Notificções
+  </h6>
 
-  <ion-item button (click)="notfPreferencias()" routerLink="/preferencias">
+  <ion-item *ngIf="checkLogin == 'true'"
+  button (click)="notfPreferencias()" routerLink="/preferencias">
     <ion-label>Preferências</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <ion-item button (click)="notfrequencia()" routerLink="/frequencia">
+  <ion-item *ngIf="checkLogin == 'true'"
+  button (click)="notfrequencia()" routerLink="/frequencia">
     <ion-label>Frequência</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <h6 style="margin-left: 1em;">Suporte</h6>
+  <h6 *ngIf="checkLogin == 'true'" style="margin-left: 1em;">Suporte</h6>
 
-  <ion-item button (click)="supAjuda()" routerLink="/ajuda">
+  <ion-item *ngIf="checkLogin == 'true'"
+  button (click)="supAjuda()" routerLink="/ajuda">
     <ion-label>Ajuda</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <ion-item button (click)="supFeedback()" routerLink="/feedback">
+  <ion-item *ngIf="checkLogin == 'true'"
+  button (click)="supFeedback()" routerLink="/feedback">
     <ion-label>Feedback</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <ion-item button (click)="supTermos()" routerLink="/termos-servicos">
+  <ion-item *ngIf="checkLogin == 'true'"
+  button (click)="supTermos()" routerLink="/termos-servicos">
     <ion-label>Termos de Serviço</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <ion-item button (click)="supPrivacidade()" routerLink="/privacidade">
+  <ion-item *ngIf="checkLogin == 'true'"
+  button (click)="supPrivacidade()" routerLink="/privacidade">
     <ion-label>Privacidade</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
@@ -83,16 +100,21 @@
 
 
   <!-- ---- LAYOUT SEM LOGIN ---- -->
-  <!-- <img class="svg_conta no-centro-dentro" src="../../../assets/SVG_CONTA.png" alt="">
+  <div *ngIf="checkLogin == ''">
 
-  <h2 class="titulo1">
-    Faça o login na SPERENET, para
-    usar o app do melhor jeito.
-  </h2>
+    <img class="svg_conta no-centro-dentro" src="../../../assets/SVG_CONTA.png" alt="">
 
-  <button class="fazer_login">
-    Fazer Login
-  </button> -->
+    <h2 class="titulo1">
+      Faça o login na SPERENET, para
+      usar o app do melhor jeito.
+    </h2>
+
+    <button class="fazer_login">
+      Fazer Login
+    </button>
+
+  </div>
+  
 
 </ion-content>
 

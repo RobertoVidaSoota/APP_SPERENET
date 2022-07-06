@@ -51,6 +51,8 @@ export class LoginPage implements OnInit {
 
       if(res["user"])
       {
+        localStorage.setItem("login_usuario", "true")
+        localStorage.setItem("id_usuario_logado_app", res["id"])
         this.toast("Login confirmado", "success")
         this.nav.navigateRoot("/tabs")
       }
