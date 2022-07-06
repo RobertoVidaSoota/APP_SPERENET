@@ -217,3 +217,28 @@ ion-popover::part(content)
 {
     display: none !important;
 }
+
+// CORES EM CLASSES
+
+.cinza1Texto
+{
+    --color: var(--ion-color-cinza1);
+}
+.verde1Texto
+{
+    --color: var(--ion-color-verde1);
+}
+.cinza1Back
+{
+    --background: var(--ion-color-cinza1);
+}
+.verde1Back
+{
+    --background: var(--ion-color-verde1);
+}
+
+// TOAST
+.toast-button-color-confirm
+{
+    --button-color: var(--ion-color-verde0) !important;
+}

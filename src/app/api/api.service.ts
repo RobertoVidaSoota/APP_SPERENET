@@ -39,4 +39,9 @@ export class ApiService {
   {
     return this.http.post(this.url+"/post_register_user", formValue)
   }
+
+  viaCepBuscarEndereco(value)
+  {
+    return this.http.get("https://viacep.com.br/ws/"+value+"/json/")
+  }
 }

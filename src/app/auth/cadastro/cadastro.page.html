@@ -51,7 +51,7 @@
       <!-- CEP -->
       <ion-col size="5">
         <input class="mb-30" type="text" placeholder="CEP" inputmode="decimal"
-        [(ngModel)]="formRegister.cep"
+        [(ngModel)]="formRegister.cep" (blur)="getAndress()"
         />
       </ion-col>
 
@@ -109,7 +109,7 @@
 
       <ion-col size="6">
         <div class="no-centro-dentro">
-          <ion-button (click)="sendRegister()" class="btn_login">
+          <ion-button (click)="toast()" class="btn_login">
             Confirmar
           </ion-button>
         </div>
