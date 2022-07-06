@@ -27,11 +27,16 @@ export class ApiService {
   // }
 
 
-  
+
   // AUTH
 
   apiFazerLogin(formValue)
   {
     return this.http.post(this.url+"/post_login_user", formValue);
+  }
+
+  apiCadastrar(formValue)
+  {
+    return this.http.post(this.url+"/post_register_user", formValue)
   }
 }

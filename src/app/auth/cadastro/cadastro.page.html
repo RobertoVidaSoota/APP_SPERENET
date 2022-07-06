@@ -17,22 +17,30 @@
 
       <!-- NOME E SOBRE NOME -->
       <ion-col size="12">
-        <input class="mb-30" type="text" placeholder="Informe seus nome e sobrenome" />  
+        <input class="mb-30" type="text" placeholder="Informe seus nome e sobrenome" 
+        [(ngModel)]="formRegister.nome_usuario"
+        />  
       </ion-col>
 
       <!-- E-MAIL -->
       <ion-col size="12">
-        <input class="mb-30" type="email" placeholder="E-mail" />  
+        <input class="mb-30" type="email" placeholder="E-mail" 
+        [(ngModel)]="formRegister.email"
+        />  
       </ion-col>
 
       <!-- SENHA -->
       <ion-col size="12">
-        <input class="mb-30" type="password" placeholder="Senha" />  
+        <input class="mb-30" type="password" placeholder="Senha"
+        [(ngModel)]="formRegister.password"
+        />  
       </ion-col>
 
       <!-- CONFIRMAR SENHA -->
       <ion-col size="12">
-        <input class="mb-30" type="password" placeholder="Confirmar senha" /> 
+        <input class="mb-30" type="password" placeholder="Confirmar senha" 
+        [(ngModel)]="formRegister.confirmPassword"
+        /> 
       </ion-col>
 
 
@@ -42,38 +50,52 @@
 
       <!-- CEP -->
       <ion-col size="5">
-        <input class="mb-30" type="text" placeholder="CEP" inputmode="decimal" />
+        <input class="mb-30" type="text" placeholder="CEP" inputmode="decimal"
+        [(ngModel)]="formRegister.cep"
+        />
       </ion-col>
 
       <!-- PAIS -->
       <ion-col size="7">
-        <input class="mb-30" type="text" placeholder="País" /> 
+        <input class="mb-30" type="text" placeholder="País"
+        [(ngModel)]="formRegister.pais"
+        /> 
       </ion-col>
       
       <!-- ESTADO -->
       <ion-col size="2">
-        <input class="mb-30 estado" type="text" placeholder="UF" />  
+        <input class="mb-30 estado" type="text" placeholder="UF"
+        [(ngModel)]="formRegister.uf"
+        />  
       </ion-col>
 
       <!-- CIDADE -->
       <ion-col size="5">
-        <input class="mb-30" type="text" placeholder="Cidade" />  
+        <input class="mb-30" type="text" placeholder="Cidade"
+        [(ngModel)]="formRegister.cidade"
+        />  
       </ion-col>
 
       <!-- BAIRRO -->
       <ion-col size="5">
-        <input class="mb-30" type="text" placeholder="Bairro" /> 
+        <input class="mb-30" type="text" placeholder="Bairro"
+        [(ngModel)]="formRegister.bairro"
+        /> 
       </ion-col>
 
       <!-- RUA -->
       <ion-col size="10">
-        <input class="mb-30" type="text" placeholder="Rua" />
+        <input class="mb-30" type="text" placeholder="Rua"
+        [(ngModel)]="formRegister.rua"
+        />
       </ion-col>
 
       <!-- NUMERO DA CASA -->
       <ion-col size="2">
         <input class="mb-30 numero_casa" type="text" placeholder="Nº" 
-        inputmode="numeric" />  
+        inputmode="numeric"
+        [(ngModel)]="formRegister.nome_usuario"
+        />  
       </ion-col>
 
 
@@ -87,7 +109,7 @@
 
       <ion-col size="6">
         <div class="no-centro-dentro">
-          <ion-button routerLink="/tabs/tab1" class="btn_login">
+          <ion-button (click)="sendRegister()" class="btn_login">
             Confirmar
           </ion-button>
         </div>
