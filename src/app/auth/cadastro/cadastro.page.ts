@@ -37,12 +37,9 @@ export class CadastroPage{
 
   ngOnInit()
   {
-    let DataHoje = new Date()
-    let dia = DataHoje.getDate()
-    let mes = DataHoje.getMonth() + 1
-    let ano = DataHoje.getFullYear()
+    let DataHoje = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
 
-    this.dataMaxima = dia+"/"+mes+"/"+ano
+    this.dataMaxima = DataHoje
   }
 
 
@@ -56,84 +53,148 @@ export class CadastroPage{
   // VERIFICAR SE OS CAMPOS ESTÃO PREECHIDOS CORRETAMENTE
   checkInput():Boolean
   {
+    // OBRIGATÓRIO
     if(this.formRegister.nome_usuario == "")
     {
-      this.toastRegister("")
+      this.toastRegister("O campo nome deve ser obrigatório.")
       return false;
     }
     else if(this.formRegister.password == "")
     {
-      this.toastRegister("")
+      this.toastRegister("O campo senha deve ser obrigatório.")
       return false;
     }
     else if(this.formRegister.confirmPassword == "")
     {
-      this.toastRegister("")
+      this.toastRegister("O campo confirmar senhasenha deve ser obrigatório.")
       return false;
     }
     else if(this.formRegister.confirmPassword !== this.formRegister.password)
     {
-      this.toastRegister("")
+      this.toastRegister("O campo confirmar senha deve ser igual a senha.")
       return false;
     }
     else if(this.formRegister.email == "")
     {
-      this.toastRegister("")
+      this.toastRegister("O campo email deve ser obrigatório.")
       return false;
     }
     else if(this.formRegister.email.indexOf("@") < 0)
     {
-      this.toastRegister("O email não pode ficar sem o @")
+      this.toastRegister("O email não pode ficar sem o @.")
       return false;
     }
     else if(this.formRegister.telefone == "")
     {
-      this.toastRegister("")
+      this.toastRegister("O campo telefone deve ser obrigatório.")
+      return false;
+    }
+    else if(this.formRegister.cpf == "")
+    {
+      this.toastRegister("O campo CPF deve ser obrigatório.")
+      return false;
+    }
+    else if(this.formRegister.nascimento == "")
+    {
+      this.toastRegister("O campo data de nascimento deve ser obrigatório.")
+      return false;
+    }
+    else if(this.formRegister.cep == "")
+    {
+      this.toastRegister("O campo CEP deve ser obrigatório.")
       return false;
     }
     else if(this.formRegister.pais == "")
     {
-      this.toastRegister("")
+      this.toastRegister("O campo pais deve ser obrigatório.")
       return false;
     }
-    else if(this.formRegister.email == "")
+    else if(this.formRegister.uf == "")
     {
-      this.toastRegister("")
+      this.toastRegister("O campo estado deve ser obrigatório.")
       return false;
     }
-    else if(this.formRegister.email == "")
+    else if(this.formRegister.cidade == "")
     {
-      this.toastRegister("")
+      this.toastRegister("O campo cidade deve ser obrigatório.")
       return false;
     }
-    else if(this.formRegister.email == "")
+    else if(this.formRegister.bairro == "")
     {
-      this.toastRegister("")
+      this.toastRegister("O campo bairro deve ser obrigatório.")
       return false;
     }
-    else if(this.formRegister.email == "")
+    else if(this.formRegister.rua == "")
     {
-      this.toastRegister("")
+      this.toastRegister("O campo rua deve ser obrigatório.")
       return false;
     }
-    else if(this.formRegister.email == "")
+    else if(this.formRegister.numero == "")
     {
-      this.toastRegister("")
+      this.toastRegister("O campo numero da casa deve ser obrigatório.")
       return false;
     }
-    else if(this.formRegister.email == "")
+
+    // VALOR MINIMO
+
+    else if(this.formRegister.password.length < 8)
     {
-      this.toastRegister("")
+      this.toastRegister("O campo senha deve ter pelo menos 8 caracteres.")
       return false;
     }
-    else if(this.formRegister.email == "")
+    else if(this.formRegister.confirmPassword.length < 8)
     {
-      this.toastRegister("")
+      this.toastRegister("O campo confirmar senha deve ter pelo menos 8 caracteres.")
       return false;
     }
-    else if(this.formRegister.email == "")
+    else if(this.formRegister.telefone.length < 9)
     {
-      this.toastRegister("")
+      this.toastRegister("O campo telefone deve ter pelo menos 9 caracteres.")
+      return false;
+    }
+    else if(this.formRegister.cpf.length < 11)
+    {
+      this.toastRegister("O campo CPF deve ter pelo menos 11 caracteres.")
+      return false;
+    }
+    else if(this.formRegister.nascimento.length < 10)
+    {
+      this.toastRegister("O campo data de nascimento deve ter pelo menos 10 caracteres.")
+      return false;
+    }
+    else if(this.formRegister.cep.length < 8)
+    {
+      this.toastRegister("O campo CEP deve ter pelo menos 8 caracteres.")
+      return false;
+    }
+    else if(this.formRegister.pais.length < 3)
+    {
+      this.toastRegister("O campo país deve ter pelo menos 3 caracteres.")
+      return false;
+    }
+    else if(this.formRegister.uf.length < 2)
+    {
+      this.toastRegister("O campo estado deve ter pelo menos 2 caracteres.")
+      return false;
+    }
+    else if(this.formRegister.cidade.length < 4)
+    {
+      this.toastRegister("O campo cidade deve ter pelo menos 4 caracteres.")
+      return false;
+    }
+    else if(this.formRegister.bairro.length < 3)
+    {
+      this.toastRegister("O campo bairro deve ter pelo menos 3 caracteres.")
+      return false;
+    }
+    else if(this.formRegister.rua.length < 3)
+    {
+      this.toastRegister("O campo rua deve ter pelo menos 3 caracteres.")
+      return false;
+    }
+    else if(this.formRegister.numero.length < 1)
+    {
+      this.toastRegister("O campo numero da casa deve ter pelo menos 1 caracteres.")
       return false;
     }
     else if(this.enderecoPronto == false)

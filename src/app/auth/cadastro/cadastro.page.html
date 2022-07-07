@@ -42,11 +42,11 @@
         />  
       </ion-col>
 
-      <!-- CPF -->
+      <!-- DATA DE NASCIMENTO -->
       <ion-col size="12">
         <input id="nascimento" class="mb-30" type="date" 
         placeholder="Data de nascimento" inputmode="numeric"
-        maxlength="" minlength=""
+        [max]="dataMaxima" minlength="10"
         [(ngModel)]="formRegister.nascimento" (keyup)="inputLen($event)" 
         />  
       </ion-col>
