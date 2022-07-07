@@ -143,7 +143,7 @@
         type="text" placeholder="Nº"
         autocomplete="false" inputmode="numeric"
         maxlength="5" minlength="1"
-        [(ngModel)]="formRegister.nome_usuario" (keyup)="inputLen($event)"
+        [(ngModel)]="formRegister.numero" (keyup)="inputLen($event)"
         />  
       </ion-col>
 
@@ -158,7 +158,7 @@
 
       <ion-col size="6">
         <div class="no-centro-dentro">
-          <ion-button (click)="toast()" class="btn_login">
+          <ion-button (click)="sendRegister()" class="btn_login">
             Confirmar
           </ion-button>
         </div>

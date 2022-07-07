@@ -46,6 +46,14 @@ export class CadastroPage{
   // ENVIAR OS DADOS DO CADASTRO
   sendRegister()
   {
+
+    if(this.checkInput())
+    {
+      this.api.apiCadastrar(this.formRegister).subscribe((res) => 
+      {
+        console.log(res);
+      })
+    }
     
   }
 
@@ -137,6 +145,11 @@ export class CadastroPage{
 
     // VALOR MINIMO
 
+    else if(this.formRegister.nome_usuario.length < 10)
+    {
+      this.toastRegister("O campo nome deve ter pelo menos 10 caracteres.")
+      return false;
+    }
     else if(this.formRegister.password.length < 8)
     {
       this.toastRegister("O campo senha deve ter pelo menos 8 caracteres.")
@@ -290,6 +303,8 @@ export class CadastroPage{
         }
       ],
       duration: 5000
+    }).then((res) => {
+      res.present()
     })
   }
 
