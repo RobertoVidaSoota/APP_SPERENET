@@ -46,3 +46,9 @@ ion-button
     --background: transparent;
 }
 
+// CLASSE DE ERRO DE INPUT
+
+.input_erro
+{
+    background-color: var(--erro-color-clear);
+}

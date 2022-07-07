@@ -26,29 +26,143 @@ export class CadastroPage{
     numero: "",
   }
 
-  completarEndereco: Boolean;
   enderecoCapturado;
+  enderecoPronto:Boolean;
+  dataMaxima;
 
   constructor(
     private api: ApiService,
     private toastCrtl: ToastController
   ) { }
 
-  ngOnInit() {
+  ngOnInit()
+  {
+    let DataHoje = new Date()
+    let dia = DataHoje.getDate()
+    let mes = DataHoje.getMonth() + 1
+    let ano = DataHoje.getFullYear()
+
+    this.dataMaxima = dia+"/"+mes+"/"+ano
   }
 
 
   // ENVIAR OS DADOS DO CADASTRO
   sendRegister()
   {
-
+    
   }
 
 
   // VERIFICAR SE OS CAMPOS ESTÃO PREECHIDOS CORRETAMENTE
-  checkInput()
+  checkInput():Boolean
   {
+    if(this.formRegister.nome_usuario == "")
+    {
+      this.toastRegister("")
+      return false;
+    }
+    else if(this.formRegister.password == "")
+    {
+      this.toastRegister("")
+      return false;
+    }
+    else if(this.formRegister.confirmPassword == "")
+    {
+      this.toastRegister("")
+      return false;
+    }
+    else if(this.formRegister.confirmPassword !== this.formRegister.password)
+    {
+      this.toastRegister("")
+      return false;
+    }
+    else if(this.formRegister.email == "")
+    {
+      this.toastRegister("")
+      return false;
+    }
+    else if(this.formRegister.email.indexOf("@") < 0)
+    {
+      this.toastRegister("O email não pode ficar sem o @")
+      return false;
+    }
+    else if(this.formRegister.telefone == "")
+    {
+      this.toastRegister("")
+      return false;
+    }
+    else if(this.formRegister.pais == "")
+    {
+      this.toastRegister("")
+      return false;
+    }
+    else if(this.formRegister.email == "")
+    {
+      this.toastRegister("")
+      return false;
+    }
+    else if(this.formRegister.email == "")
+    {
+      this.toastRegister("")
+      return false;
+    }
+    else if(this.formRegister.email == "")
+    {
+      this.toastRegister("")
+      return false;
+    }
+    else if(this.formRegister.email == "")
+    {
+      this.toastRegister("")
+      return false;
+    }
+    else if(this.formRegister.email == "")
+    {
+      this.toastRegister("")
+      return false;
+    }
+    else if(this.formRegister.email == "")
+    {
+      this.toastRegister("")
+      return false;
+    }
+    else if(this.formRegister.email == "")
+    {
+      this.toastRegister("")
+      return false;
+    }
+    else if(this.formRegister.email == "")
+    {
+      this.toastRegister("")
+      return false;
+    }
+    else if(this.enderecoPronto == false)
+    {
+      this.toastRegister("Endereco não encontrado")
+      return false;
+    }
 
+    return true;
+  }
+
+
+  // TAMANHO MINIMO DO INPUT
+  inputLen(e)
+  {
+    let value = e.target.value
+    let id = e.target.id
+    let min = e.target.minLength
+    
+     if(value.length < min)
+     {
+        document.querySelector("#"+id)
+        .classList.add("input_erro")
+     }
+     else
+     {
+        document.querySelector("#"+id)
+        .classList.remove("input_erro")
+     }
   }
 
 
@@ -59,14 +173,17 @@ export class CadastroPage{
     this.api.viaCepBuscarEndereco(value).subscribe((res) => 
     {
       this.enderecoCapturado = res
-      this.toast()
+      this.enderecoPronto = true
+      this.toastAdress()
+    }, e => {
+      this.enderecoPronto = false
+      this.toastRegister("Endereco não encontrado")
     })
-    
   }
 
 
   // TORRADA DE MENSSAGEM
-  toast()
+  toastAdress()
   {
     return this.toastCrtl.create({
       cssClass: "toast-button-color-confirm",
@@ -96,6 +213,22 @@ export class CadastroPage{
       duration: 8000
     }).then((res) => {
       res.present()
+    })
+  }
+
+
+  toastRegister(msg)
+  {
+    return this.toastCrtl.create({
+      message: msg,
+      color: "danger",
+      buttons: [
+        {
+          text: "x",
+          role: "cancel" 
+        }
+      ],
+      duration: 5000
     })
   }
 

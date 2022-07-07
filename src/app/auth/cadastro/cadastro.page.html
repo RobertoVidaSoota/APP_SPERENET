@@ -17,29 +17,64 @@
 
       <!-- NOME E SOBRE NOME -->
       <ion-col size="12">
-        <input class="mb-30" type="text" placeholder="Informe seus nome e sobrenome" 
-        [(ngModel)]="formRegister.nome_usuario"
+        <input id="nome_usuario" class="mb-30" type="text" 
+        placeholder="Nome" 
+        maxlength="120" minlength="10"
+        [(ngModel)]="formRegister.nome_usuario" (keyup)="inputLen($event)" 
+        />  
+      </ion-col>
+
+      <!-- TELEFONE -->
+      <ion-col size="12">
+        <input id="telefone" class="mb-30" type="text" 
+        placeholder="Telefone" inputmode="numeric"
+        maxlength="16" minlength="9"
+        [(ngModel)]="formRegister.telefone" (keyup)="inputLen($event)" 
+        />  
+      </ion-col>
+
+      <!-- CPF -->
+      <ion-col size="12">
+        <input id="cpf" class="mb-30" type="text" 
+        placeholder="CPF" inputmode="numeric"
+        maxlength="14" minlength="11"
+        [(ngModel)]="formRegister.cpf" (keyup)="inputLen($event)" 
+        />  
+      </ion-col>
+
+      <!-- CPF -->
+      <ion-col size="12">
+        <input id="nascimento" class="mb-30" type="date" 
+        placeholder="Data de nascimento" inputmode="numeric"
+        maxlength="" minlength=""
+        [(ngModel)]="formRegister.nascimento" (keyup)="inputLen($event)" 
         />  
       </ion-col>
 
       <!-- E-MAIL -->
       <ion-col size="12">
-        <input class="mb-30" type="email" placeholder="E-mail" 
-        [(ngModel)]="formRegister.email"
+        <input id="email" class="mb-30" type="email" 
+        placeholder="E-mail" autocomplete="false"
+        maxlength="120"
+        [(ngModel)]="formRegister.email" 
         />  
       </ion-col>
 
       <!-- SENHA -->
       <ion-col size="12">
-        <input class="mb-30" type="password" placeholder="Senha"
-        [(ngModel)]="formRegister.password"
+        <input id="password" class="mb-30" type="password" 
+        placeholder="Senha" autocomplete="false"
+        maxlength="200" minlength="8"
+        [(ngModel)]="formRegister.password"  (keyup)="inputLen($event)" 
         />  
       </ion-col>
 
       <!-- CONFIRMAR SENHA -->
       <ion-col size="12">
-        <input class="mb-30" type="password" placeholder="Confirmar senha" 
-        [(ngModel)]="formRegister.confirmPassword"
+        <input id="confirmPassword" class="mb-30" type="password" 
+        placeholder="Confirmar senha" autocomplete="false"
+        maxlength="200" minlength="8" 
+        [(ngModel)]="formRegister.confirmPassword" (keyup)="inputLen($event)"
         /> 
       </ion-col>
 
@@ -50,51 +85,65 @@
 
       <!-- CEP -->
       <ion-col size="5">
-        <input class="mb-30" type="text" placeholder="CEP" inputmode="decimal"
-        [(ngModel)]="formRegister.cep" (blur)="getAndress()"
+        <input id="cep" class="mb-30" type="text" placeholder="CEP" 
+        inputmode="decimal" autocomplete="false"
+        maxlength="9" minlength="8"
+        [(ngModel)]="formRegister.cep" (blur)="getAndress()" (keyup)="inputLen($event)"
         />
       </ion-col>
 
       <!-- PAIS -->
       <ion-col size="7">
-        <input class="mb-30" type="text" placeholder="País"
-        [(ngModel)]="formRegister.pais"
+        <input id="pais" class="mb-30" type="text" 
+        placeholder="País" autocomplete="false"
+        maxlength="20" minlength="3"
+        [(ngModel)]="formRegister.pais" (keyup)="inputLen($event)"
         /> 
       </ion-col>
       
       <!-- ESTADO -->
       <ion-col size="2">
-        <input class="mb-30 estado" type="text" placeholder="UF"
-        [(ngModel)]="formRegister.uf"
+        <input id="uf" class="mb-30 estado" type="text" 
+        placeholder="UF" autocomplete="false"
+        maxlength="2" minlength="2"
+        [(ngModel)]="formRegister.uf" (keyup)="inputLen($event)"
         />  
       </ion-col>
 
       <!-- CIDADE -->
       <ion-col size="5">
-        <input class="mb-30" type="text" placeholder="Cidade"
-        [(ngModel)]="formRegister.cidade"
+        <input id="cidade" class="mb-30" type="text" 
+        placeholder="Cidade" autocomplete="false"
+        maxlength="40" minlength="4"
+        [(ngModel)]="formRegister.cidade" (keyup)="inputLen($event)"
         />  
       </ion-col>
 
       <!-- BAIRRO -->
       <ion-col size="5">
-        <input class="mb-30" type="text" placeholder="Bairro"
-        [(ngModel)]="formRegister.bairro"
+        <input id="bairro" class="mb-30" type="text" 
+        placeholder="Bairro" autocomplete="false"
+        maxlength="40" minlength="3"
+        [(ngModel)]="formRegister.bairro" (keyup)="inputLen($event)"
         /> 
       </ion-col>
 
       <!-- RUA -->
       <ion-col size="10">
-        <input class="mb-30" type="text" placeholder="Rua"
-        [(ngModel)]="formRegister.rua"
+        <input id="rua" class="mb-30" type="text" 
+        placeholder="Rua" autocomplete="false"
+        maxlength="40" minlength="3"
+        [(ngModel)]="formRegister.rua" (keyup)="inputLen($event)"
         />
       </ion-col>
 
       <!-- NUMERO DA CASA -->
       <ion-col size="2">
-        <input class="mb-30 numero_casa" type="text" placeholder="Nº" 
-        inputmode="numeric"
-        [(ngModel)]="formRegister.nome_usuario"
+        <input id="numero_casa" class="mb-30 numero_casa" 
+        type="text" placeholder="Nº"
+        autocomplete="false" inputmode="numeric"
+        maxlength="5" minlength="1"
+        [(ngModel)]="formRegister.nome_usuario" (keyup)="inputLen($event)"
         />  
       </ion-col>
 
