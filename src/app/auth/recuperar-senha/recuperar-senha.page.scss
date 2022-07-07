@@ -35,3 +35,24 @@ ion-button.voltar
 {
     --background: transparent;
 }
+
+// INPUT DOS CODIGOS
+.div-input-code
+{
+    display: flex !important;
+    justify-content: center;
+}
+.input-code
+{
+    margin-top: 100px !important;
+    width: 10% !important;
+    padding-left: 0 !important;
+    margin-left: 1% !important;
+    margin-right: 1% !important;
+    text-align: center;
+}
+#buttons-code
+{
+    width: 100%;
+    margin-top: 70px;
+}
