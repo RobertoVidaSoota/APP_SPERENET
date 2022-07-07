@@ -14,7 +14,7 @@ p
     margin-right: auto;
     text-align: left;
 }
-input
+input.input-code, input.email-rec
 {
     margin-top: 50px;
 }
@@ -54,5 +54,11 @@ ion-button.voltar
 #buttons-code
 {
     width: 100%;
+    margin-top: 70px;
+}
+
+// INPUTS DE NOVA SENHA
+#input-nova-senha
+{
     margin-top: 70px;
 }
