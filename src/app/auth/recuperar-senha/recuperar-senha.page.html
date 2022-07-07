@@ -1,7 +1,8 @@
 <ion-content>
   
 
-  <!-- <img src="../../../assets/esqueci.svg">
+  <!-- FORMULÁRIO ENVIAR E-MAIL -->
+  <img src="../../../assets/esqueci.svg">
 
   <p class="titulo1">
     Esqueceu sua senha?
@@ -9,11 +10,14 @@
     ser criada um nova senha.
   </p>
 
-  <input class="email-rec mb-30" type="email" placeholder="E-mail de recuperação">
+  <input class="email-rec mb-30" type="email" 
+  placeholder="E-mail de recuperação"
+  [(ngModel)]="emailUser"
+  >
 
   <ion-row>
     <ion-col size="6" class="no-centro-dentro">
-      <ion-button>
+      <ion-button (click)="sendEmail()">
         Enviar
       </ion-button>
     </ion-col>
@@ -23,7 +27,7 @@
         Voltar
       </ion-button>
     </ion-col>
-  </ion-row> -->
+  </ion-row>
 
 
   
@@ -85,7 +89,7 @@
 
 
   <!-- NOVA SENHA -->
-  <div id="input-nova-senha">
+  <!-- <div id="input-nova-senha">
 
     <ion-col size="12">
       <input id="password" class="mb-30" type="password" 
@@ -112,7 +116,7 @@
       <ion-col size="6" >
       </ion-col>
     </ion-row>
-  </div>
+  </div> -->
   
 
 

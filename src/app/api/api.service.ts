@@ -44,4 +44,9 @@ export class ApiService {
   {
     return this.http.get("https://viacep.com.br/ws/"+value+"/json/")
   }
+
+  apiEmailNavaSenha(value)
+  {
+    return this.http.post(this.url+"/post_send_email_new_password", value);
+  }
 }
