@@ -49,4 +49,9 @@ export class ApiService {
   {
     return this.http.post(this.url+"/post_send_email_new_password", value);
   }
+
+  apiMudarNovaSenha(value)
+  {
+    return this.http.post(this.url+"/post_new_password", value);
+  }
 }

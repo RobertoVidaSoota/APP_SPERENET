@@ -10,18 +10,29 @@ import { ApiService } from 'src/app/api/api.service';
 })
 export class RecuperarSenhaPage implements OnInit {
 
+  // VALORES DE ENVIAR E-MAIL PARA RECEBER O CÓDIGO
   emailUser = "";
-  codeNumberFormApi = null;
   sended = null;
-  stepNow = 2;
 
-  codeNumber1 = ""
-  codeNumber2 = ""
-  codeNumber3 = ""
-  codeNumber4 = ""
-  codeNumber5 = ""
-  codeNumber6 = ""
+  // CODIGO RECEBIDO PARA SER CONFIRMADO
+  codeNumberFromApi = "";
 
+  // VALORES PARA ALTERAR A SENHA
+  newPassword = "";
+  confirmNewPassword = "";
+
+  // VALOR DOS PASSOS PARA ALTERAR A SENHA
+  stepNow = 1;
+
+  // VALORES DOS CAMPOS
+  codeNumber1 = ""; 
+  codeNumber2 = ""; 
+  codeNumber3 = ""; 
+  codeNumber4 = ""; 
+  codeNumber5 = ""; 
+  codeNumber6 = ""; 
+
+  // INPUT PEGOS PARA DAR O FOCO DEPOIS DE DIGITAR O NUMERO
   @ViewChild("codeNumberRef_1") codeNumberRef_1: ElementRef;
   @ViewChild("codeNumberRef_2") codeNumberRef_2: ElementRef;
   @ViewChild("codeNumberRef_3") codeNumberRef_3: ElementRef;
@@ -44,7 +55,7 @@ export class RecuperarSenhaPage implements OnInit {
   {
     if(this.emailUser == "")
     {
-      this.toastSend("Digite o e-mail para ser enviado o código");
+      this.toastSend("Digite o e-mail para ser enviado o código", "danger");
       return false;
     }
     else
@@ -59,12 +70,13 @@ export class RecuperarSenhaPage implements OnInit {
       {
         if(res["send"] == true)
         {
-          this.codeNumberFormApi = res["code"]
+          this.codeNumberFromApi = res["code"]
           this.sended = res["send"]
+          this.toastSend(res["msg"], "success");
         }
         if(!res["send"])
         {
-          this.toastSend(res["msg"]);
+          this.toastSend(res["msg"], "danger");
         }
 
         this.loadCtrl.dismiss()
@@ -72,16 +84,60 @@ export class RecuperarSenhaPage implements OnInit {
       }, (e) => 
       {
         this.loadCtrl.dismiss()
-        this.toastSend("Ocorreu um erro inesperado.");
+        this.toastSend("Ocorreu um erro inesperado.", "danger");
       });
     }
+  }
+
+
+  // ENVIAR SENHA PARA A ALTERAÇÃO
+  changePassword()
+  {
+    let value = {
+      password: this.newPassword,
+      email: this.emailUser
+    }
+
+    this.api.apiMudarNovaSenha(value).subscribe((res) => 
+    {
+      if(res["change"] && res["change"] == true)
+      {
+        this.toastSend(res["msg"], "success")
+      }
+      else
+      {
+        this.toastSend(res["msg"], "danger")
+      }
+    }, e => 
+    {
+      this.toastSend("Ocorreu um erro inesperado.", "danger")
+      this.loadCtrl.dismiss()
+    })
   }
 
 
   // ENVIAR CÓDIGO PARA UMA NOVA SENHA
   codeValidate()
   {
-    
+    let codeFinal = 
+      this.codeNumber1+""+
+      this.codeNumber2+""+
+      this.codeNumber3+""+
+      this.codeNumber4+""+
+      this.codeNumber5+""+
+      this.codeNumber6;
+
+    if(this.codeNumberFromApi === codeFinal)
+    {
+      this.loadingToNextStep(3)
+      setTimeout(() => {
+        this.loadCtrl.dismiss()
+      }, 1500)
+    }
+    else
+    {
+      this.toastSend("O Código é inválido.", "danger")
+    }
   }
 
 
@@ -111,17 +167,18 @@ export class RecuperarSenhaPage implements OnInit {
 
       load.onDidDismiss().then(() => {
         this.stepNow = step
+        this.codeNumberRef_1.nativeElement.focus()
       })
     });
   }
 
 
   // TOAST
-  toastSend(msg)
+  toastSend(msg, color)
   {
     return this.toastCtrl.create({
       message: msg,
-      color: "danger",
+      color: color,
       buttons: [
         {
           text: "x",

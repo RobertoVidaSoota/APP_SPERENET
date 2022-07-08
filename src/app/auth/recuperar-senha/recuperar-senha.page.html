@@ -101,7 +101,7 @@
       <input id="password" class="mb-30" type="password" 
       placeholder="Nova senha" autocomplete="false"
       maxlength="200" minlength="8"
-      [(ngModel)]="NewPassword"  (keyup)="inputLen($event)" 
+      [(ngModel)]="newPassword"  (keyup)="inputLen($event)" 
       />  
     </ion-col>
   
@@ -113,13 +113,11 @@
       /> 
     </ion-col>
 
-    <ion-row class="div_h_center">
-      <ion-col size="6" class="no-centro-dentro">
-        <ion-button>
+    <ion-row id="box_confirmar">
+      <ion-col size="12">
+        <ion-button (click)="changePassword()">
           Confirmar
         </ion-button>
-      </ion-col>
-      <ion-col size="6" >
       </ion-col>
     </ion-row>
   </div>
