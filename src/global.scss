@@ -242,3 +242,12 @@ ion-popover::part(content)
 {
     --button-color: var(--ion-color-verde0) !important;
 }
+
+// LOADING
+ion-loading.my-loading-class {
+    --spinner-color: var(--ion-color-branco1);
+.loading-wrapper {
+    background: transparent;
+    box-shadow: none;
+ }
+}

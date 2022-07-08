@@ -2,77 +2,82 @@
   
 
   <!-- FORMULÁRIO ENVIAR E-MAIL -->
-  <img src="../../../assets/esqueci.svg">
+  <div *ngIf="stepNow == 1">
 
-  <p class="titulo1">
-    Esqueceu sua senha?
-    Digite abaixo o e-mail que receberá um código para
-    ser criada um nova senha.
-  </p>
+    <img src="../../../assets/esqueci.svg">
 
-  <input class="email-rec mb-30" type="email" 
-  placeholder="E-mail de recuperação"
-  [(ngModel)]="emailUser"
-  >
+    <p class="titulo1">
+      Esqueceu sua senha?
+      Digite abaixo o e-mail que receberá um código para
+      ser criada um nova senha.
+    </p>
 
-  <ion-row>
-    <ion-col size="6" class="no-centro-dentro">
-      <ion-button (click)="sendEmail()">
-        Enviar
-      </ion-button>
-    </ion-col>
+    <input class="email-rec mb-30" type="email" 
+    placeholder="E-mail de recuperação"
+    [(ngModel)]="emailUser"
+    >
 
-    <ion-col size="6" class="no-centro-dentro">
-      <ion-button routerLink="/login" fill="clear" class="voltar">
-        Voltar
-      </ion-button>
-    </ion-col>
-  </ion-row>
+    <ion-row>
+      <ion-col size="6" class="no-centro-dentro">
+        <ion-button (click)="sendEmail()">
+          Enviar
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="6" class="no-centro-dentro">
+        <ion-button routerLink="/login" fill="clear" class="voltar">
+          Voltar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </div>
+  
 
 
   
   <!--  CODIGO DO E-MAIL -->
-  <!-- <div class="div-input-code">
+  <div *ngIf="stepNow == 2" class="div-input-code">
 
-     1 
+     <!-- 1 -->
     <input id="codeNumber1" class="input-code" type="text" inputmode="numeric" 
       maxlength="1" minlength="1" 
-      [(ngModel)]="codeNumber1" (keyup)="nextNumber($event)">
+      [(ngModel)]="codeNumber1" (keyup)="nextNumber($event, 1)" #codeNumberRef_1>
 
-     2 
+     <!-- 2 -->
     <input id="codeNumber2" class="input-code" type="text" inputmode="numeric" 
       maxlength="1" minlength="1" 
-      [(ngModel)]="codeNumber2" (keyup)="nextNumber($event)">
+      [(ngModel)]="codeNumber2" (keyup)="nextNumber($event, 2)" #codeNumberRef_2>
 
-     3 
+     <!-- 3 -->
     <input id="codeNumber3" class="input-code" type="text" inputmode="numeric" 
       maxlength="1" minlength="1" 
-      [(ngModel)]="codeNumber3" (keyup)="nextNumber($event)">
+      [(ngModel)]="codeNumber3" (keyup)="nextNumber($event, 3)" #codeNumberRef_3>
 
-     4 
+     <!-- 4 -->
     <input id="codeNumber4" class="input-code" type="text" inputmode="numeric" 
       maxlength="1" minlength="1" 
-      [(ngModel)]="codeNumber4" (keyup)="nextNumber($event)">
+      [(ngModel)]="codeNumber4" (keyup)="nextNumber($event, 4)" #codeNumberRef_4>
 
-     5 
+     <!-- 5 -->
     <input id="codeNumber5" class="input-code" type="text" inputmode="numeric" 
       maxlength="1" minlength="1" 
-      [(ngModel)]="codeNumber5" (keyup)="nextNumber($event)">
+      [(ngModel)]="codeNumber5" (keyup)="nextNumber($event, 5)" #codeNumberRef_5>
 
-     6 
+     <!-- 6 -->
     <input id="codeNumber6" class="input-code" type="text" inputmode="numeric" 
       maxlength="1" minlength="1" 
-      [(ngModel)]="codeNumber6" (keyup)="nextNumber($event)">
+      [(ngModel)]="codeNumber6" (keyup)="nextNumber($event, 6)" #codeNumberRef_6>
 
       
-  </div> -->
+  </div>
 
   <!-- BOTÕES PARA CONFIRMAR O CODIGO -->
-  <!-- <div id="buttons-code">
+  <div *ngIf="stepNow == 2" id="buttons-code">
 
     <ion-row>
       <ion-col size="12" class="no-centro-dentro">
-        <ion-button>
+        <ion-button (click)="codeValidate()">
           Confirmar
         </ion-button>
       </ion-col>
@@ -84,12 +89,13 @@
       </ion-col>
     </ion-row>
 
-  </div> -->
+  </div>
+
   
 
 
   <!-- NOVA SENHA -->
-  <!-- <div id="input-nova-senha">
+  <div *ngIf="stepNow == 3" id="input-nova-senha">
 
     <ion-col size="12">
       <input id="password" class="mb-30" type="password" 
@@ -116,7 +122,7 @@
       <ion-col size="6" >
       </ion-col>
     </ion-row>
-  </div> -->
+  </div>
   
 
 
