@@ -212,6 +212,12 @@ ion-popover::part(content)
     --background: rgba(0, 0, 0, 0.5);
     --backdrop-opacity: 0.5;
 }
+// CLASSE DE ERRO DE INPUT
+.input_erro
+{
+    background-color: var(--erro-color-clear);
+}
+
 // SUMIR COM A TABELA DO MAPA
 .leaflet-control-container .leaflet-routing-container-hide
 {

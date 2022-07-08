@@ -47,7 +47,7 @@ export class CadastroPage{
   sendRegister()
   {
 
-    if(this.checkInput())
+    if(this.checkInput() == true)
     {
       this.api.apiCadastrar(this.formRegister).subscribe((res) => 
       {
@@ -74,7 +74,7 @@ export class CadastroPage{
     }
     else if(this.formRegister.confirmPassword == "")
     {
-      this.toastRegister("O campo confirmar senhasenha deve ser obrigatório.")
+      this.toastRegister("O campo confirmar senha deve ser obrigatório.")
       return false;
     }
     else if(this.formRegister.confirmPassword !== this.formRegister.password)

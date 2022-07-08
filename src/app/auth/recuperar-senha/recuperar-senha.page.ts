@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/api/api.service';
 
 @Component({
@@ -44,7 +44,8 @@ export class RecuperarSenhaPage implements OnInit {
     private email: EmailComposer,
     private api: ApiService,
     private toastCtrl: ToastController,
-    private loadCtrl: LoadingController
+    private loadCtrl: LoadingController,
+    private nav: NavController
   ){}
 
   ngOnInit() {
@@ -98,11 +99,16 @@ export class RecuperarSenhaPage implements OnInit {
       email: this.emailUser
     }
 
+    if(this.checkInputPassoword() == true)
+    {
+
+    }
     this.api.apiMudarNovaSenha(value).subscribe((res) => 
     {
       if(res["change"] && res["change"] == true)
       {
         this.toastSend(res["msg"], "success")
+        this.nav.navigateRoot("/login")
       }
       else
       {
@@ -116,6 +122,53 @@ export class RecuperarSenhaPage implements OnInit {
   }
 
 
+  // VERIFICAR SE OS VALORES DA SENHA ESTÃO VAZIOS
+  checkInputPassoword():Boolean
+  {
+    if(this.newPassword == "")
+    {
+      this.toastSend("O campo nova senha deve ser obrigatório.", "danger")
+      return false;
+    }
+    else if(this.confirmNewPassword == "")
+    {
+      this.toastSend("O campo confirmar nova senha deve ser obrigatório.", "danger")
+      return false;
+    }
+    else if(this.newPassword.length < 8)
+    {
+      this.toastSend("O campo nova senha deve ter pelo menos 8 caracteres.", "danger")
+      return false;
+    }
+    else if(this.confirmNewPassword.length < 8)
+    {
+      this.toastSend("O campo confirmar nova senha deve ter pelo menos 8 caracteres.", "danger")
+      return false;
+    }
+
+    return true;
+  }
+
+
+  // VERIFICAR O TAMANHO DOS INPUTS DA SENHA
+  inputLen(e)
+  {
+    let value = e.target.value
+    let id = e.target.id
+    let min = e.target.minLength
+    
+     if(value.length < min)
+     {
+        document.querySelector("#"+id)
+        .classList.add("input_erro")
+     }
+     else
+     {
+        document.querySelector("#"+id)
+        .classList.remove("input_erro")
+     }
+  }
+
   // ENVIAR CÓDIGO PARA UMA NOVA SENHA
   codeValidate()
   {
@@ -127,7 +180,7 @@ export class RecuperarSenhaPage implements OnInit {
       this.codeNumber5+""+
       this.codeNumber6;
 
-    if(this.codeNumberFromApi === codeFinal)
+    if(this.codeNumberFromApi == codeFinal)
     {
       this.loadingToNextStep(3)
       setTimeout(() => {
