@@ -35,6 +35,10 @@ export class LoginPage implements OnInit {
     {
       this.toast("senha é obrigatória", "danger")
       return
+    } else if(this.form.email.indexOf("@") < 0)
+    {
+      this.toast("O email não pode ficar sem o @.", "danger")
+      return ;
     }
 
     let formValue = {
@@ -55,7 +59,13 @@ export class LoginPage implements OnInit {
         localStorage.setItem("id_usuario_logado_app", res["id"])
         this.toast("Login confirmado", "success")
         this.nav.navigateRoot("/tabs")
+      }else
+      {
+        this.toast(res["msg"], "danger")
       }
+    }, e => 
+    {
+      this.toast("Ocorreu um erro inesperado", "danger")
     })
   }
 

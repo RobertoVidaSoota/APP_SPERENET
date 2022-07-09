@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/api/api.service';
 
 @Component({
@@ -32,7 +32,8 @@ export class CadastroPage{
 
   constructor(
     private api: ApiService,
-    private toastCrtl: ToastController
+    private toastCrtl: ToastController,
+    private nav: NavController
   ) { }
 
   ngOnInit()
@@ -51,7 +52,16 @@ export class CadastroPage{
     {
       this.api.apiCadastrar(this.formRegister).subscribe((res) => 
       {
-        console.log(res);
+        if(res["register"] && res["register"])
+        {
+          localStorage.setItem("login_usuario", "true")
+          localStorage.setItem("id_usuario_logado_app", res["user"]["id"])
+          this.toastConfirm(res["msg"])
+          this.nav.navigateRoot("/tabs")
+        }
+      }, e => 
+      {
+        this.toastRegister("Ocorreu um erro inesperado")
       })
     }
     
@@ -296,6 +306,24 @@ export class CadastroPage{
     return this.toastCrtl.create({
       message: msg,
       color: "danger",
+      buttons: [
+        {
+          text: "x",
+          role: "cancel" 
+        }
+      ],
+      duration: 5000
+    }).then((res) => {
+      res.present()
+    })
+  }
+
+
+  toastConfirm(msg)
+  {
+    return this.toastCrtl.create({
+      message: msg,
+      color: "success",
       buttons: [
         {
           text: "x",
