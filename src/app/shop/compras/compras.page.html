@@ -1,4 +1,4 @@
-<ion-header *ngIf="checkLogin == 'true'"
+<ion-header
 [translucent]="true">
   <ion-toolbar>
 
@@ -25,7 +25,7 @@
 
 <ion-content [fullscreen]="true">
 
-  <div *ngIf="checkLogin == 'true'"
+  <div *ngIf="checkCompras == 1"
   class="item-compra">
 
     <h4 class="data-compra">12/10/2020</h4>
@@ -85,18 +85,13 @@
 
 
   <!-- ---- LAYOUT SEM LOGIN ---- -->
-  <div *ngIf="checkLogin == ''">
+  <div *ngIf="checkCompras == 0">
 
     <img class="svg_compras no-centro-dentro" src="../../../assets/SVG_COMPRAS.png" alt="">
 
     <h2 class="titulo1">
-      Faça o login na SPERENET, para
-      realizar compras.
+      Voce não realizou compras
     </h2>
-
-    <button routerLink="/login" class="fazer_login">
-      Fazer Login
-    </button>
 
   </div>
 

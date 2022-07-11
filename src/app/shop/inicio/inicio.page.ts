@@ -54,11 +54,6 @@ export class InicioPage implements OnInit {
       }
     });
 
-    if(this.acRoute.snapshot.paramMap.get("login") == '1')
-    {
-      location.reload() 
-    }
-
   }
 
   top()

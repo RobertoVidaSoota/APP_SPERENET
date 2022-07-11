@@ -58,13 +58,12 @@ export class LoginPage implements OnInit {
 
       if(res["user"])
       {
-        const params : NavigationExtras = {
-          queryParams: { login: 1 }
-        }
         localStorage.setItem("login_usuario", "true")
         localStorage.setItem("id_usuario_logado_app", res["id"])
         this.toast("Login confirmado", "success")
-        this.router.navigate(["/tabs/tab1/inicio"], params)
+        setTimeout(() => {
+          this.router.navigate(["/tabs/tab1/inicio"])
+        }, 2000)
       }else
       {
         this.toast(res["msg"], "danger")

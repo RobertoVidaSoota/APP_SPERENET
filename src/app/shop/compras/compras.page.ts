@@ -11,14 +11,13 @@ export class ComprasPage implements OnInit {
 
   @ViewChild(IonContent) content: IonContent;
 
-  checkLogin = "";
+  checkCompras = 0;
 
   constructor(
   ) { }
 
   ngOnInit()
   {
-    //  VERIFICAR LOGIN
   }
 
 
@@ -42,8 +41,6 @@ export class ComprasPage implements OnInit {
       }
     });
 
-    this.checkLogin = localStorage.getItem("login_usuario") ? 
-    localStorage.getItem("login_usuario") : "";
   }
 
 }
