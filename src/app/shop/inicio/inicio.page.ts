@@ -1,7 +1,7 @@
 import { registerLocaleData } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { IonContent, IonTabButton, NavController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IonContent, IonTabButton, NavController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-inicio',
@@ -26,10 +26,16 @@ export class InicioPage implements OnInit {
 
   constructor(
     private route: Router,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private acRoute: ActivatedRoute
   ) { }
 
   ngOnInit()
+  {
+  }
+
+ 
+  ionViewWillEnter()
   {
   }
 
@@ -47,6 +53,12 @@ export class InicioPage implements OnInit {
         ref.scrollToTop(200)
       }
     });
+
+    if(this.acRoute.snapshot.paramMap.get("login") == '1')
+    {
+      location.reload() 
+    }
+
   }
 
   top()

@@ -23,6 +23,10 @@ export class Tab1Page {
     this.router.navigate(["/tabs/tab1/inicio"])
   }
 
+  ionViewDidEnter()
+  {
+  }
+
   
   
 }

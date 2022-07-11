@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NavigationExtras, Router } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/api/api.service';
 import { AppComponent } from 'src/app/app.component';
@@ -19,6 +20,7 @@ export class LoginPage implements OnInit {
   constructor(
     private api: ApiService,
     private nav: NavController,
+    private router: Router,
     private toastCrtl: ToastController,
   ) { }
 
@@ -56,10 +58,13 @@ export class LoginPage implements OnInit {
 
       if(res["user"])
       {
+        const params : NavigationExtras = {
+          queryParams: { login: 1 }
+        }
         localStorage.setItem("login_usuario", "true")
         localStorage.setItem("id_usuario_logado_app", res["id"])
         this.toast("Login confirmado", "success")
-        this.nav.navigateRoot("/tabs/tab1")
+        this.router.navigate(["/tabs/tab1/inicio"], params)
       }else
       {
         this.toast(res["msg"], "danger")

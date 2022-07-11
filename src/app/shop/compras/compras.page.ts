@@ -18,12 +18,12 @@ export class ComprasPage implements OnInit {
 
   ngOnInit()
   {
+    //  VERIFICAR LOGIN
   }
 
 
   ionViewDidLeave()
   {
-    this.checkLogin = "";
   }
   
 
@@ -42,7 +42,6 @@ export class ComprasPage implements OnInit {
       }
     });
 
-    //  VERIFICAR LOGIN
     this.checkLogin = localStorage.getItem("login_usuario") ? 
     localStorage.getItem("login_usuario") : "";
   }

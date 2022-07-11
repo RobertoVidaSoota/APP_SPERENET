@@ -8,23 +8,11 @@ import { Router } from '@angular/router';
 })
 export class Tab3Page {
 
-  checkLogin = "";
 
   constructor(
     private router: Router
   )
   {}
-
-  ionViewDidEnter()
-  {
-    this.checkLogin = localStorage.getItem("login_usuario") ? 
-    localStorage.getItem("login_usuario") : "";
-  }
-
-  ionViewDidLeave()
-  {
-    this.checkLogin = "";
-  }
 
   ngOnInit()
   {
