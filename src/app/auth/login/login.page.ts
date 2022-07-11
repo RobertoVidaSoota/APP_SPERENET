@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController, ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/api/api.service';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginPage implements OnInit {
   constructor(
     private api: ApiService,
     private nav: NavController,
-    private toastCrtl: ToastController
+    private toastCrtl: ToastController,
   ) { }
 
   ngOnInit(){}
@@ -58,7 +59,7 @@ export class LoginPage implements OnInit {
         localStorage.setItem("login_usuario", "true")
         localStorage.setItem("id_usuario_logado_app", res["id"])
         this.toast("Login confirmado", "success")
-        this.nav.navigateRoot("/tabs")
+        this.nav.navigateRoot("/tabs/tab1")
       }else
       {
         this.toast(res["msg"], "danger")

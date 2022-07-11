@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonContent } from '@ionic/angular';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-compras',
@@ -12,13 +13,19 @@ export class ComprasPage implements OnInit {
 
   checkLogin = "";
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit()
   {
-    this.checkLogin = localStorage.getItem("login_usuario") ?
-    localStorage.getItem("login_usuario") : "";
   }
+
+
+  ionViewDidLeave()
+  {
+    this.checkLogin = "";
+  }
+  
 
   // FUNÇÃO PARA COLOCAR ROLAGEM AUTOMÁTICA PARA O TOPO
   ionViewDidEnter()
@@ -34,6 +41,10 @@ export class ComprasPage implements OnInit {
         ref.scrollToTop(200)
       }
     });
+
+    //  VERIFICAR LOGIN
+    this.checkLogin = localStorage.getItem("login_usuario") ? 
+    localStorage.getItem("login_usuario") : "";
   }
 
 }

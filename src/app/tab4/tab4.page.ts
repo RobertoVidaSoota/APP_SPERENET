@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonContent } from '@ionic/angular';
+import { IonContent, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab4',
@@ -14,14 +14,11 @@ export class Tab4Page implements OnInit {
   checkLogin = "";
 
   constructor(
-    private router: Router
+    private router: Router,
+    private nav: NavController
   ){}
 
-  ngOnInit()
-  {
-    this.checkLogin = localStorage.getItem("login_usuario") ?
-    localStorage.getItem("login_usuario") : "";
-  }
+  ngOnInit(){}
 
   // FUNÇÃO PARA COLOCAR ROLAGEM AUTOMÁTICA PARA O TOPO
   ionViewDidEnter()
@@ -39,6 +36,11 @@ export class Tab4Page implements OnInit {
       });
       
     }, 80)
+
+
+    // VERIFICAR LOGIN
+    this.checkLogin = localStorage.getItem("login_usuario") ?
+    localStorage.getItem("login_usuario") : "";
   }
 
 
@@ -48,7 +50,8 @@ export class Tab4Page implements OnInit {
     if(this.checkLogin = "true")
     {
       localStorage.removeItem("login_usuario");
-      this.router.navigate(["/login"]);
+      localStorage.removeItem("id_usuario_logado_app")
+      this.nav.navigateRoot("/login");
     }
   }
 

@@ -1,3 +1,4 @@
+import { registerLocaleData } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonContent, IonTabButton, NavController } from '@ionic/angular';
@@ -28,7 +29,8 @@ export class InicioPage implements OnInit {
     private navCtrl: NavController
   ) { }
 
-  ngOnInit() {
+  ngOnInit()
+  {
   }
 
   // FUNÇÃO PARA COLOCAR ROLAGEM AUTOMÁTICA PARA O TOPO
