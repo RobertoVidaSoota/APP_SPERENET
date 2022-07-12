@@ -21,6 +21,13 @@ export class Tab1Page {
   ngOnInit()
   {
     this.router.navigate(["/tabs/tab1/inicio"])
+
+    // QUANDO LOGAR ELE VAI CARREGAR A PÁGINA PARA SETA O LOGIN NAS ABAS
+    if(localStorage.getItem("reload") == '1')
+    {
+      localStorage.setItem("reload", "0")
+      location.reload()
+    }
   }
 
   ionViewDidEnter()

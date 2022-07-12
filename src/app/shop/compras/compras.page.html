@@ -25,7 +25,7 @@
 
 <ion-content [fullscreen]="true">
 
-  <div *ngIf="checkCompras == 1"
+  <div *ngIf="checkLogin == 'true'"
   class="item-compra">
 
     <h4 class="data-compra">12/10/2020</h4>
@@ -85,7 +85,7 @@
 
 
   <!-- ---- LAYOUT SEM LOGIN ---- -->
-  <div *ngIf="checkCompras == 0">
+  <div *ngIf="checkLogin == ''">
 
     <img class="svg_compras no-centro-dentro" src="../../../assets/SVG_COMPRAS.png" alt="">
 
