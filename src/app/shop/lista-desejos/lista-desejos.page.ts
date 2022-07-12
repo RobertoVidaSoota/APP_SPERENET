@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaDesejosPage implements OnInit {
 
+  checkLista = 0;
+
   constructor() { }
 
   ngOnInit() {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
-import { NavController, ToastController } from '@ionic/angular';
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/api/api.service';
 import { AppComponent } from 'src/app/app.component';
 
@@ -22,6 +22,7 @@ export class LoginPage implements OnInit {
     private nav: NavController,
     private router: Router,
     private toastCrtl: ToastController,
+    private loadCtrl: LoadingController
   ) { }
 
   ngOnInit(){}
@@ -49,6 +50,7 @@ export class LoginPage implements OnInit {
       password: this.form.senha
     }
 
+
     this.api.apiFazerLogin(formValue).subscribe((res) => {
 
       if(res["msg"])
@@ -58,10 +60,12 @@ export class LoginPage implements OnInit {
 
       if(res["user"])
       {
+        this.loading()
         localStorage.setItem("login_usuario", "true")
         localStorage.setItem("id_usuario_logado_app", res["id"])
-        this.toast("Login confirmado", "success")
         setTimeout(() => {
+          this.toast("Login confirmado", "success")
+          this.loadCtrl.dismiss()
           this.router.navigate(["/tabs/tab1/inicio"])
         }, 2000)
       }else
@@ -83,5 +87,16 @@ export class LoginPage implements OnInit {
     .then((res) => {
       res.present()
     })
+  }
+
+
+  // LOADING
+  async loading()
+  {
+    const load = await this.loadCtrl.create({
+      cssClass: "my-loading-class",
+    }).then((load) => {
+      load.present()
+    });
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ToastController } from '@ionic/angular';
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/api/api.service';
 
 @Component({
@@ -33,7 +33,8 @@ export class CadastroPage{
   constructor(
     private api: ApiService,
     private toastCrtl: ToastController,
-    private nav: NavController
+    private nav: NavController,
+    private loadCtrl: LoadingController
   ) { }
 
   ngOnInit()
@@ -54,10 +55,14 @@ export class CadastroPage{
       {
         if(res["register"] && res["register"])
         {
+          this.loading()
           localStorage.setItem("login_usuario", "true")
           localStorage.setItem("id_usuario_logado_app", res["user"]["id"])
-          this.toastConfirm(res["msg"])
-          this.nav.navigateRoot("/tabs")
+          setTimeout(() => {
+            this.loadCtrl.dismiss()
+            this.toastConfirm(res["msg"])
+            this.nav.navigateRoot("/tabs")
+          })
         }
       }, e => 
       {
@@ -330,10 +335,20 @@ export class CadastroPage{
           role: "cancel" 
         }
       ],
-      duration: 5000
+      duration: 3000
     }).then((res) => {
       res.present()
     })
   }
 
+
+  // LOADING
+  async loading()
+  {
+    const load = await this.loadCtrl.create({
+      cssClass: "my-loading-class",
+    }).then((load) => {
+      load.present()
+    });
+  }
 }

@@ -6,7 +6,7 @@
 
     <ion-title>Carrinho</ion-title>
 
-    <div *ngIf="checkLogin == 'true'"
+    <div *ngIf="checkCarrinho == 1"
     class="numero-items" slot="end">
       <p>Itens:</p>
       <p>3</p>
@@ -19,7 +19,7 @@
 <ion-content>
 
 
-  <ion-row *ngIf="checkLogin == 'true'">
+  <ion-row *ngIf="checkCarrinho == 1">
 
     <ion-col size="6">
 
@@ -83,18 +83,13 @@
 
   <!-- ---- LAYOUT SEM LOGIN ---- -->
 
-  <div *ngIf="checkLogin == ''">
+  <div *ngIf="checkCarrinho == 0">
 
     <img class="svg_compras no-centro-dentro" src="../../../assets/SVG_COMPRAS.png" alt="">
 
     <h2 class="titulo1">
-      Faça o login na SPERENET, para
-      usar o app do melhor jeito.
+      Seu o carrinho está vazio
     </h2>
-  
-    <button routerLink="/login" class="fazer_login">
-      Fazer Login
-    </button>
 
   </div>
 
@@ -102,7 +97,7 @@
 
 
 
-<ion-footer *ngIf="checkLogin == 'true'">
+<ion-footer *ngIf="checkCarrinho == 1">
 
   <ion-toolbar>
     <h1>

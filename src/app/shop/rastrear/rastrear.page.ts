@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import scriptjs from 'scriptjs';
 
-import * as L from 'leaflet'
 
 
 @Component({
@@ -11,8 +11,6 @@ import * as L from 'leaflet'
 })
 export class RastrearPage implements OnInit {
 
-  map: L.map
-
   constructor(
     private navCtrl: NavController,
   )
@@ -20,6 +18,7 @@ export class RastrearPage implements OnInit {
 
   ngOnInit()
   {
+  
   }
 
 
@@ -45,29 +44,6 @@ export class RastrearPage implements OnInit {
     });
 
 
-    // MAPA
-    this.map = L.map("map").setView([-12.879736, -38.312165], 12);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
-    {
-    }).addTo(this.map);
-
-    let myIcon1 = L.icon({
-      iconUrl: "../../../assets/truck-64.png",
-      iconSize: [45, 45]
-    })
-
-    let myIcon2 = L.icon({
-      iconUrl: "../../../assets/pessoa-30.png",
-      iconSize: [45, 45]
-    })
-
-    L.marker([-12.879736, -38.312165], {icon: myIcon1}).addTo(this.map);
-    L.marker([-13.003524, -38.530063], {icon: myIcon2}).addTo(this.map);
-
-    setTimeout(() => {
-      this.map.invalidateSize();
-    }, 0)
   }
 
 }

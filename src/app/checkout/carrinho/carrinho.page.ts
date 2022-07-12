@@ -7,14 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarrinhoPage implements OnInit {
 
-  checkLogin = "";
+  checkCarrinho = 0;
 
   constructor() { }
 
   ngOnInit()
   {
-    this.checkLogin = localStorage.getItem("login_usuario") ?
-    localStorage.getItem("login_usuario") : "";
+    
   }
 
 }

@@ -11,7 +11,7 @@ export class ComprasPage implements OnInit {
 
   @ViewChild(IonContent) content: IonContent;
 
-  checkCompras = 0;
+  checkCompras = 1;
 
   constructor(
   ) { }
