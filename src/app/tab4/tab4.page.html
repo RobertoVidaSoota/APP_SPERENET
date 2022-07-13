@@ -31,28 +31,28 @@
   </h6>
 
   <ion-item *ngIf="checkLogin == 'true'" 
-  button (click)="mudarInfoGerais()" routerLink="/info-pessoais">
+  button routerLink="/info-pessoais">
     <ion-label>Gerais </ion-label>
     <ion-icon slot="end" name="chevron-forward"></ion-icon>
   </ion-item>
 
   <ion-item *ngIf="checkLogin == 'true'"
-  button (click)="mudarEmail()" routerLink="/email">
+  button routerLink="/email">
     <ion-label>Email </ion-label>
     <ion-icon slot="end" name="chevron-forward"></ion-icon>
   </ion-item>
 
   <ion-item *ngIf="checkLogin == 'true'"
-  button (click)="mudarSenha()" routerLink="/senha">
+  button routerLink="/senha">
     <ion-label>Senha </ion-label>
     <ion-icon slot="end" name="chevron-forward"></ion-icon>
   </ion-item>
 
-  <ion-item *ngIf="checkLogin == 'true'"
-  button (click)="mudarChave()" routerLink="/dois-fatores">
+  <!-- <ion-item *ngIf="checkLogin == 'true'"
+  button routerLink="/dois-fatores">
     <ion-label>Dois fatores </ion-label>
     <ion-icon slot="end" name="chevron-forward"></ion-icon>
-  </ion-item>
+  </ion-item> -->
 
   <h6 *ngIf="checkLogin == 'true'" 
   style="margin-left: 1em;">
@@ -60,13 +60,13 @@
   </h6>
 
   <ion-item *ngIf="checkLogin == 'true'"
-  button (click)="notfPreferencias()" routerLink="/preferencias">
+  button routerLink="/preferencias">
     <ion-label>Preferências</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
 
   <ion-item *ngIf="checkLogin == 'true'"
-  button (click)="notfrequencia()" routerLink="/frequencia">
+  button routerLink="/frequencia">
     <ion-label>Frequência</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
@@ -74,25 +74,25 @@
   <h6 *ngIf="checkLogin == 'true'" style="margin-left: 1em;">Suporte</h6>
 
   <ion-item *ngIf="checkLogin == 'true'"
-  button (click)="supAjuda()" routerLink="/ajuda">
+  button routerLink="/ajuda">
     <ion-label>Ajuda</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
 
   <ion-item *ngIf="checkLogin == 'true'"
-  button (click)="supFeedback()" routerLink="/feedback">
+  button routerLink="/feedback">
     <ion-label>Feedback</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
 
   <ion-item *ngIf="checkLogin == 'true'"
-  button (click)="supTermos()" routerLink="/termos-servicos">
+  button routerLink="/termos-servicos">
     <ion-label>Termos de Serviço</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>
 
   <ion-item *ngIf="checkLogin == 'true'"
-  button (click)="supPrivacidade()" routerLink="/privacidade">
+  button routerLink="/privacidade">
     <ion-label>Privacidade</ion-label>
     <ion-icon name="chevron-forward"></ion-icon>
   </ion-item>

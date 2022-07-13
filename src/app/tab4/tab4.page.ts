@@ -62,7 +62,7 @@ export class Tab4Page implements OnInit {
       })
     }
   }
-
+  
 
   // SAIR DA CONTA
   logout()

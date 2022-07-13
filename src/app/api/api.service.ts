@@ -62,4 +62,9 @@ export class ApiService {
   {
     return this.http.get(this.url+"/get_info_account/"+value+"")
   }
+
+  apiAtualizarInfoPessoais(value)
+  {
+    return this.http.post(this.url+"/post_change_info_account", value)
+  }
 }
