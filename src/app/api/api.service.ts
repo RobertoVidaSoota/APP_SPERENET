@@ -54,4 +54,12 @@ export class ApiService {
   {
     return this.http.post(this.url+"/post_new_password", value);
   }
+
+
+  // ACCOUNT
+
+  apiBuscarPerfilConta(value)
+  {
+    return this.http.get(this.url+"/get_info_account/"+value+"")
+  }
 }

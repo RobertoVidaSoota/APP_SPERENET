@@ -5,11 +5,11 @@
     
     <div class="icone">
       <ion-avatar>
-          <img src="https://images.pexels.com/photos/185481/pexels-photo-185481.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" />
+          <img [src]="fotoPerfil" />
       </ion-avatar>
     </div>
 
-    <h1 class="nome">Roberta Careta</h1>
+    <h1 class="nome">{{ nomeUsuario }}</h1>
   </div>
 
   <ion-item *ngIf="checkLogin == 'true'">
