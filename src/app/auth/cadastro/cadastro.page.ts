@@ -63,7 +63,7 @@ export class CadastroPage{
             this.loadCtrl.dismiss()
             this.toastConfirm(res["msg"])
             this.nav.navigateRoot("/tabs")
-          })
+          }, 2000)
         }
       }, e => 
       {
@@ -312,6 +312,7 @@ export class CadastroPage{
     return this.toastCrtl.create({
       message: msg,
       color: "danger",
+      position: "top",
       buttons: [
         {
           text: "x",
@@ -330,6 +331,7 @@ export class CadastroPage{
     return this.toastCrtl.create({
       message: msg,
       color: "success",
+      position: "top",
       buttons: [
         {
           text: "x",

@@ -11,10 +11,15 @@
 
 <ion-content>
 
-  <input type="email" value="rm1234567@gmail.com" class="mb-30">
+  <!-- E-MAIL -->
+    <input id="email" class="mb-30" type="email" 
+    placeholder="E-mail" autocomplete="false"
+    maxlength="120"
+    [(ngModel)]="formRegister.email" 
+    />  
 
   <div class="box-button">
-    <button>
+    <button (click)="sendEmail()">
       Alterar
     </button>
   </div>

@@ -56,7 +56,6 @@ export class InfoPessoaisPage implements OnInit {
 
     this.api.apiBuscarPerfilConta(this.formRegister.id_user).subscribe((res) => 
     {
-      console.log(res["data"]["0"])
       this.formRegister.nome_usuario = res["data"]["0"]["info_pessoais"]["nome_usuario"]
       this.formRegister.telefone = res["data"]["0"]["info_pessoais"]["telefone"]
       this.formRegister.cpf = res["data"]["0"]["info_pessoais"]["cpf"]
@@ -70,7 +69,7 @@ export class InfoPessoaisPage implements OnInit {
       this.formRegister.numero = res["data"]["0"]["endereco"]["numero"]
     },e => 
     {
-      console.log(e)
+      this.toastRegister("Ocorreu um erro inesperado")
     })
     
   }
@@ -90,7 +89,7 @@ export class InfoPessoaisPage implements OnInit {
           setTimeout(() => {
             this.loadCtrl.dismiss()
             this.toastConfirm(res["msg"])
-          })
+          }, 2000)
         }
         else if(res["update"] == false)
         {
@@ -253,6 +252,7 @@ export class InfoPessoaisPage implements OnInit {
     return this.toastCrtl.create({
       message: msg,
       color: "danger",
+      position: "top",
       buttons: [
         {
           text: "x",
@@ -270,6 +270,7 @@ export class InfoPessoaisPage implements OnInit {
   {
     return this.toastCrtl.create({
       message: msg,
+      position: "top",
       color: "success",
       buttons: [
         {

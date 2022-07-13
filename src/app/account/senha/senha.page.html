@@ -12,12 +12,22 @@
 <ion-content>
 
 
-  <input type="password" class="mb-30" placeholder="Nova senha" id="myFocus">
-
-  <input type="password" class="mb-30" placeholder="Confirmar nova senha">
+  <!-- SENHA -->
+    <input id="password" class="mb-30" type="password" 
+    placeholder="Senha" autocomplete="false"
+    maxlength="200" minlength="8"
+    [(ngModel)]="formRegister.password"  (keyup)="inputLen($event)" 
+    />  
+  
+  <!-- CONFIRMAR SENHA -->
+    <input id="confirmPassword" class="mb-30" type="password" 
+    placeholder="Confirmar senha" autocomplete="false"
+    maxlength="200" minlength="8" 
+    [(ngModel)]="formRegister.confirmPassword" (keyup)="inputLen($event)"
+    /> 
 
   <div class="box-button">
-    <button>
+    <button (click)="sendPassword()">
       Alterar
     </button>
   </div>

@@ -67,4 +67,14 @@ export class ApiService {
   {
     return this.http.post(this.url+"/post_change_info_account", value)
   }
+
+  apiAtualizarEmail(value)
+  {
+    return this.http.post(this.url+"/post_change_email", value)
+  }
+
+  apiAtualizarSenha(value)
+  {
+    return this.http.post(this.url+"/post_change_password", value)
+  }
 }
