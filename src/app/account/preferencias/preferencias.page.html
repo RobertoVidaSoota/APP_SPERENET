@@ -14,27 +14,35 @@
     <ion-label slot="start">
       Promoções
     </ion-label>
-    <ion-toggle slot="end"></ion-toggle>
+    <ion-toggle id="promocoes"
+    [checked]="promocoesToggle" (ionChange)="sendNotifications($event)" 
+    slot="end"></ion-toggle>
   </ion-item>
 
   <ion-item>
     <ion-label slot="start">
       Novos produtos
     </ion-label>
-    <ion-toggle slot="end"></ion-toggle>
+    <ion-toggle id="novidades"
+    [checked]="novidadesToggle" (ionChange)="sendNotifications($event)"
+    slot="end"></ion-toggle>
   </ion-item>
 
   <ion-item>
     <ion-label slot="start">
       Atualizações
     </ion-label>
-    <ion-toggle slot="end"></ion-toggle>
+    <ion-toggle id="atualizacoes"
+    [checked]="atualizacoesToggle" (ionChange)="sendNotifications($event)"
+    slot="end"></ion-toggle>
   </ion-item>
 
   <ion-item>
     <ion-label slot="start">
       Pedidos
     </ion-label>
-    <ion-toggle slot="end"></ion-toggle>
+    <ion-toggle id="pedidos"
+    [checked]="pedidosToggle" (ionChange)="sendNotifications($event)"
+    slot="end"></ion-toggle>
   </ion-item>
 </ion-content>

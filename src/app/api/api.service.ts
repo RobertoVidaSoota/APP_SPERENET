@@ -28,7 +28,9 @@ export class ApiService {
 
 
 
-  // AUTH
+  // --------------------------------------------------------------------
+  // ------------------------------- AUTH ------------------------------- 
+  // --------------------------------------------------------------------
 
   apiFazerLogin(formValue)
   {
@@ -56,7 +58,9 @@ export class ApiService {
   }
 
 
-  // ACCOUNT
+  // -----------------------------------------------------------------------
+  // ------------------------------- ACCOUNT ------------------------------- 
+  // -----------------------------------------------------------------------
 
   apiBuscarPerfilConta(value)
   {
@@ -76,5 +80,15 @@ export class ApiService {
   apiAtualizarSenha(value)
   {
     return this.http.post(this.url+"/post_change_password", value)
+  }
+
+  apiBuscarNotificacoes(value)
+  {
+    return this.http.post(this.url+"/post_get_user_notification", value)
+  }
+
+  apiMudarNotificacoes(value)
+  {
+    return this.http.post(this.url+"/post_change_user_notification", value)
   }
 }
