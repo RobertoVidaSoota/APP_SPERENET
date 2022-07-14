@@ -14,7 +14,8 @@
       <ion-label>
         Máximo de vezes
       </ion-label>
-      <ion-select multiple="false" value="1 vez">
+      <ion-select [(ngModel)]="times" (ionChange)="changeTimes()"
+      multiple="false" value="1 vez">
         <ion-select-option value="1 vez">1 vez</ion-select-option>
         <ion-select-option value="2 vezes">2 vezes</ion-select-option>
         <ion-select-option value="3 vezes">3 vezes</ion-select-option>
@@ -26,7 +27,8 @@
     <ion-label>
       Tempo
     </ion-label>
-    <ion-select multiple="false" value="Por dia">
+    <ion-select [(ngModel)]="sequence" (ionChange)="changeSequence()"
+    multiple="false" value="Por dia">
       <ion-select-option value="Por dia">Por dia</ion-select-option>
       <ion-select-option value="Por semana">Por semana</ion-select-option>
       <ion-select-option value="Por mês">Por mês</ion-select-option>

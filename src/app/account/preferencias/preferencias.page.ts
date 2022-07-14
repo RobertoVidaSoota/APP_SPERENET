@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/api/api.service';
 export class PreferenciasPage implements OnInit {
 
   promocoesToggle:Boolean = true
-  novidadesToggle:Boolean = false
+  novidadesToggle:Boolean = true
   atualizacoesToggle:Boolean = false
   pedidosToggle:Boolean = false
 
@@ -43,24 +43,25 @@ export class PreferenciasPage implements OnInit {
       this.formRegister.atualizacoes = res["data"]["0"]["atualizacoes"];
       this.formRegister.novidades = res["data"]["0"]["novidades"];
       this.formRegister.pedidos = res["data"]["0"]["pedidos"];
-      console.log(res["data"]["0"]["atualizacoes"])
+
+      // CONFIGURAR TOGGLES DE ACORDO COM O VALOR Y/N
+      if(this.formRegister.promocoes == "Y"){this.promocoesToggle = true}
+      else{this.promocoesToggle = false}
+
+      if(this.formRegister.atualizacoes == "Y"){this.atualizacoesToggle = true}
+      else{this.atualizacoesToggle = false}
+
+      if(this.formRegister.novidades == "Y"){this.novidadesToggle = true}
+      else{this.novidadesToggle = false}
+
+      if(this.formRegister.pedidos == "Y"){this.pedidosToggle = true}
+      else{this.pedidosToggle = false}
     },e =>
     {
       console.log(e)
     })
 
-    // CONFIGURAR TOGGLES DE ACORDO COM O VALOR Y/N
-    if(this.formRegister.promocoes == "Y"){this.promocoesToggle = true}
-    else{this.promocoesToggle = false}
-
-    if(this.formRegister.atualizacoes == "Y"){this.atualizacoesToggle = true}
-    else{this.atualizacoesToggle = false}
-
-    if(this.formRegister.novidades == "Y"){this.novidadesToggle = true}
-    else{this.novidadesToggle = false}
-
-    if(this.formRegister.pedidos == "Y"){this.pedidosToggle = true}
-    else{this.pedidosToggle = false}
+    
   }
 
 
@@ -68,18 +69,17 @@ export class PreferenciasPage implements OnInit {
   sendNotifications(e)
   {
     if(e.target.id == "promocoes")
-    {this.formRegister.promocoes = e.detail.checked == true ? "Y" : "N"}
+    {this.formRegister.promocoes = e.detail.checked ? "Y" : "N"}
 
     if(e.target.id == "atualizacoes")
-    {this.formRegister.atualizacoes = e.detail.checked == true ? "Y" : "N"}
+    {this.formRegister.atualizacoes = e.detail.checked ? "Y" : "N"}
 
     if(e.target.id == "novidades")
-    {this.formRegister.novidades = e.detail.checked == true ? "Y" : "N"}
+    {this.formRegister.novidades = e.detail.checked ? "Y" : "N"}
 
     if(e.target.id == "pedidos")
-    {this.formRegister.pedidos = e.detail.checked == true ? "Y" : "N"}
+    {this.formRegister.pedidos = e.detail.checked ? "Y" : "N"}
 
-    console.log(this.formRegister)
     this.api.apiMudarNotificacoes(this.formRegister).subscribe((res) => 
     {
       if(res["update"] == true)
