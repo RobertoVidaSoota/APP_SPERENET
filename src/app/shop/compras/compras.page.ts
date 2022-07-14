@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonContent } from '@ionic/angular';
+import { ApiService } from 'src/app/api/api.service';
 import { AppComponent } from 'src/app/app.component';
 
 @Component({
@@ -12,8 +13,10 @@ export class ComprasPage implements OnInit {
   @ViewChild(IonContent) content: IonContent;
 
   checkLogin = "";
+  compras:any = [];
 
   constructor(
+    private api: ApiService
   ) { }
 
   ngOnInit()
@@ -45,6 +48,25 @@ export class ComprasPage implements OnInit {
     // VERIFICAR LOGIN
     this.checkLogin = localStorage.getItem("login_usuario") ?
     localStorage.getItem("login_usuario") : "";
+
+    // BUSCAR COMPRAS
+    if(this.checkLogin == 'true')
+    { 
+      let id_user = {
+        id_user: localStorage.getItem("id_usuario_logado_app")
+      }
+      this.api.apiBuscarCompras(id_user).subscribe((res) => 
+      {
+        for(let position = 0; position < res["compras"].length; position++)
+        {
+          this.compras.push(res["compras"][position])
+        }
+        console.log(this.compras)
+      },e => 
+      {
+        console.log(e)
+      })
+    }
   }
 
 }

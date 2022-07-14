@@ -22,65 +22,90 @@
 </ion-header>
 
 
+<!-- LISTA DE LINK DAS IMAGENS 
+
+CAIXA DE SOM 1 https://thumbs2.imgbox.com/e8/32/i0XxBjSv_t.png
+CPU 1 https://thumbs2.imgbox.com/e2/73/QioT50lQ_t.png
+HEAD SET 1 https://thumbs2.imgbox.com/08/5f/ti482Q40_t.png
+MEMORIA RAN 1 https://thumbs2.imgbox.com/f7/59/Q97JaxE0_t.jpg
+MONITOR 1 https://thumbs2.imgbox.com/55/7d/URM1BwjC_t.png
+NOTEBOOK 1 https://thumbs2.imgbox.com/9f/03/hXdLPUch_t.png
+PC https://thumbs2.imgbox.com/3d/1c/b2u1NfbG_t.png
+PLACA DE VIDEO https://thumbs2.imgbox.com/b5/5c/kWsJQzMG_t.png
+PLACA MÃE https://thumbs2.imgbox.com/b8/6d/M6UYIIbc_t.png
+TECLADO https://thumbs2.imgbox.com/0e/1c/DxyDxUjX_t.png
+WEB CAM https://thumbs2.imgbox.com/c6/54/mGHpRram_t.png
+
+-->
+
 
 <ion-content [fullscreen]="true">
 
-  <div *ngIf="checkLogin == 'true'"
+  <div *ngIf="checkLogin == 'true'">
+
+  <div *ngFor="let compraTal of compras"
   class="item-compra">
 
-    <h4 class="data-compra">12/10/2020</h4>
+    <h4 class="data-compra"> {{ compraTal.data_hora_compra }} </h4>
 
-    <ion-row>
+    <ion-row *ngFor="let produtoTal of compraTal.produtos">
       <!-- IMAGEM DO PRODUTO -->
       <ion-col size="4">
         <ion-thumbnail>
-          <img src="../../assets/pc-1.png" />
+          <img src="{{ produtoTal.link_imagem }}" />
         </ion-thumbnail>
       </ion-col>
       
-        <!-- DADOS DO PRODUTO -->
-        <ion-col size="8">
-          <h1 class="prod-name-compra">Nome de Produto
-            RTX 9080, 64 RAM, celeron 2000R7
-          </h1>
-        </ion-col>
-
+      <!-- DADOS DO PRODUTO -->
+      <ion-col size="8">
+        <h1 class="prod-name-compra">
+          {{ produtoTal.nome_produto }}
+        </h1>
         <p>
-          <ion-text>
-            Preço: 
-          </ion-text> <b> R$ 3.999,00 , Pix</b>
+          ({{ produtoTal.quantidade_produto }}) - 
+          {{ produtoTal.preco_produto }} 
         </p>
+      </ion-col>
+    </ion-row> 
+      
+    <ion-row> 
+      <p>
+        <ion-text>
+          Total a pagar: 
+        </ion-text> <b> R$ 3.999,00 , Pix</b>
+      </p>
 
-        <p>
-          <ion-text>
-            Data de compra: 
-          </ion-text> <b> sexta-feira, 09/04/2021</b>
-        </p>
+      <p>
+        <ion-text>
+          Data de compra: 
+        </ion-text> <b> sexta-feira, 09/04/2021</b>
+      </p>
 
-        <p>
-          <ion-text>
-            Status:
-          </ion-text> <b> À confirmar </b>
-        </p>
+      <p>
+        <ion-text>
+          Status:
+        </ion-text> <b> À confirmar </b>
+      </p>
 
-        <p>
-          <ion-text>
-            Onde ele está:
-          </ion-text> <b> Morgi Mirim, SP </b>
-        </p>
+      <p>
+        <ion-text>
+          Onde ele está:
+        </ion-text> <b> Morgi Mirim, SP </b>
+      </p>
 
-        <p>
-          <ion-text>
-            Data e Local de entrega: 
-          </ion-text> <b> Sexta-feira 23/04/2021, Rua da merda, Belo Horizonte, MG</b>
-        </p>
+      <p>
+        <ion-text>
+          Data e Local de entrega: 
+        </ion-text> <b> Sexta-feira 23/04/2021, Rua da merda, Belo Horizonte, MG</b>
+      </p>
     </ion-row>
 
     <!-- BOTÃO DE CANCELAR -->
-    <button class="botao-compra" routerLink="/tabs/tab3/rastrear">
-      <b> RASTREAR PEDIDO </b>
+    <button class="botao-compra">
+      <b> CONFIRMAR ENTREGA </b>
     </button>
 
+  </div>
   </div>
 
 

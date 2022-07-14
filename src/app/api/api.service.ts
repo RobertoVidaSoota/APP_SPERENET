@@ -91,4 +91,14 @@ export class ApiService {
   {
     return this.http.post(this.url+"/post_change_user_notification", value)
   }
+
+
+  // -----------------------------------------------------------------------
+  // ------------------------------- SHOP ----------------------------------
+  // -----------------------------------------------------------------------
+
+  apiBuscarCompras(value)
+  {
+    return this.http.post(this.url+"/post_purchases", value)
+  }
 }
