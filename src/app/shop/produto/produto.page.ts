@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { ApiService } from 'src/app/api/api.service';
 
 @Component({
   selector: 'app-produto',
@@ -14,6 +15,7 @@ export class ProdutoPage{
 
   constructor(
     private navCtrl: NavController,
+    private api: ApiService
   )
   {
 

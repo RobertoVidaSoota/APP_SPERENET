@@ -46,8 +46,6 @@ WEB CAM https://thumbs2.imgbox.com/c6/54/mGHpRram_t.png
   <div *ngFor="let compraTal of compras"
   class="item-compra">
 
-    <h4 class="data-compra"> {{ compraTal.data_hora_compra }} </h4>
-
     <ion-row *ngFor="let produtoTal of compraTal.produtos">
       <!-- IMAGEM DO PRODUTO -->
       <ion-col size="4">
@@ -72,36 +70,42 @@ WEB CAM https://thumbs2.imgbox.com/c6/54/mGHpRram_t.png
       <p>
         <ion-text>
           Total a pagar: 
-        </ion-text> <b> R$ 3.999,00 , Pix</b>
+        </ion-text> <b> R$ {{ compraTal.valor_total }}, {{ compraTal.metodo_pagamento }}</b>
       </p>
 
       <p>
         <ion-text>
           Data de compra: 
-        </ion-text> <b> sexta-feira, 09/04/2021</b>
+        </ion-text> <b> {{ compraTal.data_hora_compra }}</b>
       </p>
 
       <p>
         <ion-text>
           Status:
-        </ion-text> <b> À confirmar </b>
+        </ion-text> <b> {{ compraTal.status }} </b>
       </p>
 
       <p>
         <ion-text>
           Onde ele está:
-        </ion-text> <b> Morgi Mirim, SP </b>
+        </ion-text> <b> {{ compraTal.local_atual }} </b>
       </p>
 
       <p>
         <ion-text>
-          Data e Local de entrega: 
-        </ion-text> <b> Sexta-feira 23/04/2021, Rua da merda, Belo Horizonte, MG</b>
+          Local de entrega: 
+        </ion-text> <b> {{ compraTal.local_entrega }} </b>
       </p>
     </ion-row>
 
     <!-- BOTÃO DE CANCELAR -->
-    <button class="botao-compra">
+    <button disabled="disabled" *ngIf="compraTal.status !== 'no local'"
+    class="botao-compra botao-compra-desabilitado">
+      <b> CONFIRMAR ENTREGA </b>
+    </button>
+
+    <button *ngIf="compraTal.status == 'no local'"
+    class="botao-compra" (click)="onClick()">
       <b> CONFIRMAR ENTREGA </b>
     </button>
 

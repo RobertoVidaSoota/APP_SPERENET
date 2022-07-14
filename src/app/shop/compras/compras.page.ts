@@ -61,12 +61,17 @@ export class ComprasPage implements OnInit {
         {
           this.compras.push(res["compras"][position])
         }
-        console.log(this.compras)
-      },e => 
+      },
+      e => 
       {
         console.log(e)
       })
     }
+  }
+
+  onClick()
+  {
+    console.log("ativou")
   }
 
 }

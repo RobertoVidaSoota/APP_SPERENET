@@ -16,7 +16,7 @@
 
 <ion-content [fullscreen]="true">
 
-  <!-- SLIDE DE MAIS VENDIDOS -->
+  <!-- SLIDE NOVOS PRODUTOS -->
   <h2 class="title-slide">Novos</h2>
   
   <ion-slides [options]="opt" >
@@ -180,125 +180,17 @@
           </ion-card>
     </ion-slide>
   </ion-slides>
+
   
+  <!-- MAIS -->
+  <h2 class="title-slide">Mais</h2>
 
-
-
-  <!-- SLIDE DE OFERTAS -->
-  <h2 class="title-slide">Ofertas</h2>
-
-  <ion-slides [options]="opt2">
-    <ion-slide>
-          <ion-card color="dark" class="produto" routerLink="/tabs/tab1/produto">
-            <div class="img-produto">
-              <img src="../../../assets/pc-1.png"
-              >
-            </div>
-              
-            <ion-card-content class="produto-content">
-              <ion-card-title>
-                Nome de produto - RTX 9080, 64 RAM, celeron 2000R7
-              </ion-card-title>
-              
-              <div class="box-estrela">
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
-                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
-
-                <p class="numero-ava">
-                  70 avaliações
-                </p>
-              </div>
-
-              <b class="preco">R$ 3.999,00</b><br>
-              <small class="prestacao">
-                 <b>10x de 499,00</b>
-              </small>
-
-            </ion-card-content>
-          </ion-card>
-    </ion-slide>
-
-
-    <ion-slide>
-          <ion-card color="dark" class="produto" routerLink="/tabs/tab1/produto">
-            <div class="img-produto">
-              <img src="../../../assets/pc-1.png"
-              >
-            </div>
-              
-            <ion-card-content class="produto-content">
-              <ion-card-title>
-                Nome de produto - RTX 9080, 64 RAM, celeron 2000R7
-              </ion-card-title>
-              
-              <div class="box-estrela">
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
-                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
-
-                <p class="numero-ava">
-                  70 avaliações
-                </p>
-              </div>
-
-              <b class="preco">R$ 3.999,00</b><br>
-              <small class="prestacao">
-                 <b>10x de 499,00</b>
-              </small>
-
-            </ion-card-content>
-          </ion-card>
-    </ion-slide>
-
-
-    <ion-slide>
-          <ion-card color="dark" class="produto" routerLink="/tabs/tab1/produto">
-            <div class="img-produto">
-              <img src="../../../assets/pc-1.png"
-              >
-            </div>
-              
-            <ion-card-content class="produto-content">
-              <ion-card-title>
-                Nome de produto - RTX 9080, 64 RAM, celeron 2000R7
-              </ion-card-title>
-              
-              <div class="box-estrela">
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
-                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
-
-                <p class="numero-ava">
-                  70 avaliações
-                </p>
-              </div>
-
-              <b class="preco">R$ 3.999,00</b><br>
-              <small class="prestacao">
-                 <b>10x de 499,00</b>
-              </small>
-
-            </ion-card-content>
-          </ion-card>
-    </ion-slide>
-  </ion-slides>
-
-  <!-- 
-    PODE TER LISTA PRA BAIXO
-    
-    <ion-card color="dark" class="produto" routerLink="/tabs/tab1/produto">
+  <ion-card color="dark" class="produto produto_esticado" routerLink="/tabs/tab1/produto">
     <div class="img-produto">
       <img src="../../../assets/pc-1.png"
       >
     </div>
-      
+    
     <ion-card-content class="produto-content">
       <ion-card-title>
         Nome de produto - RTX 9080, 64 RAM, celeron 2000R7
@@ -318,11 +210,11 @@
 
       <b class="preco">R$ 3.999,00</b><br>
       <small class="prestacao">
-         <b>10x de 499,00</b>
+          <b>10x de 499,00</b>
       </small>
 
     </ion-card-content>
-  </ion-card> -->
+  </ion-card>
 
 
 </ion-content>

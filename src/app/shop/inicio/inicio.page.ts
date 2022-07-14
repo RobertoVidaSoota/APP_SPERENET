@@ -2,6 +2,7 @@ import { registerLocaleData } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonContent, IonTabButton, NavController, NavParams } from '@ionic/angular';
+import { ApiService } from 'src/app/api/api.service';
 
 @Component({
   selector: 'app-inicio',
@@ -27,7 +28,8 @@ export class InicioPage implements OnInit {
   constructor(
     private route: Router,
     private navCtrl: NavController,
-    private acRoute: ActivatedRoute
+    private acRoute: ActivatedRoute,
+    private api: ApiService
   ) { }
 
   ngOnInit()
@@ -37,6 +39,7 @@ export class InicioPage implements OnInit {
  
   ionViewWillEnter()
   {
+    
   }
 
   // FUNÇÃO PARA COLOCAR ROLAGEM AUTOMÁTICA PARA O TOPO

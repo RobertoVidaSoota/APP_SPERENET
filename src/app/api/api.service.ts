@@ -97,6 +97,16 @@ export class ApiService {
   // ------------------------------- SHOP ----------------------------------
   // -----------------------------------------------------------------------
 
+  apiBuscarProdutosNovos()
+  {
+    return this.http.get(this.url+"/get_new_products")
+  }
+
+  apiBuscarProdutosPopulares()
+  {
+    return this.http.get(this.url+"/get_pop_products",)
+  }
+
   apiBuscarCompras(value)
   {
     return this.http.post(this.url+"/post_purchases", value)
