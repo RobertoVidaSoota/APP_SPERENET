@@ -20,54 +20,9 @@
   <h2 class="title-slide">Novos</h2>
   
   <ion-slides [options]="opt" >
-    <ion-slide>
-      <div class="img-p-silde" routerLink="/tabs/tab1/produto">
-        <img src="../../../assets/pc-1.png">
-      </div>
-    </ion-slide>
-    <ion-slide>
+    <ion-slide *ngFor="let p of novosProdutos">
       <div class="img-p-silde">
-        <img src="../../../assets/pc-1.png">
-      </div>
-    </ion-slide>
-    <ion-slide>
-      <div class="img-p-silde">
-        <img src="../../../assets/pc-1.png">
-      </div>
-    </ion-slide>
-    <ion-slide>
-      <div class="img-p-silde">
-        <img src="../../../assets/pc-1.png">
-      </div>
-    </ion-slide>
-    <ion-slide>
-      <div class="img-p-silde" routerLink="/tabs/tab1/produto">
-        <img src="../../../assets/pc-1.png">
-      </div>
-    </ion-slide>
-    <ion-slide>
-      <div class="img-p-silde">
-        <img src="../../../assets/pc-1.png">
-      </div>
-    </ion-slide>
-    <ion-slide>
-      <div class="img-p-silde">
-        <img src="../../../assets/pc-1.png">
-      </div>
-    </ion-slide>
-    <ion-slide>
-      <div class="img-p-silde">
-        <img src="../../../assets/pc-1.png">
-      </div>
-    </ion-slide>
-    <ion-slide>
-      <div class="img-p-silde">
-        <img src="../../../assets/pc-1.png">
-      </div>
-    </ion-slide>
-    <ion-slide>
-      <div class="img-p-silde">
-        <img src="../../../assets/pc-1.png">
+          <img src="{{ p.link_imagem }}">
       </div>
     </ion-slide>
   </ion-slides>
@@ -78,101 +33,36 @@
   <h2 class="title-slide">Populares</h2>
 
   <ion-slides [options]="opt2">
-    <ion-slide>
+    <ion-slide *ngFor="let pp of produtosPopulares">
 
-          <ion-card color="dark" class="produto" routerLink="/tabs/tab1/produto">
+          <ion-card color="dark" class="produto">
             <div class="img-produto">
-              <img src="../../../assets/pc-1.png"
+              <img src="{{ pp.link_imagem }}"
               >
             </div>
               
             <ion-card-content class="produto-content">
               <ion-card-title>
-                Nome de produto - RTX 9080, 64 RAM, celeron 2000R7
+                {{ pp.nome_produto }}
               </ion-card-title>
               
+              <!-- MEDIR A QUANTIDADES DE ESTRELAS PELA MÉDIA TOTAL -->
               <div class="box-estrela">
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
-                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
+
+               <p class="media_estrelas">
+                {{ pp.media_estrelas }}
+               </p>
+               
+               <ion-icon class="estrela-ava" name="star"></ion-icon>
 
                 <p class="numero-ava">
-                  70 avaliações
+                  {{ pp.quantidade_comentarios }} avaliações
                 </p>
               </div>
 
-              <b class="preco">R$ 3.999,00</b><br>
-              <small class="prestacao">
-                 <b>10x de 499,00</b>
-              </small>
+              <b class="preco"> {{ pp.preco_produto }} </b><br>
 
-            </ion-card-content>
-          </ion-card>
-    </ion-slide>
-          
-
-    <ion-slide>
-          <ion-card color="dark" class="produto" routerLink="/tabs/tab1/produto">
-            <div class="img-produto">
-              <img src="../../../assets/pc-1.png"
-              >
-            </div>
-              
-            <ion-card-content class="produto-content">
-              <ion-card-title>
-                Nome de produto - RTX 9080, 64 RAM, celeron 2000R7
-              </ion-card-title>
-              
-              <div class="box-estrela">
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
-                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
-
-                <p class="numero-ava">
-                  70 avaliações
-                </p>
-              </div>
-
-              <b class="preco">R$ 3.999,00</b><br>
-              <small class="prestacao">
-                 <b>10x de 499,00</b>
-              </small>
-
-            </ion-card-content>
-          </ion-card>
-    </ion-slide>
-
-
-    <ion-slide>
-          <ion-card color="dark" class="produto" routerLink="/tabs/tab1/produto">
-            <div class="img-produto">
-              <img src="../../../assets/pc-1.png"
-              >
-            </div>
-              
-            <ion-card-content class="produto-content">
-              <ion-card-title>
-                Nome de produto - RTX 9080, 64 RAM, celeron 2000R7
-              </ion-card-title>
-              
-              <div class="box-estrela">
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star"></ion-icon>
-                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
-                <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
-
-                <p class="numero-ava">
-                  70 avaliações
-                </p>
-              </div>
-
-              <b class="preco">R$ 3.999,00</b><br>
-              <small class="prestacao">
+              <small *ngIf="promocaoProduto" class="prestacao">
                  <b>10x de 499,00</b>
               </small>
 
@@ -185,7 +75,7 @@
   <!-- MAIS -->
   <h2 class="title-slide">Mais</h2>
 
-  <ion-card color="dark" class="produto produto_esticado" routerLink="/tabs/tab1/produto">
+  <ion-card color="dark" class="produto produto_esticado" routerLink="/tabs/tab1/produto/">
     <div class="img-produto">
       <img src="../../../assets/pc-1.png"
       >

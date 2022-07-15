@@ -34,18 +34,23 @@ ion-card-title
 }
 .box-estrela
 {
+    display: flex;
     margin-top: 10px;
+}
+.media_estrelas
+{
+    font-weight: 600;
+    font-size: 24px;
 }
 .estrela-ava
 {
-    // text-align: left;
+    margin-top: 1.2%;
+    margin-left: 10px;
 }
 .numero-ava
 {
-    position: relative;
-    display: inline-block;
+    margin-top: 3.2%;
     margin-left: 10px;
-    bottom: 5px;
     font-size: 14px;
     color: var(--ion-color-cinza1);
 }

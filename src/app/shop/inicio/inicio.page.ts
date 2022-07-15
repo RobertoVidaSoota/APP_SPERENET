@@ -1,4 +1,3 @@
-import { registerLocaleData } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonContent, IonTabButton, NavController, NavParams } from '@ionic/angular';
@@ -25,6 +24,11 @@ export class InicioPage implements OnInit {
     slidesPerView: 1.3
   }
 
+  // VARIÁVEIS DOS PRODUTOS
+  novosProdutos = [];
+  produtosPopulares = [];
+  maisPopulares = [];
+
   constructor(
     private route: Router,
     private navCtrl: NavController,
@@ -39,8 +43,34 @@ export class InicioPage implements OnInit {
  
   ionViewWillEnter()
   {
-    
+    // CHAMADA PRA BUSCAR PRODUTOS NOVOS
+    this.api.apiBuscarProdutosNovos().subscribe((res) => 
+    {
+      for(let count1 = 0; count1 < res["data"].length; count1++)
+      {
+        this.novosProdutos.push(res["data"][count1])
+      }
+    },
+    e => 
+    {
+      console.log(e)
+    })
+
+    // CHAMADA PRA BUSCAR PRODUTOS POPULARES
+    this.api.apiBuscarProdutosPopulares().subscribe((res) => 
+    {
+      for(let count2 = 0; count2 < res["data"].length; count2++)
+      {
+        this.produtosPopulares.push(res["data"][count2])
+      }
+      console.log(this.produtosPopulares)
+    },
+    e => 
+    {
+      console.log(e)
+    })
   }
+
 
   // FUNÇÃO PARA COLOCAR ROLAGEM AUTOMÁTICA PARA O TOPO
   ionViewDidEnter()
