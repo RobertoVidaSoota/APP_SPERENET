@@ -104,7 +104,13 @@ export class ApiService {
 
   apiBuscarProdutosPopulares()
   {
-    return this.http.get(this.url+"/get_pop_products",)
+    return this.http.get(this.url+"/get_pop_products")
+  }
+
+
+  apiBuscarMaisProdutos()
+  {
+    return this.http.get(this.url+"/get_more_products")
   }
 
   apiBuscarCompras(value)

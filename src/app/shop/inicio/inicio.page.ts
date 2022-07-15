@@ -63,7 +63,19 @@ export class InicioPage implements OnInit {
       {
         this.produtosPopulares.push(res["data"][count2])
       }
-      console.log(this.produtosPopulares)
+    },
+    e => 
+    {
+      console.log(e)
+    })
+
+    // CHAMADA PRA BUSCAR MAIS PRODUTOS POPULARES
+    this.api.apiBuscarProdutosPopulares().subscribe((res) => 
+    {
+      for(let count3 = 0; count3 < res["data"].length; count3++)
+      {
+        this.maisPopulares.push(res["data"][count3])
+      }
     },
     e => 
     {
