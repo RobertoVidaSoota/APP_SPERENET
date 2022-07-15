@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { IonContent, IonTabButton, NavController, NavParams } from '@ionic/angular';
 import { ApiService } from 'src/app/api/api.service';
 
@@ -30,18 +30,13 @@ export class InicioPage implements OnInit {
   maisPopulares = [];
 
   constructor(
-    private route: Router,
+    private router: Router,
     private navCtrl: NavController,
     private acRoute: ActivatedRoute,
     private api: ApiService
   ) { }
 
   ngOnInit()
-  {
-  }
-
- 
-  ionViewWillEnter()
   {
     // CHAMADA PRA BUSCAR PRODUTOS NOVOS
     this.api.apiBuscarProdutosNovos().subscribe((res) => 
@@ -56,6 +51,7 @@ export class InicioPage implements OnInit {
       console.log(e)
     })
 
+    
     // CHAMADA PRA BUSCAR PRODUTOS POPULARES
     this.api.apiBuscarProdutosPopulares().subscribe((res) => 
     {
@@ -69,8 +65,9 @@ export class InicioPage implements OnInit {
       console.log(e)
     })
 
+
     // CHAMADA PRA BUSCAR MAIS PRODUTOS POPULARES
-    this.api.apiBuscarProdutosPopulares().subscribe((res) => 
+    this.api.apiBuscarMaisProdutos().subscribe((res) => 
     {
       for(let count3 = 0; count3 < res["data"].length; count3++)
       {
@@ -81,6 +78,17 @@ export class InicioPage implements OnInit {
     {
       console.log(e)
     })
+  }
+
+
+  // NAVEGAR ATÉ O PRODUTO
+  navProduto(produto)
+  {
+    let dataNav:NavigationExtras = 
+    {
+      queryParams:{produto: JSON.stringify(produto)}
+    }
+    this.router.navigate(["/tabs/tab1/produto"], dataNav)
   }
 
 

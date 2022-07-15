@@ -5,7 +5,10 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
 
-    <ion-title id="title_produto">Nome do produto</ion-title>
+    <ion-title *ngFor="let dados of dadosProdutos" 
+    id="title_produto"> 
+      {{ dados.nome_produto }} 
+    </ion-title>
 
   </ion-toolbar>
 </ion-header>
@@ -13,15 +16,124 @@
 
 <ion-content>
 
-  <img class="img_produto no-centro-dentro" src="../../../assets/pc-1.png">
 
-  <div class="box_estrelas">
-    <ion-icon name="star"></ion-icon>
-    <ion-icon name="star"></ion-icon>
-    <ion-icon name="star"></ion-icon>
-    <ion-icon name="star-outline"></ion-icon>
-    <ion-icon name="star-outline"></ion-icon>
-  </div>
+<div *ngFor="let dados2 of dadosProdutos">
+
+  <img class="img_produto no-centro-dentro" src="{{ dados2.link_imagem }}">
+
+      <span class="qt_estrela">
+        {{ dados2.media_estrelas }}
+      </span>
+
+      <!-- 0.0 -->
+      <div *ngIf="dados2.media_estrelas == 0.0 || dados2.media_estrelas == ''"
+      class="box_estrelas">
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 0.5 -->
+      <div *ngIf="
+      ['0.1', '0.2', '0.3', '0.4', 
+      '0.5', '0.6', '0.7', '0.8', '0.9'].indexOf(dados2.media_estrelas) > -1"
+      class="box_estrelas">
+        <ion-icon name="star-half-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 1.0 -->
+      <div *ngIf=" 
+      ['1,0', '1.1', '1.2', '1.3', '1.4'].indexOf(dados2.media_estrelas) > -1"
+      class="box_estrelas">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 1.5 -->
+      <div *ngIf=" 
+      ['1.5', '1.6', '1.7', '1.8', '1.9'].indexOf(dados2.media_estrelas) > -1"
+      class="box_estrelas">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-half-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 2.0 -->
+      <div *ngIf=" 
+      ['2.0', '2.1', '2.2', '2.3', '2.4'].indexOf(dados2.media_estrelas) > -1"
+      class="box_estrelas">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 2.5 -->
+      <div *ngIf="
+      ['2.5', '2.6', '2.7', '2.8', '2.9'].indexOf(dados2.media_estrelas) > -1"
+      class="box_estrelas">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-half-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 3.0 -->
+      <div *ngIf="
+      ['3.0', '3.1', '3.2', '3.3', '3.4'].indexOf(dados2.media_estrelas) > -1"
+      class="box_estrelas">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 3.5 -->
+      <div *ngIf="
+      ['3.5', '3.6', '3.7', '3.8', '3.9'].indexOf(dados2.media_estrelas) > -1"
+      class="box_estrelas">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-half-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 4.0 -->
+      <div *ngIf="
+      ['4.0', '4.1', '4.2', '4.3', '4.4'].indexOf(dados2.media_estrelas) > -1"
+      class="box_estrelas">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 4.5 -->
+      <div *ngIf=" 
+      ['4.5', '4.6', '4.7', '4.8', '4.9'].indexOf(dados2.media_estrelas) > -1"
+      class="box_estrelas">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-half-outline"></ion-icon>
+        <ion-icon name="star-half-outline"></ion-icon>
+      </div>
+      <!-- 5.0 -->
+      <div *ngIf="dados2.media_estrelas == '5.0'"
+      class="box_estrelas">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+      </div>
 
   <div class="box_buttons_out">
     <ion-icon name="heart"></ion-icon>
@@ -30,10 +142,11 @@
   </div>
 
   <p class="preco">
-    R$ 4.999,00
+    {{ dados2.preco_produto }}
   </p>
 
-  <p class="parcelas">
+  <p *ngIf="prestacaoProduto"
+   class="parcelas">
     12x de R$ 599,00
   </p>
 
@@ -49,28 +162,16 @@
   </h3>
 
   <p class="text_desc">
-    Desenvolvido por: Tal
-    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their.
+    {{ dados2.descricao }}
   </p>
 
-  <h3 class="title_especificacoes">
+  <h3 *ngIf="especificacoes != ''" class="title_especificacoes">
     Especificações
   </h3>
 
-  <p class="text_especificacoes">
-    • Memoria RAM: <span>  65 GB </span>
-  </p>
-  <p class="text_especificacoes">
-    • HD: <span> 8 TB </span>
-  </p>
-  <p class="text_especificacoes">
-    • Placa de Video: <span> RTX 9080 </span> 
-  </p>
-  <p class="text_especificacoes">
-    • Processador: <span> INTEL CELERON 2000R7 7GH`z </span>
-  </p>
-  <p class="text_especificacoes">
-    • Sistema Operacional: <span> Linux 1 </span>
+  <p *ngFor="let e of especificacoes"
+  class="text_especificacoes">
+    • {{ e.nome_escecificacao }} : <span> {{ e.valor_especificacao }} </span>
   </p>
 
 
@@ -100,30 +201,134 @@
     </ion-button>
   </div>
 
-  <div class="item_comentario">
+
+  <!-- COMENTÁRIOS -->
+  <div *ngFor="let c of comentarios"
+  class="item_comentario">
     <ion-avatar class="avatar_comentario">
-      <img src="https://images.pexels.com/photos/185481/pexels-photo-185481.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
+      <img src="{{ c.profile_photo_path }}">
     </ion-avatar>
 
     <ion-label>
-      <h2 class="nome_comentario">Roberta Careta</h2>
-      <div class="box_star_comentario">
+      <h2 class="nome_comentario">
+        {{ c.name }}
+      </h2>
+      <!-- 0.0 -->
+      <div *ngIf="c.estrelas == 0.0 || c.estrelas == ''"
+      class="box_star_comentario">
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 0.5 -->
+      <div *ngIf="
+      [0.1, 0.2, 0.3, 0.4, 
+      0.5, 0.6, 0.7, 0.8, 0.9].indexOf(c.estrelas) > -1"
+      class="box_star_comentario">
+        <ion-icon name="star-half-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 1.0 -->
+      <div *ngIf=" 
+      [1,0, 1.1, 1.2, 1.3, 1.4].indexOf(c.estrelas) > -1"
+      class="box_star_comentario">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 1.5 -->
+      <div *ngIf=" 
+      [1.5, 1.6, 1.7, 1.8, 1.9].indexOf(c.estrelas) > -1"
+      class="box_star_comentario">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-half-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 2.0 -->
+      <div *ngIf=" 
+      [2.0, 2.1, 2.2, 2.3, 2.4].indexOf(c.estrelas) > -1"
+      class="box_star_comentario">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 2.5 -->
+      <div *ngIf="
+      [2.5, 2.6, 2.7, 2.8, 2.9].indexOf(c.estrelas) > -1"
+      class="box_star_comentario">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-half-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 3.0 -->
+      <div *ngIf="
+      [3, 3.1, 3.2, 3.3, 3.4].indexOf(c.estrelas) > -1"
+      class="box_star_comentario">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 3.5 -->
+      <div *ngIf="
+      [3.5, 3.6, 3.7, 3.8, 3.9].indexOf(c.estrelas) > -1"
+      class="box_star_comentario">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-half-outline"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <!-- 4.0 -->
+      <div *ngIf="
+      [4, 4.1, 4.2, 4.3, 4.4].indexOf(c.estrelas) > -1"
+      class="box_star_comentario">
         <ion-icon name="star"></ion-icon>
         <ion-icon name="star"></ion-icon>
         <ion-icon name="star"></ion-icon>
         <ion-icon name="star"></ion-icon>
         <ion-icon name="star-outline"></ion-icon>
       </div>
+      <!-- 4.5 -->
+      <div *ngIf=" 
+      [4.5, 4.6, 4.7, 4.8, 4.9].indexOf(c.estrelas) > -1"
+      class="box_star_comentario">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-half-outline"></ion-icon>
+        <ion-icon name="star-half-outline"></ion-icon>
+      </div>
+      <!-- 5.0 -->
+      <div *ngIf="c.estrelas == 5"
+      class="box_star_comentario">
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+      </div>
       <p class="msg_comentario">
-        Essa porcaria queimou depois de dois dias.
-      </p>
-      <p class="responder_button">
-        responder
+        {{ c.texto_comentario }}
       </p>
     </ion-label>
   </div>
 
 
-
+</div>
 
 </ion-content>

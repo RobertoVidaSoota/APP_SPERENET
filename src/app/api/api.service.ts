@@ -117,4 +117,9 @@ export class ApiService {
   {
     return this.http.post(this.url+"/post_purchases", value)
   }
+
+  apiBuscarEspecificacaoComentario(value)
+  {
+    return this.http.post(this.url+"/post_page_product", value)
+  }
 }

@@ -21,7 +21,8 @@
   
   <ion-slides [options]="opt" >
     <ion-slide *ngFor="let p of novosProdutos">
-      <div class="img-p-silde">
+      <div (click)="navProduto(p)"
+      class="img-p-silde">
           <img src="{{ p.link_imagem }}">
       </div>
     </ion-slide>
@@ -35,7 +36,8 @@
   <ion-slides [options]="opt2">
     <ion-slide *ngFor="let pp of produtosPopulares">
 
-          <ion-card color="dark" class="produto">
+          <ion-card (click)="navProduto(pp)"
+          color="dark" class="produto">
             <div class="img-produto">
               <img src="{{ pp.link_imagem }}"
               >
@@ -62,7 +64,7 @@
 
               <b class="preco"> {{ pp.preco_produto }} </b><br>
 
-              <small *ngIf="promocaoProduto" class="prestacao">
+              <small *ngIf="prestacaoProduto" class="prestacao">
                  <b>10x de 499,00</b>
               </small>
 
@@ -75,36 +77,44 @@
   <!-- MAIS -->
   <h2 class="title-slide">Mais</h2>
 
-  <ion-card color="dark" class="produto produto_esticado" routerLink="/tabs/tab1/produto/">
-    <div class="img-produto">
-      <img src="../../../assets/pc-1.png"
-      >
-    </div>
-    
-    <ion-card-content class="produto-content">
-      <ion-card-title>
-        Nome de produto - RTX 9080, 64 RAM, celeron 2000R7
-      </ion-card-title>
-      
-      <div class="box-estrela">
-        <ion-icon class="estrela-ava" name="star"></ion-icon>
-        <ion-icon class="estrela-ava" name="star"></ion-icon>
-        <ion-icon class="estrela-ava" name="star"></ion-icon>
-        <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
-        <ion-icon class="estrela-ava" name="star-outline"></ion-icon>
-
-        <p class="numero-ava">
-          70 avaliações
-        </p>
+  <div *ngFor="let ppp of maisPopulares">
+    <ion-card  (click)="navProduto(ppp)"
+    color="dark" class="produto produto_esticado">
+      <div class="img-produto">
+        <img src="{{ ppp.link_imagem }}"
+        >
       </div>
+      
+      <ion-card-content class="produto-content">
+        <ion-card-title>
+          {{ ppp.nome_produto }}
+        </ion-card-title>
+        
+        <div class="box-estrela">
 
-      <b class="preco">R$ 3.999,00</b><br>
-      <small class="prestacao">
-          <b>10x de 499,00</b>
-      </small>
+          <p class="media_estrelas">
+            {{ ppp.media_estrelas }}
+          </p>
 
-    </ion-card-content>
-  </ion-card>
+          <ion-icon class="estrela-ava" name="star"></ion-icon>
+
+          <p class="numero-ava">
+              {{ ppp.quantidade_comentarios }} avaliações
+          </p>
+        </div>
+
+        <b class="preco">
+          {{ ppp.preco_produto }}
+        </b>
+        <br>
+        <small *ngIf="prestacaoProduto" class="prestacao">
+            <b>10x de 499,00</b>
+        </small>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+  
 
 
 </ion-content>
