@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/api/api.service';
 
 @Component({
@@ -14,9 +14,12 @@ export class ProdutoPage{
   
   @ViewChild(".input_comentario") inputComentario;
 
+  checkLogin = "";
+
   dadosProdutos = [];
   especificacoes = [];
   comentarios = [];
+  inputPostComentario = "";
 
   qtStarComent = 5.0;
   estrelasCheias = [1,2,3,4,5]
@@ -26,6 +29,7 @@ export class ProdutoPage{
   constructor(
     private navCtrl: NavController,
     private actRoute: ActivatedRoute,
+    private toast: ToastController,
     private api: ApiService
   )
   {
@@ -45,9 +49,13 @@ export class ProdutoPage{
         navVar.navigateRoot("/tabs/tab1/inicio");
       }
     });
+    
 
+    // VERIFICAR USUARIO LOGADO
+    this.checkLogin = localStorage.getItem("login_usuario") ?
+    localStorage.getItem("login_usuario") : "";
 
-    // PEGAR O ID DO PRODUTO
+    // PEGAR O PRODUTO
     this.actRoute.queryParams.subscribe((res) => 
     {
       this.dadosProdutos.push(JSON.parse(res["produto"]))
@@ -64,6 +72,7 @@ export class ProdutoPage{
     {
       this.especificacoes = res["data"]["especificacoes"]
       this.comentarios = res["data"]["comentarios"]
+      console.log(this.comentarios)
     },
     e => {
       console.log(e)
@@ -72,10 +81,52 @@ export class ProdutoPage{
 
 
 
+
   // POSTAR COMENTARIO
   postComent()
   {
-    
+    let id_user = localStorage.getItem("id_usuario_logado_app")
+    let body = 
+    {
+      id_user: parseInt(id_user),
+      id_produto: this.dadosProdutos[0].id,
+      comentario: this.inputPostComentario,
+      estrelas: this.qtStarComent
+    }
+    console.log(body)
+    this.api.apiPostarComentario(body).subscribe((res) =>
+    {
+      if(res["msg"])
+      {
+        this.toast.create({
+            message: res["msg"],
+            position: "top",
+            color: "danger",
+            duration: 2000
+          }).then((t) => { t.present() })
+        if(res["comentario"])
+        {
+          this.comentarios.unshift(res["comentario"])
+
+          this.toast.create({
+            message: res["msg"],
+            position: "top",
+            color: "success",
+            duration: 2000
+          }).then((t) => { t.present() })
+
+          this.inputComentarioFadeIn = !this.inputComentarioFadeIn;
+        }
+      }
+    },e => 
+    {
+      this.toast.create({
+        message: "Ocorreu um erro inesperado",
+        position: "top",
+        color: "danger",
+        duration: 2000
+      }).then((t) => { t.present() })
+    })
   }
 
   

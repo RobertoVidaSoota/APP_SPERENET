@@ -183,9 +183,10 @@
   <ion-button class="button_add_comentario" fill="clear"
       (click)="toggleInput()"
     >
-    <ion-icon *ngIf="inputComentarioFadeIn" slot="start" name="add"></ion-icon>
+    <ion-icon *ngIf="inputComentarioFadeIn && checkLogin == 'true'" 
+    slot="start" name="add"></ion-icon>
 
-    <ion-text *ngIf="inputComentarioFadeIn">
+    <ion-text *ngIf="inputComentarioFadeIn && checkLogin == 'true'">
       Comentar
     </ion-text>
 
@@ -217,10 +218,16 @@
 
   <div *ngIf="!inputComentarioFadeIn"
   class="box_input_comentario" >
-    <input type="text" placeholder="Comentário" class="input_comentario">
-    <ion-button class="btn_submit_comentario">
+
+    <input type="text" placeholder="Comentário" 
+    maxlength="1000" class="input_comentario"
+    [(ngModel)]="inputPostComentario"
+    >
+    <ion-button (click)="postComent()"
+    class="btn_submit_comentario">
       <ion-icon name="send"></ion-icon>
     </ion-button>
+
   </div>
 
 
@@ -235,7 +242,7 @@
 
     <ion-label>
       <h2 class="nome_comentario">
-        {{ c.name }}
+        {{ c.nome_usuario }}
       </h2>
       <!-- 0.0 -->
       <div *ngIf="c.estrelas == 0.0 || c.estrelas == ''"
