@@ -194,12 +194,36 @@
     </ion-text>
   </ion-button>
 
-  <div class="box_input_comentario" *ngIf="!inputComentarioFadeIn">
+  <div *ngIf="!inputComentarioFadeIn"
+  class="estrelas_form">
+      <ion-icon (click)="prevStar()"
+      class="flecha_estrela" 
+      name="chevron-back"
+      ></ion-icon>
+
+      <ion-icon *ngFor="let star of estrelasCheias"
+      name="star"></ion-icon>
+      <ion-icon *ngFor="let star2 of estrelasMedias"
+      name="star-half-outline"></ion-icon>
+      <ion-icon *ngFor="let star3 of estrelasVazias"
+      name="star-outline"
+      ></ion-icon>
+
+      <ion-icon (click)="nextStar()"
+      class="flecha_estrela" 
+      name="chevron-forward"
+      ></ion-icon>
+  </div>
+
+  <div *ngIf="!inputComentarioFadeIn"
+  class="box_input_comentario" >
     <input type="text" placeholder="Comentário" class="input_comentario">
     <ion-button class="btn_submit_comentario">
       <ion-icon name="send"></ion-icon>
     </ion-button>
   </div>
+
+
 
 
   <!-- COMENTÁRIOS -->

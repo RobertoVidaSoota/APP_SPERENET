@@ -122,4 +122,9 @@ export class ApiService {
   {
     return this.http.post(this.url+"/post_page_product", value)
   }
+
+  apiPostarComentario(value)
+  {
+    return this.http.post(this.url+"/post_coments", value)
+  }
 }
