@@ -135,8 +135,17 @@
         <ion-icon name="star"></ion-icon>
       </div>
 
+  <!-- BOTÕES DE AÇÃO -->
   <div class="box_buttons_out">
-    <ion-icon name="heart"></ion-icon>
+
+    <ion-icon (click)="addWishList()"
+    [class]="coracaoCor"
+    name="heart">
+    <ion-icon (click)="removeWishList()"
+    [class]="coracaoCor"
+    name="heart">
+    </ion-icon>
+
     <ion-icon name="cart"></ion-icon>
     <ion-icon name="share-social"></ion-icon>
   </div>

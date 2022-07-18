@@ -26,6 +26,8 @@ export class ProdutoPage{
   estrelasMedias = []
   estrelasVazias = []
 
+  coracaoCor = "cinzaIcone"
+
   constructor(
     private navCtrl: NavController,
     private actRoute: ActivatedRoute,
@@ -79,6 +81,47 @@ export class ProdutoPage{
     })
   }
 
+
+  // ADICIONAR A LISTA DE DESEJOS
+  addWishList()
+  {
+    let id_user = localStorage.getItem("id_usuario_logado_app")
+    let body = 
+    {
+      id_user: parseInt(id_user),
+      id_produto: this.dadosProdutos[0].id
+    }
+    this.api.apiAdicionarDesejos(body).subscribe((res) => 
+    {
+      if(res["msg"] === "Deu certo")
+      {
+        this.coracaoCor = "vermelhoIcone"
+        this.toast.create({
+          message: "Adicionado à sua lista de desejos",
+          position: "top",
+          color: "danger",
+          duration: 2000
+        }).then((t) => { t.present() })  
+      }    
+    },
+    e => 
+    {
+      this.toast.create({
+        message: "Ocorreu um erro inesperado",
+        position: "top",
+        color: "danger",
+        duration: 2000
+      }).then((t) => { t.present() })
+      console.log(e)
+    })
+  }
+
+
+  // REMOVER DA LISTA DE DESEJOS
+  removeWishList()
+  {
+
+  }
 
 
 

@@ -42,8 +42,15 @@ ion-content
 {
     width: 27px;
     height: 27px;
-    color: var(--ion-color-cinza1);
     margin-left: 0.5em;
+}
+.box_buttons_out .cinzaIcone
+{
+    color: var(--ion-color-cinza1) !important;
+}
+.box_buttons_out .vermelhoIcone
+{
+    color: var(--erro-color) !important;
 }
 .preco
 {

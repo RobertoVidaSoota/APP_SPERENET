@@ -127,4 +127,24 @@ export class ApiService {
   {
     return this.http.post(this.url+"/post_coments", value)
   }
+
+  apiBuscarDesejos(value)
+  {
+    return this.http.post(this.url+"/post_wishlist", value)
+  }
+
+  apiAdicionarDesejos(value)
+  {
+    return this.http.post(this.url+"/add_wishlist", value)
+  }
+
+  apiRemoverDesejo(value)
+  {
+    return this.http.post(this.url+"/remove_wishlist", value)
+  }
+
+  apiVerificarSeTaNaDesejos(value)
+  {
+    return this.http.post(this.url+"/check_wishlist", value)
+  }
 }
