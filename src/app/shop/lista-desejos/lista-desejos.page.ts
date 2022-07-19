@@ -15,6 +15,7 @@ export class ListaDesejosPage implements OnInit {
   desejos = [];
 
   id_usuario;
+  id_produto_excluir;
 
   podeExcluir = false;
 
@@ -43,7 +44,6 @@ export class ListaDesejosPage implements OnInit {
         if(res["data"] && res["data"][0])
         {
           this.desejos = res["data"]
-          console.log(this.desejos)
         }
       },
       e => 
@@ -66,7 +66,7 @@ export class ListaDesejosPage implements OnInit {
     {
       if(res["msg"] === "Deu certo" && res["produto"][0])
       {
-        produtoPassagem = res["produto"]
+        produtoPassagem = res["produto"][0]
         let dataNav:NavigationExtras = 
         {
           queryParams:{produto: JSON.stringify(produtoPassagem)}
@@ -86,7 +86,7 @@ export class ListaDesejosPage implements OnInit {
 
 
   // REMOVER DA LISTA DE DESEJOS
-  removeItem(id)
+  removeItem()
   {
     if(this.podeExcluir = false)
     {
@@ -94,11 +94,23 @@ export class ListaDesejosPage implements OnInit {
     }
     else
     {
+      // CONFIGURAÇÃO
+      let id_certo
+      let posicaoExcluir
+      for(let posicao = 0; posicao < this.desejos.length ;posicao++)
+      {
+        if(this.desejos[posicao].id == this.id_produto_excluir)
+        {
+          id_certo = this.desejos[posicao].id
+          posicaoExcluir = posicao
+        }
+      }
       let body = 
       {
         id_user: parseInt(this.id_usuario),
-        id_produto: id
+        id_produto: id_certo
       }
+      // CHAMADA
       this.api.apiRemoverDesejo(body).subscribe((res) => 
       {
         if(res["msg"] === "Deu certo")
@@ -107,6 +119,8 @@ export class ListaDesejosPage implements OnInit {
           {
             this.toastMessage("Removido da sua lista de desejos", "success")
             this.podeExcluir = false
+            this.desejos.splice(posicaoExcluir, 1)
+            this.desejos = this.desejos
           }
           else
           {
@@ -145,6 +159,8 @@ export class ListaDesejosPage implements OnInit {
   // TORRADA DE REMOÇÃO DE PRODUTO
   toastRemoveItem(id)
   {
+    this.id_produto_excluir = id;
+
     return this.toast.create({
       cssClass: "toast-button-color-confirm",
       message: "Tem certeza que quer remover da sua lista de desejos ?",
@@ -161,7 +177,7 @@ export class ListaDesejosPage implements OnInit {
           handler: () => 
           {
             this.podeExcluir = true
-            this.removeItem(id)
+            this.removeItem()
             this.toast.dismiss()
           }
         }

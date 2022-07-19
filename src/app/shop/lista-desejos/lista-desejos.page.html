@@ -15,11 +15,11 @@
 
     <ion-item *ngFor="let d of desejos"
     class="item-desejo">
-      <ion-thumbnail slot="start" (click)="produtoPage(d.id_produto)" button>
+      <ion-thumbnail slot="start">
         <img src="{{ d.link_imagem }}"  />
       </ion-thumbnail>
       <ion-label>
-        <h3> 
+        <h3 (click)="produtoPage(d.id_produto)"> 
           {{ d.nome_produto }}
         </h3>
         <p class="ava-item"> 
