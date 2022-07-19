@@ -45,6 +45,10 @@ export class ListaDesejosPage implements OnInit {
         {
           this.desejos = res["data"]
         }
+        else
+        {
+          this.desejos = [];
+        }
       },
       e => 
       {
@@ -95,20 +99,10 @@ export class ListaDesejosPage implements OnInit {
     else
     {
       // CONFIGURAÇÃO
-      let id_certo
-      let posicaoExcluir
-      for(let posicao = 0; posicao < this.desejos.length ;posicao++)
-      {
-        if(this.desejos[posicao].id == this.id_produto_excluir)
-        {
-          id_certo = this.desejos[posicao].id
-          posicaoExcluir = posicao
-        }
-      }
       let body = 
       {
         id_user: parseInt(this.id_usuario),
-        id_produto: id_certo
+        id_produto: this.id_produto_excluir
       }
       // CHAMADA
       this.api.apiRemoverDesejo(body).subscribe((res) => 
@@ -119,8 +113,8 @@ export class ListaDesejosPage implements OnInit {
           {
             this.toastMessage("Removido da sua lista de desejos", "success")
             this.podeExcluir = false
-            this.desejos.splice(posicaoExcluir, 1)
-            this.desejos = this.desejos
+            this.ngOnInit()
+            console.log(res["data"])
           }
           else
           {
