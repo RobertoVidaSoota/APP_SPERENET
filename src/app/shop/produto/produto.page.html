@@ -138,10 +138,11 @@
   <!-- BOTÕES DE AÇÃO -->
   <div class="box_buttons_out">
 
-    <ion-icon (click)="addWishList()"
+    <ion-icon *ngIf="coracaoCor == 'cinzaIcone'" (click)="addWishList()"
     [class]="coracaoCor"
     name="heart">
-    <ion-icon (click)="removeWishList()"
+    </ion-icon>
+    <ion-icon *ngIf="coracaoCor == 'vermelhoIcone'" (click)="removeWishList()"
     [class]="coracaoCor"
     name="heart">
     </ion-icon>

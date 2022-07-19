@@ -11,103 +11,25 @@
 
 <ion-content>
 
-  <div *ngIf="checkLista == 1">
+  <div *ngIf="checkLogin == 'true'">
 
-    <ion-item class="item-desejo" button>
-      <ion-thumbnail slot="start" routerLink="/tabs/tab1/produto">
-        <img src="../../../assets/pc-1.png" />
+    <ion-item *ngFor="let d of desejos"
+    class="item-desejo">
+      <ion-thumbnail slot="start" (click)="produtoPage(d.id_produto)" button>
+        <img src="{{ d.link_imagem }}"  />
       </ion-thumbnail>
       <ion-label>
-        <h3 routerLink="/tabs/tab1/produto"> 
-          Razer 
+        <h3> 
+          {{ d.nome_produto }}
         </h3>
         <p class="ava-item"> 
-          4.7 <ion-icon name="star"></ion-icon> 
+          {{ d.media_estrelas }} <ion-icon name="star"></ion-icon> 
         </p>
-        <p class="preco-item"> R$ 3.999,00 </p>
+        <p class="preco-item"> {{ d.preco_produto }} </p>
       </ion-label>
   
-      <ion-button expand="small" shape="round" fill="clear" slot="end" class="close_button">
-        <ion-icon name="close"></ion-icon>
-      </ion-button>
-    </ion-item>
-  
-  
-    <ion-item class="item-desejo" button>
-      <ion-thumbnail slot="start" routerLink="/tabs/tab1/produto">
-        <img src="../../../assets/MUNITOR_1.png" />
-      </ion-thumbnail>
-      <ion-label>
-        <h3 routerLink="/tabs/tab1/produto"> 
-          Munitor 
-        </h3>
-        <p class="ava-item"> 
-          2.5 <ion-icon name="star"></ion-icon> 
-        </p>
-        <p class="preco-item"> R$  399,00 </p>
-      </ion-label>
-  
-      <ion-button expand="small" shape="round" fill="clear" slot="end" class="close_button">
-        <ion-icon name="close"></ion-icon>
-      </ion-button>
-    </ion-item>
-  
-  
-    <ion-item class="item-desejo" button>
-      <ion-thumbnail slot="start" routerLink="/tabs/tab1/produto">
-        <img src="../../../assets/NOTEBOOK_1.png" />
-      </ion-thumbnail>
-      <ion-label>
-        <h3 routerLink="/tabs/tab1/produto"> 
-          Notebook gamer
-        </h3>
-        <p class="ava-item"> 
-          4.5 <ion-icon name="star"></ion-icon> 
-        </p>
-        <p class="preco-item"> R$  7.499,00 </p>
-      </ion-label>
-  
-      <ion-button expand="small" shape="round" fill="clear" slot="end" class="close_button">
-        <ion-icon name="close"></ion-icon>
-      </ion-button>
-    </ion-item>
-  
-  
-    <ion-item class="item-desejo" button>
-      <ion-thumbnail slot="start" routerLink="/tabs/tab1/produto">
-        <img src="../../../assets/CAIXA_DE_SOM_1.png" />
-      </ion-thumbnail>
-      <ion-label>
-        <h3 routerLink="/tabs/tab1/produto"> 
-          Caixa de som
-        </h3>
-        <p class="ava-item"> 
-          4.2 <ion-icon name="star"></ion-icon> 
-        </p>
-        <p class="preco-item"> R$ 169,00 </p>
-      </ion-label>
-  
-      <ion-button expand="small" shape="round" fill="clear" slot="end" class="close_button">
-        <ion-icon name="close"></ion-icon>
-      </ion-button>
-    </ion-item>
-  
-  
-    <ion-item class="item-desejo" button>
-      <ion-thumbnail slot="start" routerLink="/tabs/tab1/produto">
-        <img src="../../../assets/MEMORIA RAM 1.jpg" />
-      </ion-thumbnail>
-      <ion-label>
-        <h3 routerLink="/tabs/tab1/produto"> 
-          Memória RAM 32GB
-        </h3>
-        <p class="ava-item"> 
-          4.9 <ion-icon name="star"></ion-icon> 
-        </p>
-        <p class="preco-item"> R$ 2.999,00 </p>
-      </ion-label>
-  
-      <ion-button expand="small" shape="round" fill="clear" slot="end" class="close_button">
+      <ion-button (click)="toastRemoveItem(d.id_produto)"
+      expand="small" shape="round" fill="clear" slot="end" class="close_button">
         <ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-item>
@@ -117,7 +39,7 @@
   
 
   <!-- VAZIO -->
-  <div *ngIf="checkLista == 0">
+  <div *ngIf="checkLista == '' || !desejos[0]">
 
     <img class="svg_compras no-centro-dentro" src="../../../assets/SVG_COMPRAS.png" alt="">
 
