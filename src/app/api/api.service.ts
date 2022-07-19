@@ -152,4 +152,9 @@ export class ApiService {
   {
     return this.http.post(this.url+"/check_wishlist", value)
   }
+
+  apiPesquisarProduto(value)
+  {
+    return this.http.post(this.url+"/post_search", value)
+  }
 }
