@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarrinhoPage implements OnInit {
 
-  checkCarrinho = 0;
+  carrinho = [];
 
   constructor() { }
 

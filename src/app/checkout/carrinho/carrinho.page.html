@@ -6,7 +6,7 @@
 
     <ion-title>Carrinho</ion-title>
 
-    <div *ngIf="checkCarrinho == 1"
+    <div *ngIf="carrinho[0]"
     class="numero-items" slot="end">
       <p>Itens:</p>
       <p>3</p>
@@ -19,7 +19,7 @@
 <ion-content>
 
 
-  <ion-row *ngIf="checkCarrinho == 1">
+  <ion-row *ngIf="carrinho[0]">
 
     <ion-col size="6">
 
@@ -50,40 +50,11 @@
 
     </ion-col>
 
-
-    <ion-col size="6">
-
-      <div class="card-item">
-        <img class="img-item" src="../../../assets/NOTEBOOK_1.png">
-        <p class="pruduto-item">
-          Notebooke Gamer
-        </p>
-        <p class="preco-item">
-          R$ 7,499,99
-        </p>
-        <div class="meu_grid">
-          <ion-label>
-            <ion-button fill="clear">
-              <ion-icon class="remove-item" name="remove"></ion-icon>
-            </ion-button>
-          </ion-label>
-
-          <ion-label class="quantidade-item">1</ion-label>
-
-          <ion-label>
-            <ion-button fill="clear">
-              <ion-icon class="add-item" name="add"></ion-icon>
-            </ion-button>
-          </ion-label>
-        </div>
-      </div>
-
-    </ion-col>
   </ion-row>
 
   <!-- ---- LAYOUT SEM LOGIN ---- -->
 
-  <div *ngIf="checkCarrinho == 0">
+  <div *ngIf="!Carrinho[0]">
 
     <img class="svg_compras no-centro-dentro" src="../../../assets/SVG_COMPRAS.png" alt="">
 
@@ -97,7 +68,7 @@
 
 
 
-<ion-footer *ngIf="checkCarrinho == 1">
+<ion-footer *ngIf="carrinho[0]">
 
   <ion-toolbar>
     <h1>
@@ -105,7 +76,7 @@
     </h1>
   </ion-toolbar>
 
-  <button routerLink="/pagamento">
+  <button>
     PAGAR
   </button>
 </ion-footer>

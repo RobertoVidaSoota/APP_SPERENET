@@ -27,6 +27,7 @@ export class ProdutoPage{
   estrelasVazias = []
 
   coracaoCor = ""
+  carrinhoCor = "cinzaIcone"
 
   constructor(
     private navCtrl: NavController,
@@ -421,6 +422,45 @@ export class ProdutoPage{
   }
 
 
+  // ADICIONAR PRODUTO NO CARRINHO
+  addCart(id_produto)
+  {
+    let id_user = localStorage.getItem("id_usuario_logado_app")
+    let body = {
+      user_id: id_user,
+      id_produto: id_produto
+    }
+    this.api.apiAdicionarCarrinho(body).subscribe((res) => 
+    {
+      if(res["success"] == true)
+      {
+        console.log(res)
+        this.carrinhoCor = "vermelhoIcone"
+      }
+      console.log(res)
+      this.carrinhoCor = "cinzaIcone"
+    },
+    e => 
+    {
+      console.log(e)
+      this.toast.create({
+        message: "Ocorreu um erro inesperado",
+        position: "top",
+        color: "danger",
+        duration: 2000
+      }).then((t) => { t.present() })
+      this.carrinhoCor = "cinzaIcone"
+    })
+  }
+
+
+  // REMOVER DO CARRINHO
+  removeCart()
+  {
+
+  }
+
+  // MOSTRAR/ESCONDER INPUT DE COMENTÁRIO
   toggleInput()
   {
     this.inputComentarioFadeIn = !this.inputComentarioFadeIn;

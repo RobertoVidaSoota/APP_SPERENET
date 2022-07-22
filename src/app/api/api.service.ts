@@ -8,6 +8,7 @@ import { HttpHeaders, HttpParamsOptions } from '@angular/common/http';
 })
 export class ApiService {
 
+  // url:string = "https://sperenet-api.herokuapp.com"
   url:string = "http://127.0.0.1:8000/api"
   
 
@@ -156,5 +157,15 @@ export class ApiService {
   apiPesquisarProduto(value)
   {
     return this.http.post(this.url+"/post_search", value)
+  }
+
+
+  // -----------------------------------------------------------------------
+  // ------------------------------- CHECKOUT ------------------------------
+  // -----------------------------------------------------------------------
+
+  apiAdicionarCarrinho(value)
+  {
+    return this.http.post(this.url+"/post_add_cart", value)
   }
 }
