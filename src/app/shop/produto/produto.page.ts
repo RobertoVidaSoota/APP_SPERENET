@@ -26,8 +26,9 @@ export class ProdutoPage{
   estrelasMedias = []
   estrelasVazias = []
 
-  coracaoCor = ""
+  coracaoCor = "cinzaIcone"
   carrinhoCor = "cinzaIcone"
+  compartilharCor = "cinzaIcone"
 
   constructor(
     private navCtrl: NavController,
@@ -82,6 +83,9 @@ export class ProdutoPage{
 
     // VERIFICAR SE O PRODUTO ESTAR NA LISTA DEDESEJOS
     let id_user = localStorage.getItem("id_usuario_logado_app")
+
+    if(id_user == undefined){return}
+
     let valueDesejo = 
     {
       id_produto: this.dadosProdutos[0].id,
@@ -124,6 +128,18 @@ export class ProdutoPage{
       id_user: parseInt(id_user),
       id_produto: this.dadosProdutos[0].id
     }
+
+    if(id_user == undefined)
+    {
+      this.toast.create({
+        message: "Voce precisa está logado para realizar esta ação.",
+        position: "top",
+        color: "danger",
+        duration: 2000
+      }).then((t) => { t.present() })
+      return;
+    }
+
     this.api.apiAdicionarDesejos(body).subscribe((res) => 
     {
       if(res["msg"] === "Deu certo")
@@ -430,15 +446,29 @@ export class ProdutoPage{
       user_id: id_user,
       id_produto: id_produto
     }
+
+    if(id_user == undefined)
+    {
+      this.toast.create({
+        message: "Voce precisa está logado para realizar esta ação.",
+        position: "top",
+        color: "danger",
+        duration: 2000
+      }).then((t) => { t.present() })
+      return;
+    }
+
     this.api.apiAdicionarCarrinho(body).subscribe((res) => 
     {
       if(res["success"] == true)
       {
         console.log(res)
-        this.carrinhoCor = "vermelhoIcone"
+      }
+      if(res["carrinho"])
+      {
+        console.log(res)
       }
       console.log(res)
-      this.carrinhoCor = "cinzaIcone"
     },
     e => 
     {
@@ -449,7 +479,6 @@ export class ProdutoPage{
         color: "danger",
         duration: 2000
       }).then((t) => { t.present() })
-      this.carrinhoCor = "cinzaIcone"
     })
   }
 

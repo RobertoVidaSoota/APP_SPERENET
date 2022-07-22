@@ -5,7 +5,8 @@
     
     <div class="icone">
       <ion-avatar>
-          <img [src]="fotoPerfil" />
+          <img *ngIf="fotoPerfil" [src]="fotoPerfil" />
+          <img *ngIf="!fotoPerfil" [style]="fotoVazia" />
       </ion-avatar>
     </div>
 

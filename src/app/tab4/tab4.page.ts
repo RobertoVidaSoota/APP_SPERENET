@@ -15,6 +15,7 @@ export class Tab4Page implements OnInit {
   checkLogin = "";
 
   fotoPerfil = "";
+  fotoVazia = "backgorund-color: #ccc"
   nomeUsuario = "";
 
   constructor(

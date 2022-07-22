@@ -54,7 +54,6 @@ export class Tab2Page {
         {
           this.pesquisa = []
         }
-        console.log(this.pesquisa)
       },
       e => 
       {
