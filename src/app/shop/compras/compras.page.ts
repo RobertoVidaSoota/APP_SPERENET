@@ -59,7 +59,10 @@ export class ComprasPage implements OnInit {
       {
         for(let position = 0; position < res["compras"].length; position++)
         {
-          this.compras.push(res["compras"][position])
+          if(res["compras"][position]["status"] !== "carrinho")
+          {
+            this.compras.push(res["compras"][position])
+          }
         }
       },
       e => 

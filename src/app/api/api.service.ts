@@ -168,4 +168,9 @@ export class ApiService {
   {
     return this.http.post(this.url+"/post_add_cart", value)
   }
+
+  apiVerificarSeTaCarrinho(value)
+  {
+    return this.http.post(this.url+"/post_verify_prod_chart", value)
+  }
 }

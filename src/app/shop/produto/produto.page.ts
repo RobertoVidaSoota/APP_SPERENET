@@ -114,6 +114,36 @@ export class ProdutoPage{
       console.log(e)
       this.coracaoCor = "cinzaIcone"
     })
+
+
+    // VERIFICAR SE PRODUTOS TA NO CARRINHO
+    let id_compra = localStorage.getItem("id_compra_atual");
+    if(id_compra)
+    {
+      let valorVerCarrinho = 
+      {
+        id_produto: this.dadosProdutos[0].id,
+        id_compra: id_compra
+      }
+      this.api.apiVerificarSeTaCarrinho(valorVerCarrinho).subscribe((res) => 
+      {
+        if(res["success"] == true)
+        {
+          this.carrinhoCor = "cinzaIcone"
+          console.log(res)
+        }
+        else
+        {
+          this.carrinhoCor = "vermelhoIcone"
+          console.log(res)
+        }
+      },
+      e => 
+      {
+        this.carrinhoCor = "cinzaIcone"
+        console.log(e)
+      })
+    }
   }
 
 
@@ -462,13 +492,24 @@ export class ProdutoPage{
     {
       if(res["success"] == true)
       {
-        console.log(res)
+        this.toast.create({
+          message: "Adicionado no carrinho com sucesso",
+          position: "top",
+          color: "success",
+          duration: 2000
+        }).then((t) => { t.present() })
+        this.carrinhoCor = "vermelhoIcone"
+        localStorage.setItem("id_compra_atual", res["id_compra"])
       }
       if(res["carrinho"])
       {
-        console.log(res)
+        this.toast.create({
+          message: res["msg"],
+          position: "top",
+          color: "danger",
+          duration: 2000
+        }).then((t) => { t.present() })
       }
-      console.log(res)
     },
     e => 
     {
