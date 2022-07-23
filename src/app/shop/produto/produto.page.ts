@@ -130,12 +130,10 @@ export class ProdutoPage{
         if(res["success"] == true)
         {
           this.carrinhoCor = "cinzaIcone"
-          console.log(res)
         }
         else
         {
           this.carrinhoCor = "vermelhoIcone"
-          console.log(res)
         }
       },
       e => 
@@ -253,6 +251,7 @@ export class ProdutoPage{
       console.log(e)
     })
   }
+
 
 
 
@@ -527,7 +526,35 @@ export class ProdutoPage{
   // REMOVER DO CARRINHO
   removeCart()
   {
-
+    let id_compra = localStorage.getItem("id_compra_atual")
+    let body = 
+    {
+      id_compra: id_compra,
+      id_produto: this.dadosProdutos[0].id
+    }
+    this.api.apiRemoverCarrinho(body).subscribe((res) => 
+    {
+      if(res["success"] == true)
+      {
+        this.toast.create({
+          message: "Removido do carrinho",
+          position: "top",
+          color: "success",
+          duration: 2000
+        }).then((t) => { t.present() })
+        this.carrinhoCor = "cinzaIcone"
+      }
+    }, 
+    e => 
+    {
+      this.toast.create({
+        message: "Ocorreu um erro inesperado",
+        position: "top",
+        color: "danger",
+        duration: 2000
+      }).then((t) => { t.present() })
+      console.log(e)
+    })
   }
 
   // MOSTRAR/ESCONDER INPUT DE COMENTÁRIO

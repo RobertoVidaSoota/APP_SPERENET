@@ -173,4 +173,14 @@ export class ApiService {
   {
     return this.http.post(this.url+"/post_verify_prod_chart", value)
   }
+
+  apiRemoverCarrinho(value)
+  {
+    return this.http.post(this.url+"/post_remove_chart", value)
+  }
+
+  apiPegarCarrinho(value)
+  {
+    return this.http.post(this.url+"/post_cart", value)
+  }
 }
