@@ -85,59 +85,107 @@ export class CarrinhoPage implements OnInit {
       id_compra: id_compra,
       direcao: direcao
     }
-    
-    this.api.apiMudarQuantidadeProduto(value).subscribe((res) => 
+    for(let p = 0; p < this.carrinho.length; p++)
     {
-      if(res["success"] == true)
+      if(this.carrinho[p].fk_id_produto == id_produto)
       {
-        let precoString;
-        let dividir;
-        let flutuar;
-        let precoMultiplicado;
-        let real;
-        let precoProdutoAgora;
-        let valorSomadoPreco = 0;
-        for(let p = 0; p < this.carrinho.length; p++)
+        if(this.carrinho[p].quantidade_produto == 1)
         {
-          if(this.carrinho[p].quantidade_produto >= 0)
+          if(value.direcao == "traz")
           {
-            if(this.carrinho[p].fk_id_produto == id_produto)
-            {
-              if(direcao === "frente")
-              {
-                this.qtItems += 1
-                this.carrinho[p].quantidade_produto += 1
-              }
-              if(direcao === "traz")
-              {
-                this.qtItems -= 1
-                this.carrinho[p].quantidade_produto -= 1
-              }
-              precoString = this.carrinho[p].preco_produto
-              dividir = precoString.replace("R$", "")
-              flutuar = parseFloat(dividir)
-              precoMultiplicado = (flutuar)*(this.carrinho[p]["quantidade_produto"])
-              valorSomadoPreco += precoMultiplicado
-              this.valorTotal = valorSomadoPreco
-              real = this.valorTotal.toLocaleString('pt-br',
-              {
-                style: 'currency', 
-                currency: 'BRL'
-              });
-              this.valorTotalReal = real
-              precoProdutoAgora = precoMultiplicado.toLocaleString('pt-br',
-              {
-                style: 'currency', 
-                currency: 'BRL'
-              })
-              this.carrinho[p].preco_produto = precoProdutoAgora
-            }
+            return false;
           }
         }
       }
-    }, e => 
+    }
+    
+    setTimeout(() => 
     {
-      console.log(e)
-    })
+      this.api.apiMudarQuantidadeProduto(value).subscribe((res) => 
+      {
+        if(res["success"] == true)
+        {
+          let precoString;
+          let dividir;
+          let tiraVirgula;
+          let flutuar;
+          let precoNormal;
+          let precoMultiplicado;
+          let real;
+          let precoProdutoAgora;
+          for(let p = 0; p < this.carrinho.length; p++)
+          {
+            if(this.carrinho[p].fk_id_produto == id_produto)
+            {
+              if(this.carrinho[p].quantidade_produto > 0)
+              {
+                if(direcao === "frente")
+                {
+                  this.qtItems += 1
+                  this.carrinho[p].quantidade_produto += 1
+                }
+                if(direcao === "traz")
+                {
+                  this.qtItems -= 1
+                  this.carrinho[p].quantidade_produto -= 1
+                }
+              
+                // RECEBE O PREÇO E CONVERTE PARA FLOAT
+                precoString = this.carrinho[p].preco_produto
+                dividir = precoString.replace("R$", "")
+                dividir = dividir.replace(".", "")
+                tiraVirgula = dividir.replace(",", ".")
+                flutuar = parseFloat(tiraVirgula)
+                
+                // CALCULA O PRECO DO PRODUTO E DO CARRINHO E MANDA PRO ARRAY 
+                precoNormal = (flutuar)/(this.carrinho[p].quantidade_produto)
+                if(direcao === "frente")
+                {
+                  precoMultiplicado = 
+                  ((precoNormal)*(this.carrinho[p].quantidade_produto))+precoNormal
+                  this.valorTotal += precoNormal
+                }
+                if(direcao === "traz")
+                {
+                  if(this.carrinho[p].quantidade_produto == 1)
+                  {
+                    precoMultiplicado = 
+                    ((precoNormal)*(this.carrinho[p].quantidade_produto))-precoNormal
+                    console.log("entrou")
+                  }
+                  else
+                  {
+                    precoMultiplicado = 
+                    ((precoNormal)*(this.carrinho[p].quantidade_produto))-precoNormal
+                    this.valorTotal -= precoNormal
+                  }
+                  
+                }
+                real = this.valorTotal.toLocaleString('pt-br',
+                {
+                  style: 'currency', 
+                  currency: 'BRL'
+                });
+                this.valorTotalReal = real
+                precoProdutoAgora = precoMultiplicado.toLocaleString('pt-br',
+                {
+                  style: 'currency', 
+                  currency: 'BRL'
+                })
+                this.carrinho[p].preco_produto = precoProdutoAgora
+              }
+              else
+              {
+                return;
+              }
+            }
+          }
+        }
+      }, e => 
+      {
+        console.log(e)
+      })
+    }, 100)
   }
+    
 }
