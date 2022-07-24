@@ -9,7 +9,7 @@
     <div *ngIf="carrinho[0]"
     class="numero-items" slot="end">
       <p>Itens:</p>
-      <p>3</p>
+      <p>{{ qtItems }}</p>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -21,27 +21,32 @@
 
   <ion-row *ngIf="carrinho[0]">
 
-    <ion-col size="6">
+    <ion-col *ngFor="let car of carrinho"
+     size="6">
 
       <div class="card-item">
-        <img class="img-item" src="../../../assets/CAIXA_DE_SOM_1.png">
+        <img class="img-item" src="{{ car.link_imagem }}">
         <p class="pruduto-item">
-          Caixa de som
+          {{ car.nome_produto }}
         </p>
         <p class="preco-item">
-          R$ 338,99
+          {{ car.preco_produto }}
         </p>
         <div class="meu_grid">
           <ion-label>
-            <ion-button fill="clear">
+            <ion-button (click)="changeQtProduto(car.fk_id_produto, car.fk_id_compras, 'traz')"
+            fill="clear">
               <ion-icon class="remove-item" name="remove"></ion-icon>
             </ion-button>
           </ion-label>
 
-          <ion-label class="quantidade-item">2</ion-label>
+          <ion-label class="quantidade-item">
+            {{ car.quantidade_produto }}
+          </ion-label>
 
           <ion-label>
-            <ion-button fill="clear">
+            <ion-button (click)="changeQtProduto(car.fk_id_produto, car.fk_id_compras, 'frente')"
+            fill="clear">
               <ion-icon class="add-item" name="add"></ion-icon>
             </ion-button>
           </ion-label>
@@ -51,6 +56,8 @@
     </ion-col>
 
   </ion-row>
+
+
 
   <!-- ---- LAYOUT SEM LOGIN ---- -->
 
@@ -72,7 +79,7 @@
 
   <ion-toolbar>
     <h1>
-      Total: <b>7.838,98</b>
+      Total: <b>{{ valorTotalReal }}</b>
     </h1>
   </ion-toolbar>
 

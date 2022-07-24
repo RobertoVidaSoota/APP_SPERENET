@@ -13,6 +13,9 @@ export class CarrinhoPage implements OnInit {
 
   carrinho:any = [];
   id_user = "";
+  qtItems = 0;
+  valorTotal = 0;
+  valorTotalReal = "0"
 
   constructor(
     private api: ApiService,
@@ -35,7 +38,22 @@ export class CarrinhoPage implements OnInit {
         if(res["success"] == true)
         {
           this.carrinho = res["carrinho"]
-          console.log(res["carrinho"])
+          let precoString
+          let dividir;
+          let flutuar;
+          let real;
+          for(let p = 0; p < this.carrinho.length; p++)
+          {
+            // NÃO PEGOU
+            this.qtItems += this.carrinho[p]["quantidade_produto"]
+            precoString = this.carrinho[p].preco_produto
+            dividir = precoString.replace("R$", "")
+            dividir = dividir.replace(",", ".")
+            flutuar = parseFloat(dividir)
+            this.valorTotal += flutuar
+            real = this.valorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+            this.valorTotalReal = real
+          }
         }
       },
       e => 
@@ -45,4 +63,44 @@ export class CarrinhoPage implements OnInit {
     }
   }
 
+
+  // MUDAR QUANTIDADE DO PRODUTO
+  changeQtProduto(id_produto, id_compra, direcao)
+  {
+    let value = 
+    {
+      id_produto: id_produto,
+      id_compra: id_compra,
+      direcao: direcao
+    }
+    
+    this.api.apiMudarQuantidadeProduto(value).subscribe((res) => 
+    {
+      if(res["success"] == true)
+      {
+        for(let p = 0; p < this.carrinho.length; p++)
+        {
+          if(this.carrinho[p].quantidade_produto >= 0)
+          {
+            if(this.carrinho[p].fk_id_produto == id_produto)
+            {
+              if(direcao === "frente")
+              {
+                this.qtItems += 1
+                this.carrinho[p].quantidade_produto += 1
+              }
+              if(direcao === "traz")
+              {
+                this.qtItems -= 1
+                this.carrinho[p].quantidade_produto -= 1
+              }
+            }
+          }
+        }
+      }
+    }, e => 
+    {
+      console.log(e)
+    })
+  }
 }

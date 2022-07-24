@@ -183,4 +183,9 @@ export class ApiService {
   {
     return this.http.post(this.url+"/post_cart", value)
   }
+
+  apiMudarQuantidadeProduto(value)
+  {
+    return this.http.post(this.url+"/post_change_quantity_cart", value)
+  }
 }
