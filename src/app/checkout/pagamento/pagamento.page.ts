@@ -69,9 +69,10 @@ export class PagamentoPage implements OnInit {
         {
           text: "Sim",
           role: "confirm",
-          handler(){
+          handler:() =>
+          {
             this.carregar(page)
-          },
+          }
         },
         {
           text: "Não",
@@ -97,7 +98,7 @@ export class PagamentoPage implements OnInit {
     {
       l.present();
 
-      l.onDidDismiss().then((l) => 
+      l.onDidDismiss().then(() => 
       {
         this.method(page)
       })
