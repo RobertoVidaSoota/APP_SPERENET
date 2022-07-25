@@ -188,4 +188,14 @@ export class ApiService {
   {
     return this.http.post(this.url+"/post_change_quantity_cart", value)
   }
+
+  apiIniciarPagamento(value)
+  {
+    return this.http.post(this.url+"/post_payment", value)
+  }
+
+  apiEcolherPaagamento(value)
+  {
+    return this.http.post(this.url+"/post_pay_method", value)
+  }
 }

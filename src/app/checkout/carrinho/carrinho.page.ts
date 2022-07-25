@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { List } from 'postcss/lib/list';
 import { ApiService } from 'src/app/api/api.service';
@@ -13,10 +13,10 @@ export class CarrinhoPage implements OnInit {
 
   carrinho:any = [];
   id_user = "";
+  id_compra:number;
   qtItems = 0;
   valorTotal = 0;
   valorTotalReal = "0"
-  valor
 
   constructor(
     private api: ApiService,
@@ -67,6 +67,7 @@ export class CarrinhoPage implements OnInit {
             })
             this.carrinho[p].preco_produto = precoProdutoAgora
           }
+          this.id_compra = res["carrinho"][0]["fk_id_compras"]
         }
       },
       e => 
@@ -181,9 +182,49 @@ export class CarrinhoPage implements OnInit {
 
 
   // PÁGINA DE PAGAMENTO
-  pagar()
+  pagar(valorTotal)
   {
-    
+    let body = 
+    {
+      id_compra: this.id_compra,
+      id_user: this.id_user,
+      valorTotal: valorTotal
+    }
+    this.api.apiIniciarPagamento(body).subscribe((res) => 
+    {
+      if(res["success"] == true)
+      {
+        let compraParam: NavigationExtras = 
+        {
+          queryParams: { id: body.id_compra}
+        }
+        this.router.navigate(["/pagamento"], compraParam)
+      }
+      else
+      {
+        this.toastBox("Ocorreu um erro ineperado", "danger")
+      }
+    }, 
+    e =>
+    {
+      this.toastBox("Ocorreu um erro ineperado", "danger")
+      console.log(e)
+    })
+  }
+
+
+  // TORRADA DE MENSAGEM
+  toastBox(msg, color) 
+  {
+    return this.toast.create({
+      message: msg,
+      color: color,
+      position: "top", 
+      duration: 2000
+    }).then((t) => 
+    {
+      t.present()
+    });
   }
     
 }
