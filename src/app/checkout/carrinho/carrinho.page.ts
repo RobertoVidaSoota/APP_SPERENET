@@ -111,9 +111,7 @@ export class CarrinhoPage implements OnInit {
           let tiraVirgula;
           let flutuar:any;
           let precoNormal;
-          let precoMultiplicado = 0;
           let real;
-          let precoAcumulado = 0;
           let precoProdutoAgora;
           for(let p = 0; p < this.carrinho.length; p++)
           {
@@ -121,17 +119,6 @@ export class CarrinhoPage implements OnInit {
             {
               if(this.carrinho[p].quantidade_produto > 0)
               {
-                if(direcao === "frente")
-                {
-                  this.qtItems += 1
-                  this.carrinho[p].quantidade_produto += 1
-                }
-                if(direcao === "traz")
-                {
-                  this.qtItems -= 1
-                  this.carrinho[p].quantidade_produto -= 1
-                }
-              
                 // RECEBE O PREÇO E CONVERTE PARA FLOAT
                 precoString = this.carrinho[p].preco_produto
                 dividir = precoString.replace("R$", "")
@@ -142,31 +129,41 @@ export class CarrinhoPage implements OnInit {
                 // CALCULA O PRECO DO PRODUTO E DO CARRINHO E MANDA PRO ARRAY
 
                 precoNormal = (flutuar) / (this.carrinho[p].quantidade_produto)
-                precoMultiplicado = (precoNormal) * (this.carrinho[p].quantidade_produto)
 
-                // TA ACUMULANDO ERRADO
                 if(direcao === "traz")
                 {
-                  precoAcumulado -= precoNormal
+                  flutuar -= precoNormal
+                  this.valorTotal -= precoNormal
                 }
                 if(direcao === "frente")
                 {
-                  precoAcumulado += precoNormal
+                  flutuar += precoNormal
+                  this.valorTotal += precoNormal
                 }
-                
-                console.log(precoAcumulado)
+
                 real = this.valorTotal.toLocaleString('pt-br',
                 {
                   style: 'currency', 
                   currency: 'BRL'
                 });
                 this.valorTotalReal = real
-                precoProdutoAgora = precoAcumulado.toLocaleString('pt-br',
+                precoProdutoAgora = flutuar.toLocaleString('pt-br',
                 {
                   style: 'currency', 
                   currency: 'BRL'
                 })
                 this.carrinho[p].preco_produto = precoProdutoAgora
+
+                if(direcao === "frente")
+                {
+                  this.qtItems += 1
+                  this.carrinho[p].quantidade_produto += 1
+                }
+                if(direcao === "traz")
+                {
+                  this.qtItems -= 1
+                  this.carrinho[p].quantidade_produto -= 1
+                }
               }
               else
               {
@@ -180,6 +177,13 @@ export class CarrinhoPage implements OnInit {
         console.log(e)
       })
     }, 100)
+  }
+
+
+  // PÁGINA DE PAGAMENTO
+  pagar()
+  {
+    
   }
     
 }
