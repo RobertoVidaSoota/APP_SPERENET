@@ -31,7 +31,7 @@ export class PagamentoPage implements OnInit {
   }
 
 
-  // MANDAR O MÉTODO PRO BANCO DE DADOS
+  // MANDAR O MÉTODO DE PAGAMENTO (JA CRIAR CLIENTE NO ASAAS)
   method(metodo)
   {
     let body = 
