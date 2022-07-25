@@ -16,6 +16,7 @@ export class CarrinhoPage implements OnInit {
   qtItems = 0;
   valorTotal = 0;
   valorTotalReal = "0"
+  valor
 
   constructor(
     private api: ApiService,
@@ -108,7 +109,7 @@ export class CarrinhoPage implements OnInit {
           let precoString;
           let dividir;
           let tiraVirgula;
-          let flutuar;
+          let flutuar:any;
           let precoNormal;
           let precoMultiplicado;
           let real;
@@ -136,43 +137,47 @@ export class CarrinhoPage implements OnInit {
                 dividir = dividir.replace(".", "")
                 tiraVirgula = dividir.replace(",", ".")
                 flutuar = parseFloat(tiraVirgula)
+
+                // CALCULA O PRECO DO PRODUTO E DO CARRINHO E MANDA PRO ARRAY
+                flutuar = flutuar * 100
+                flutuar = parseInt(flutuar)
+                precoNormal = (flutuar / this.carrinho[p].quantidade_produto) / 100
+                // ---- ATÉ AQUI PEGOU
+                console.log(precoNormal)
                 
-                // CALCULA O PRECO DO PRODUTO E DO CARRINHO E MANDA PRO ARRAY 
-                precoNormal = (flutuar)/(this.carrinho[p].quantidade_produto)
-                if(direcao === "frente")
-                {
-                  precoMultiplicado = 
-                  ((precoNormal)*(this.carrinho[p].quantidade_produto))+precoNormal
-                  this.valorTotal += precoNormal
-                }
-                if(direcao === "traz")
-                {
-                  if(this.carrinho[p].quantidade_produto == 1)
-                  {
-                    precoMultiplicado = 
-                    ((precoNormal)*(this.carrinho[p].quantidade_produto))-precoNormal
-                    console.log("entrou")
-                  }
-                  else
-                  {
-                    precoMultiplicado = 
-                    ((precoNormal)*(this.carrinho[p].quantidade_produto))-precoNormal
-                    this.valorTotal -= precoNormal
-                  }
-                  
-                }
-                real = this.valorTotal.toLocaleString('pt-br',
-                {
-                  style: 'currency', 
-                  currency: 'BRL'
-                });
-                this.valorTotalReal = real
-                precoProdutoAgora = precoMultiplicado.toLocaleString('pt-br',
-                {
-                  style: 'currency', 
-                  currency: 'BRL'
-                })
-                this.carrinho[p].preco_produto = precoProdutoAgora
+                // if(direcao === "frente")
+                // {
+                //   precoMultiplicado = 
+                //   (precoNormal*this.carrinho[p].quantidade_produto)+precoNormal
+                //   this.valorTotal += precoNormal
+                // }
+                // if(direcao === "traz")
+                // {
+                //   if(this.carrinho[p].quantidade_produto == 1)
+                //   {
+                //     precoMultiplicado = 
+                //     (precoNormal*this.carrinho[p].quantidade_produto) / 2
+                //     this.valorTotal -= precoNormal
+                //   }
+                //   else
+                //   {
+                //     precoMultiplicado = 
+                //     ((precoNormal)*(this.carrinho[p].quantidade_produto))-precoNormal
+                //     this.valorTotal -= precoNormal
+                //   }
+                // }
+                // real = this.valorTotal.toLocaleString('pt-br',
+                // {
+                //   style: 'currency', 
+                //   currency: 'BRL'
+                // });
+                // this.valorTotalReal = real
+                // precoProdutoAgora = precoMultiplicado.toLocaleString('pt-br',
+                // {
+                //   style: 'currency', 
+                //   currency: 'BRL'
+                // })
+                // this.carrinho[p].preco_produto = precoProdutoAgora
               }
               else
               {
