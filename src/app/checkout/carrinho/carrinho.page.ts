@@ -111,8 +111,9 @@ export class CarrinhoPage implements OnInit {
           let tiraVirgula;
           let flutuar:any;
           let precoNormal;
-          let precoMultiplicado;
+          let precoMultiplicado = 0;
           let real;
+          let precoAcumulado = 0;
           let precoProdutoAgora;
           for(let p = 0; p < this.carrinho.length; p++)
           {
@@ -139,45 +140,33 @@ export class CarrinhoPage implements OnInit {
                 flutuar = parseFloat(tiraVirgula)
 
                 // CALCULA O PRECO DO PRODUTO E DO CARRINHO E MANDA PRO ARRAY
-                flutuar = flutuar * 100
-                flutuar = parseInt(flutuar)
-                precoNormal = (flutuar / this.carrinho[p].quantidade_produto) / 100
-                // ---- ATÉ AQUI PEGOU
-                console.log(precoNormal)
+
+                precoNormal = (flutuar) / (this.carrinho[p].quantidade_produto)
+                precoMultiplicado = (precoNormal) * (this.carrinho[p].quantidade_produto)
+
+                // TA ACUMULANDO ERRADO
+                if(direcao === "traz")
+                {
+                  precoAcumulado -= precoNormal
+                }
+                if(direcao === "frente")
+                {
+                  precoAcumulado += precoNormal
+                }
                 
-                // if(direcao === "frente")
-                // {
-                //   precoMultiplicado = 
-                //   (precoNormal*this.carrinho[p].quantidade_produto)+precoNormal
-                //   this.valorTotal += precoNormal
-                // }
-                // if(direcao === "traz")
-                // {
-                //   if(this.carrinho[p].quantidade_produto == 1)
-                //   {
-                //     precoMultiplicado = 
-                //     (precoNormal*this.carrinho[p].quantidade_produto) / 2
-                //     this.valorTotal -= precoNormal
-                //   }
-                //   else
-                //   {
-                //     precoMultiplicado = 
-                //     ((precoNormal)*(this.carrinho[p].quantidade_produto))-precoNormal
-                //     this.valorTotal -= precoNormal
-                //   }
-                // }
-                // real = this.valorTotal.toLocaleString('pt-br',
-                // {
-                //   style: 'currency', 
-                //   currency: 'BRL'
-                // });
-                // this.valorTotalReal = real
-                // precoProdutoAgora = precoMultiplicado.toLocaleString('pt-br',
-                // {
-                //   style: 'currency', 
-                //   currency: 'BRL'
-                // })
-                // this.carrinho[p].preco_produto = precoProdutoAgora
+                console.log(precoAcumulado)
+                real = this.valorTotal.toLocaleString('pt-br',
+                {
+                  style: 'currency', 
+                  currency: 'BRL'
+                });
+                this.valorTotalReal = real
+                precoProdutoAgora = precoAcumulado.toLocaleString('pt-br',
+                {
+                  style: 'currency', 
+                  currency: 'BRL'
+                })
+                this.carrinho[p].preco_produto = precoProdutoAgora
               }
               else
               {
