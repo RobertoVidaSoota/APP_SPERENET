@@ -22,22 +22,6 @@
 </ion-header>
 
 
-<!-- LISTA DE LINK DAS IMAGENS 
-
-CAIXA DE SOM 1 https://thumbs2.imgbox.com/e8/32/i0XxBjSv_t.png
-CPU 1 https://thumbs2.imgbox.com/e2/73/QioT50lQ_t.png
-HEAD SET 1 https://thumbs2.imgbox.com/08/5f/ti482Q40_t.png
-MEMORIA RAN 1 https://thumbs2.imgbox.com/f7/59/Q97JaxE0_t.jpg
-MONITOR 1 https://thumbs2.imgbox.com/55/7d/URM1BwjC_t.png
-NOTEBOOK 1 https://thumbs2.imgbox.com/9f/03/hXdLPUch_t.png
-PC https://thumbs2.imgbox.com/3d/1c/b2u1NfbG_t.png
-PLACA DE VIDEO https://thumbs2.imgbox.com/b5/5c/kWsJQzMG_t.png
-PLACA MÃE https://thumbs2.imgbox.com/b8/6d/M6UYIIbc_t.png
-TECLADO https://thumbs2.imgbox.com/0e/1c/DxyDxUjX_t.png
-WEB CAM https://thumbs2.imgbox.com/c6/54/mGHpRram_t.png
-
--->
-
 
 <ion-content [fullscreen]="true">
 
@@ -46,7 +30,7 @@ WEB CAM https://thumbs2.imgbox.com/c6/54/mGHpRram_t.png
   <div *ngFor="let compraTal of compras"
   class="item-compra">
 
-    <ion-row *ngFor="let produtoTal of compraTal.produtos">
+    <ion-row *ngFor="let produtoTal of produto1">
       <!-- IMAGEM DO PRODUTO -->
       <ion-col size="4">
         <ion-thumbnail>
@@ -66,7 +50,13 @@ WEB CAM https://thumbs2.imgbox.com/c6/54/mGHpRram_t.png
       </ion-col>
     </ion-row> 
       
-    <ion-row> 
+    <ion-row>
+        <p (click)="myPopover()" class="ver_mais">
+          ver mais.
+        </p>
+    </ion-row>
+
+    <ion-row>
       <p>
         <ion-text>
           Total a pagar: 
@@ -81,7 +71,7 @@ WEB CAM https://thumbs2.imgbox.com/c6/54/mGHpRram_t.png
 
       <p>
         <ion-text>
-          Status:
+          Status da compra:
         </ion-text> <b> {{ compraTal.status }} </b>
       </p>
 
@@ -123,5 +113,34 @@ WEB CAM https://thumbs2.imgbox.com/c6/54/mGHpRram_t.png
     </h2>
 
   </div>
+
+
+  <!-- JANELA PARA VER MAIS PRODUTOS -->
+  <ion-popover [isOpen]="isOpen" (didDismiss)="myPopover()">
+    <ng-template>
+      <ion-content>
+
+        <div *ngFor="let p of verMais">
+          <ion-item class="item-detalhes" button>
+            <ion-thumbnail slot="start">
+              <img src="{{ p.link_imagem }}" />
+            </ion-thumbnail>
+  
+            <ion-label>
+              <h3> 
+                 {{ p.nome_produto }}
+              </h3>
+              <p class="preco-item"> {{ p.preco_produto }} </p>
+            </ion-label>
+        
+            <h2 slot="end">
+              {{ p.quantidade_produto }}
+            </h2>
+          </ion-item>
+        </div>
+
+      </ion-content>
+    </ng-template>
+  </ion-popover>
 
 </ion-content>

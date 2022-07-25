@@ -13,7 +13,12 @@ export class ComprasPage implements OnInit {
   @ViewChild(IonContent) content: IonContent;
 
   checkLogin = "";
+
   compras:any = [];
+  produto1 = [];
+  verMais = [];
+
+  isOpen:boolean = false;
 
   constructor(
     private api: ApiService
@@ -62,6 +67,8 @@ export class ComprasPage implements OnInit {
           if(res["compras"][position]["status"] !== "carrinho")
           {
             this.compras.push(res["compras"][position])
+            this.produto1[position] = this.compras[position].produtos[0]
+            this.verMais[position] = this.compras[position].produtos[position+1]
           }
         }
       },
@@ -72,9 +79,10 @@ export class ComprasPage implements OnInit {
     }
   }
 
-  onClick()
+  
+  myPopover()
   {
-    console.log("ativou")
+    this.isOpen = !this.isOpen;
   }
 
 }

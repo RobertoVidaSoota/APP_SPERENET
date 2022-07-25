@@ -13,6 +13,13 @@
 .prod-name-compra{
     font-weight: bold;
 }
+.ver_mais
+{
+    font-weight: 600 !important;
+    color: var(--ion-color-cinza1) !important;
+    margin-bottom: 5%;
+    cursor: pointer;
+}
 ion-text{
     color: var(--icon-color-branco1) !important;
 }
@@ -31,7 +38,7 @@ ion-text{
     color: var(--ion-color-cinza1);
 }
 ion-row > p{
-    margin-left: 20px;
+    margin-left: 10px;
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
