@@ -5,7 +5,7 @@
       <ion-menu-button menu="ft"></ion-menu-button>
     </ion-buttons>
 
-    <ion-title>buscar categoria</ion-title>
+    <ion-title> {{ NomeCategoria }} </ion-title>
 
     <ion-buttons slot="end">
       <ion-button routerLink="/carrinho">
@@ -20,5 +20,43 @@
 
 
 <ion-content>
+
+  <div *ngFor="let p of produtos">
+
+      <ion-card (click)="navProduto(p)"
+      color="dark" class="produto produto_esticado">
+        <div class="img-produto">
+          <img src="{{ p.link_imagem }}"
+          >
+        </div>
+          
+        <ion-card-content class="produto-content">
+          <ion-card-title>
+            {{ p.nome_produto }}
+          </ion-card-title>
+          
+          <!-- MEDIR A QUANTIDADES DE ESTRELAS PELA MÉDIA TOTAL -->
+          <div class="box-estrela">
+
+          <p class="media_estrelas">
+            {{ p.media_estrelas }}
+          </p>
+          
+          <ion-icon class="estrela-ava" name="star"></ion-icon>
+
+            <p class="numero-ava">
+              {{ p.quantidade_comentarios }} avaliações
+            </p>
+          </div>
+
+          <b class="preco"> {{ p.preco_produto }} </b><br>
+
+          <small *ngIf="prestacaoProduto" class="prestacao">
+            <b>10x de 499,00</b>
+          </small>
+
+        </ion-card-content>
+      </ion-card>
+    </div>
 
 </ion-content>

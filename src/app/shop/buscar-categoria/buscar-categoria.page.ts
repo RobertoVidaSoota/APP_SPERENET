@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { ApiService } from 'src/app/api/api.service';
 
@@ -11,11 +11,13 @@ import { ApiService } from 'src/app/api/api.service';
 export class BuscarCategoriaPage implements OnInit {
 
   produtos = [];
+  NomeCategoria = "";
 
   constructor(
     private api: ApiService,
     private actv: ActivatedRoute,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private router: Router,
   ) { }
 
 
@@ -33,37 +35,32 @@ export class BuscarCategoriaPage implements OnInit {
         navVar.navigateRoot("/tabs/tab1/inicio");
       }
     });
-
   }
-
 
 
   ngOnInit()
   {
-    let categoria; 
-
     // PEGAR CATEGORIA
     this.actv.queryParams.subscribe((res) => 
     {
-      categoria = res["categoria"]
+      this.NomeCategoria = res["categoria"]
+      this.produtos = JSON.parse(res["produtos"])
     },
     e => 
     {
       console.log(e)
     })
+  }
 
-    // PEGAR PRODUTOS
-    this.api.apiBuscarProdutoPorCategoria({categoria:categoria}).subscribe((res) => 
+
+  // PAGINA DO PRODUTO
+  navProduto(produto)
+  {
+    let dataNav:NavigationExtras = 
     {
-      if(res["success"] == true)
-      {
-        console.log(res) 
-      }
-    },
-    e => 
-    {
-      console.log(e)
-    })
+      queryParams:{produto: JSON.stringify(produto)}
+    }
+    this.router.navigate(["/tabs/tab1/produto"], dataNav)
   }
 
 }

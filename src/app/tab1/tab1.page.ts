@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Route, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { ApiService } from '../api/api.service';
 
 @Component({
   selector: 'app-tab1',
@@ -12,7 +13,8 @@ export class Tab1Page {
   constructor(
     private navCtrl: NavController,
     private actRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private api: ApiService
   )
   {
   }
@@ -34,11 +36,25 @@ export class Tab1Page {
   // BUSCAR POR CATEGORIA
   procutoCategoria(categoria)
   {
-    let cat: NavigationExtras = 
+    // PEGAR PRODUTOS
+    this.api.apiBuscarProdutoPorCategoria({categoria:categoria}).subscribe((res) => 
     {
-      queryParams: { categoria: categoria }
-    }
-    this.router.navigate(["/tabs/tab1/buscar-categoria"], cat)
+      if(res["success"] == true)
+      {
+        let cat: NavigationExtras = 
+        {
+          queryParams: { 
+            categoria: categoria, 
+            produtos: JSON.stringify(res["produto"])
+          }
+        }
+        this.router.navigate(["/tabs/tab1/buscar-categoria"], cat)
+      }
+    },
+    e => 
+    {
+      console.log(e)
+    })
   }
   
 }
