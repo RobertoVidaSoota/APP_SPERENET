@@ -81,6 +81,10 @@ const routes: Routes = [
   {
     path: 'lista-desejos',
     loadChildren: () => import('./shop/lista-desejos/lista-desejos.module').then( m => m.ListaDesejosPageModule)
+  },
+  {
+    path: 'buscar-categoria',
+    loadChildren: () => import('./shop/buscar-categoria/buscar-categoria.module').then( m => m.BuscarCategoriaPageModule)
   }
 ];
 @NgModule({
