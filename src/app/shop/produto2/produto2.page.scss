@@ -1,0 +1,221 @@
+ion-title
+{
+    text-align: left;
+}
+ion-content
+{
+    --padding-start: 1.5em;
+    --padding-end: 1.5em;
+    --padding-bottom: 1.5em;
+    --padding-top: 1em
+}
+
+// INFO PRODUTO 
+.img_produto
+{
+    width: 65%;
+    height: auto;
+    margin-bottom: 1em;
+}
+.qt_estrela
+{
+    font-size: 22px;
+    margin-right: 10px;
+    font-weight: 600;
+}
+.box_estrelas
+{
+    display: inline-block;
+    width: 48%;
+}
+.box_estrelas ion-icon
+{
+    width: 20px;
+    height: 20px;
+}
+.box_buttons_out
+{
+    display: inline-block;
+    width: 32%;
+}
+.box_buttons_out ion-icon
+{
+    width: 27px;
+    height: 27px;
+    margin-left: 0.5em;
+}
+.box_buttons_out .cinzaIcone
+{
+    color: var(--ion-color-cinza1) !important;
+}
+.box_buttons_out .vermelhoIcone
+{
+    color: var(--erro-color) !important;
+}
+.preco
+{
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 4px;
+    color: var(--ion-color-verde0);
+}
+.parcelas
+{
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 7px;
+    color: var(--ion-color-cinza1);
+}
+.button_comprar
+{
+    margin-top: 1.5em;
+    margin-bottom: 2.5em;
+}
+
+
+// OUTRAS INFORMAÇÕES
+.title_desc
+{
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--ion-color-cinza1);
+}
+.text_desc
+{
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+}
+.title_especificacoes
+{
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--ion-color-cinza1);
+}
+.text_especificacoes
+{
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 10px;
+    color: var(--ion-color-cinza1);
+}
+.text_especificacoes span
+{
+    font-weight: bold;
+    color: var(--ion-color-branco1);
+}
+
+
+// FEEDBACK
+.box_input_comentario
+{
+    display: flex;
+}
+input.input_comentario
+{
+    width: 80% !important;
+    height: 6.4vh;
+    background: rgba(255, 255, 255, 0);
+    border: 0.2px solid var(--ion-color-branco1);
+    padding-bottom: 8px;
+    padding-top: 8px;
+    margin: 0;
+}
+.btn_submit_comentario
+{
+    color: var(--ion-color-branco1);
+    --background: var(--ion-color-verde1);
+    height: 6.4vh;
+    margin: 0 0 0 0.9vh;
+    border-radius: 0;
+}
+
+.title_avaliacoes
+{
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--ion-color-cinza1);
+}
+.button_add_comentario
+{
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--ion-color-verde1);
+    --padding-start: 2px;
+    --padding-end: 2px;
+    border-radius: 0;
+}
+.estrelas_form
+{
+    width: 60%;
+    margin: 10px auto;
+}
+.flecha_estrela
+{
+    margin: 0 10px;
+    color: var(--ion-color-verde1);
+}
+// .button_add_comentario ion-icon
+// {
+// }
+// .button_add_comentario ion-text
+// {
+// }
+.item_comentario
+{
+    margin-top: 2em;
+}
+.item_comentario .avatar_comentario
+{
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    vertical-align: top;
+}
+.item_comentario ion-avatar img
+{
+    border-radius: 50%;
+}
+.item_comentario ion-label
+{
+    display: inline-block;
+    width: 64%;
+    margin-left: 0.9em;
+}
+.item_comentario ion-label .nome_comentario
+{
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 12px;
+}
+.item_comentario ion-label .box_star_comentario
+{  
+    margin-top: 0;
+}
+.item_comentario ion-label .box_star_comentario ion-icon
+{
+    width: 10px;
+    height: 10px;
+}
+.item_comentario ion-label .msg_comentario
+{
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 12px;
+    color: var(--ion-color-branco1);
+    margin-top: 10px;
+    text-overflow: none;
+}
+.item_comentario ion-label .responder_button
+{
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    color: var(--ion-color-cinza1);
+    margin-top: 10px;
+}

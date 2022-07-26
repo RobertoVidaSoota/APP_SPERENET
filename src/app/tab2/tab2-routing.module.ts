@@ -6,6 +6,16 @@ const routes: Routes = [
   {
     path: '',
     component: Tab2Page,
+    children: [
+      {
+        path: 'pesquisar',
+        loadChildren: () => import('../shop/pesquisar/pesquisar.module').then( m => m.PesquisarPageModule)
+      },
+      {
+        path: 'produto2',
+        loadChildren: () => import('../shop/produto2/produto2.module').then( m => m.Produto2PageModule)
+      }
+    ]
   }
 ];
 

@@ -83,6 +83,7 @@ const routes: Routes = [
     loadChildren: () => import('./shop/lista-desejos/lista-desejos.module').then( m => m.ListaDesejosPageModule)
   },
   
+ 
 ];
 @NgModule({
   imports: [
