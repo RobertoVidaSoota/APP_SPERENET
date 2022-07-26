@@ -16,6 +16,10 @@ const routes: Routes = [
         path: 'produto',
         loadChildren: () => import('../shop/produto/produto.module').then
         (m => m.ProdutoPageModule)
+      },
+      {
+        path: 'buscar-categoria',
+        loadChildren: () => import('../shop/buscar-categoria/buscar-categoria.module').then( m => m.BuscarCategoriaPageModule)
       }
       // COLOCAR O "directTo" VAZIO, PARA QUE PERMITE A NÃO NAVEGAÇÃO DIRETA PARA A PÁGINA PRINCIPAL ENTRE ABAS
     ]

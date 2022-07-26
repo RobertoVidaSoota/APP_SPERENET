@@ -103,6 +103,11 @@ export class ApiService {
     return this.http.post(this.url+"/post_one_product", value)
   }
 
+  apiBuscarProdutoPorCategoria(value)
+  {
+    return this.http.post(this.url+"/post_catogory_product", value)
+  }
+
   apiBuscarProdutosNovos()
   {
     return this.http.get(this.url+"/get_new_products")

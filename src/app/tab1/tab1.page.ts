@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Route, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -29,11 +29,16 @@ export class Tab1Page {
       location.reload()
     }
   }
-
-  ionViewDidEnter()
-  {
-  }
-
   
+
+  // BUSCAR POR CATEGORIA
+  procutoCategoria(categoria)
+  {
+    let cat: NavigationExtras = 
+    {
+      queryParams: { categoria: categoria }
+    }
+    this.router.navigate(["/tabs/tab1/buscar-categoria"], cat)
+  }
   
 }

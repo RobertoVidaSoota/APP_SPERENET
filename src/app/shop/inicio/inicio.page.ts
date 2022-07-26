@@ -109,6 +109,8 @@ export class InicioPage implements OnInit {
 
   }
 
+  
+  // ROLAR ATÉ O TOP
   top()
   {
    this.content.scrollToTop(400)
