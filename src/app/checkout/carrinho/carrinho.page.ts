@@ -47,6 +47,7 @@ export class CarrinhoPage implements OnInit {
           let precoProdutoAgora;
           for(let p = 0; p < this.carrinho.length; p++)
           {
+            if(res["carrinho"][p]["status"] !== "carrinho"){ return }
             this.qtItems += this.carrinho[p]["quantidade_produto"]
             precoString = this.carrinho[p].preco_produto
             dividir = precoString.replace("R$", "")

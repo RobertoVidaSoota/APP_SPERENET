@@ -39,10 +39,11 @@ export class PagamentoPage implements OnInit {
       id_compra: this.idCompra,
       metodo: metodo
     }
-    this.api.apiEcolherPaagamento(body).subscribe((res) => 
+    this.api.apiEscolherPagamento(body).subscribe((res) => 
     {
       if(res["success"] == true)
       {
+        // INICIAR TRANSAÇÃO AQUI
         if(metodo == "pix"){ this.router.navigate(["/pix"]) }
         if(metodo == "cartao"){ this.router.navigate(["/cartao"]) }
         if(metodo == "boleto"){ this.router.navigate(["/boleto"]) }
@@ -58,6 +59,12 @@ export class PagamentoPage implements OnInit {
     })
   }
 
+
+  // INICIAR TRANSAÇÃO
+  transaction()
+  {
+    
+  }
 
   // ALERTA DE ESCOLHA
   alerta(page)
