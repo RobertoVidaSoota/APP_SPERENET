@@ -12,6 +12,7 @@ import { ApiService } from 'src/app/api/api.service';
 export class PagamentoPage implements OnInit {
 
   idCompra:number;
+  id_user;
 
   constructor(
     private router: Router,
@@ -24,6 +25,9 @@ export class PagamentoPage implements OnInit {
 
   ngOnInit()
   {
+    this.id_user = localStorage.getItem("id_usuario_logado_app") ?
+    localStorage.getItem("id_usuario_logado_app") : "";
+
     this.active.queryParams.subscribe((res) => 
     {
       this.idCompra = res["id"]
@@ -44,9 +48,16 @@ export class PagamentoPage implements OnInit {
       if(res["success"] == true)
       {
         // INICIAR TRANSAÇÃO AQUI
-        if(metodo == "pix"){ this.router.navigate(["/pix"]) }
-        if(metodo == "cartao"){ this.router.navigate(["/cartao"]) }
-        if(metodo == "boleto"){ this.router.navigate(["/boleto"]) }
+        if(this.transaction() == true)
+        {
+          if(metodo == "pix"){ this.router.navigate(["/pix"]) }
+          if(metodo == "cartao"){ this.router.navigate(["/cartao"]) }
+          if(metodo == "boleto"){ this.router.navigate(["/boleto"]) }
+        }
+        else
+        {
+          this.toastBox("Ocorreu um erro ineperado", "danger")
+        }
       }
       else
       {
@@ -61,9 +72,35 @@ export class PagamentoPage implements OnInit {
 
 
   // INICIAR TRANSAÇÃO
-  transaction()
+  transaction():boolean
   {
-    
+    let body = 
+    {
+      id_user: parseInt(this.id_user),
+      id_compra: this.idCompra
+    }
+    let retornar: boolean;
+    this.api.apiTransacaoComAsaas(body).subscribe((res) => 
+    {
+      if(res["success"] == true)
+      {
+        console.log(res)
+        retornar = true;
+      }
+      else
+      {
+        console.log(res)
+        retornar = false
+      }
+      
+    },
+    e => 
+    {
+      console.log(e)
+      retornar = false;
+    })
+
+    return retornar;
   }
 
   // ALERTA DE ESCOLHA
