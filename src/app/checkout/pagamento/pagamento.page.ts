@@ -30,7 +30,7 @@ export class PagamentoPage implements OnInit {
 
     this.active.queryParams.subscribe((res) => 
     {
-      this.idCompra = res["id"]
+      this.idCompra = parseInt(res["id"])
     })
   }
 

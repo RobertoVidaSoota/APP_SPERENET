@@ -500,7 +500,7 @@ export class Produto2Page implements OnInit {
         this.carrinhoCor = "vermelhoIcone"
         localStorage.setItem("id_compra_atual", res["id_compra"])
       }
-      if(res["carrinho"])
+      else
       {
         this.toast.create({
           message: res["msg"],
