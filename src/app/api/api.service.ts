@@ -10,26 +10,13 @@ export class ApiService {
 
   // url:string = "https://sperenet-api.herokuapp.com/api"
   url:string = "http://127.0.0.1:8000/api"
-  pagamento:string = "https://sandbox.asaas.com/api/v3/"
-  token = ""
+  // pagamento:string = "https://sandbox.asaas.com/api/v3/"
+  // token = ""
   
 
   constructor(
     private http: HttpClient
   ) { }
-
-  // PEGAR SESSÃO DA TRANSAÇÃO
-  // getSessionPagseguro()
-  // {
-  //   return this.http.get(this.url+"/get_session_pagseguro");
-  // }
-  // PAGAMENTO CARTÃO
-  // paymentCard(body:any)
-  // {    
-  //   return this.http.post(this.url, body);
-  // }
-
-
 
   // --------------------------------------------------------------------
   // ------------------------------- AUTH ------------------------------- 
@@ -206,26 +193,43 @@ export class ApiService {
     return this.http.post(this.url+"/post_pay_method", value)
   }
 
-  apiTransacaoComAsaas(value)
+  // PEGAR SESSÃO DA TRANSAÇÃO
+  getSessionPagseguro()
   {
-    return this.http.post(this.url+"/post_pay_transaction", value)
+    return this.http.get(this.url+"/get_session_pagseguro");
   }
-
-
-
-
-  // PAGAMENTO ASAAS
-
-  criarClienteAsaas(value)
+  // PAGAMENTO CARTÃO
+  paymentCard(body:any)
+  {    
+    return this.http.post(this.url, body);
+  }
+  finalPayment(bodyString, headers)
   {
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'access_token': this.token
-    });
+    return this.http.post(this.url+"/post_final_payment",
+      bodyString, { headers: headers })
+  }
+  
+
+
+
+
+  // PAGAMENTO ASAAS (interditado)
+
+  // apiTransacaoComAsaas(value)
+  // {
+  //   return this.http.post(this.url+"/post_pay_transaction", value)
+  // }
+
+  // criarClienteAsaas(value)
+  // {
+  //   let headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'access_token': this.token
+  //   });
     
-    return this.http.post(this.pagamento+"customers", value, 
-    {
-      headers: headers
-    })
-  }
+  //   return this.http.post(this.pagamento+"customers", value, 
+  //   {
+  //     headers: headers
+  //   })
+  // }
 }

@@ -49,7 +49,9 @@ export class PagamentoPage implements OnInit {
     {
       if(res["success"] == true)
       {
-        this.transaction(metodo);
+         if(metodo == "pix"){ this.router.navigate(["/pix"]) }
+         if(metodo == "cartao"){ this.router.navigate(["/cartao"]) }
+         if(metodo == "boleto"){ this.router.navigate(["/boleto"]) }
       }
       else
       {
@@ -63,70 +65,34 @@ export class PagamentoPage implements OnInit {
   }
 
 
-  // INICIAR TRANSAÇÃO
-  transaction(metodo)
-  {
-    let body = 
-    {
-      id_user: parseInt(this.id_user),
-      id_compra: this.idCompra
-    }
-    this.api.apiTransacaoComAsaas(body).subscribe((res) => 
-    {
-      if(res["success"] == true)
-      {
-        this.dadosCliente = res["data"]
-        this.toastBox("Ocorreu um erro ineperado", "danger")
-
-        // ----- TESTAR PAGAMENTO NO APP ------
-
-        let reqBody = JSON.stringify({
-          name: this.dadosCliente["name"],
-          email: this.dadosCliente["email"],
-          phone: this.dadosCliente["phone"],
-          mobilePhone: this.dadosCliente["mobilePhone"],
-          cpfCnpj: this.dadosCliente["cpfCnpj"],
-          postalCode: this.dadosCliente["postalCode"],
-          address: this.dadosCliente["address"],
-          addressNumber: this.dadosCliente["addressNumber"],
-          complement: "",
-          province: this.dadosCliente["province"],
-          externalReference: this.dadosCliente["externalReference"],
-          notificationDisabled: false,
-          additionalEmails: "",
-          municipalInscription:"",
-          stateInscription:"",
-          observations:""
-        })
-        // OUTRA CHAMADA
-        this.api.criarClienteAsaas(reqBody).subscribe((res) => 
-        {
-          console.log(res)
-          if(metodo == "pix"){ this.router.navigate(["/pix"]) }
-          if(metodo == "cartao"){ this.router.navigate(["/cartao"]) }
-          if(metodo == "boleto"){ this.router.navigate(["/boleto"]) }
-        },
-        e => 
-        {
-          console.log(e)
-          this.toastBox("Ocorreu um erro ineperado", "danger")
-        })
-        // FECHA OUTRA CHAMADA
-      }
-      else
-      {
-        this.toastBox("Ocorreu um erro ineperado", "danger")
-      }
-    },
-    e => 
-    {
-      console.log(e)
-      this.toastBox("Ocorreu um erro ineperado", "danger")
-    })
-
-    
-
-  }
+  // INICIAR TRANSAÇÃO ASAAS (INTERDITADO)
+  // transaction(metodo)
+  // {
+  //   let body = 
+  //   {
+  //     id_user: parseInt(this.id_user),
+  //     id_compra: this.idCompra
+  //   }
+  //   this.api.apiTransacaoComAsaas(body).subscribe((res) => 
+  //   {
+  //     if(res["success"] == true)
+  //     {
+  //       console.log(res)
+  //       if(metodo == "pix"){ this.router.navigate(["/pix"]) }
+  //       if(metodo == "cartao"){ this.router.navigate(["/cartao"]) }
+  //       if(metodo == "boleto"){ this.router.navigate(["/boleto"]) }
+  //     }
+  //     else
+  //     {
+  //       this.toastBox("Ocorreu um erro ineperado", "danger")
+  //     }
+  //   },
+  //   e => 
+  //   {
+  //     console.log(e)
+  //     this.toastBox("Ocorreu um erro ineperado", "danger")
+  //   })
+  // }
 
 
 

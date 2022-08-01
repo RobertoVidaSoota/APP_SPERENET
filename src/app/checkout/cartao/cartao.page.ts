@@ -29,37 +29,41 @@ export class CartaoPage implements OnInit {
     brand: "",
     token: ""
   };
+  amount = "4999";
+  products = []
 
   paymentMethod: string = 'CREDIT_CARD';
 
   constructor(
     private load: LoadingController,
     private router: Router,
-    private service: ApiService,
+    private api: ApiService,
     private ref: ChangeDetectorRef,
     private http: HttpClient,
   ) { }
 
   ngOnInit():void {
 
-    // scriptjs('https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js', () => {
-    //     this.service.getSessionPagseguro()
-    //         .subscribe(data => {
-    //             this.initSession(data);
-    //               PagSeguroDirectPayment.getPaymentMethods({
-    //                 amount: "4999",
-    //                 success: response => {
-    //                   let paymentMethods = response.paymentMethods;
-    //                   // Mapeamento de um objeto transforma em um array
-    //                   this.paymentMethods = Object.keys(paymentMethods).map((k) => 
-    //                   paymentMethods[k]);
-    //                   // Detecção de mudanças
-    //                   this.ref.detectChanges();
-    //                   //this.segment.ngAfterContentInit();
-    //                 }
-    //               });
-    //         })
-    // })
+    scriptjs('https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js', () => {
+        this.api.getSessionPagseguro()
+            .subscribe(data => 
+              {
+                this.initSession(data);
+
+                  PagSeguroDirectPayment.getPaymentMethods({
+                    amount: this.amount,
+                    success: response => {
+                      let paymentMethods = response.paymentMethods;
+                      // Mapeamento de um objeto transforma em um array
+                      this.paymentMethods = Object.keys(paymentMethods).map((k) => 
+                      paymentMethods[k]);
+                      // Detecção de mudanças
+                      this.ref.detectChanges();
+                      //this.segment.ngAfterContentInit();
+                    }
+                  });
+            })
+    })
   }
 
 
@@ -67,10 +71,12 @@ export class CartaoPage implements OnInit {
       PagSeguroDirectPayment.setSessionId(data.pag_id.sessionID);
   }
 
+
   // INICIAR PAGAMENTO
   paymentCreditCart() {
     this.getCreditCardBrand();
   }
+
 
   // PEGAR BANDEIRA
   getCreditCardBrand() {
@@ -86,6 +92,7 @@ export class CartaoPage implements OnInit {
     });
   }
   
+
   // PEGAR TOKEN DO CARTAO
   getCrediCartToken() {
     PagSeguroDirectPayment.createCardToken({
@@ -103,7 +110,8 @@ export class CartaoPage implements OnInit {
     });
   }
 
-  // ENVIAR PAGAMENTO AO SERVIDO
+
+  // ENVIAR PAGAMENTO AO SERVIDOR
   sendPayment() {
     let bodyString = JSON.stringify({
       // FORMAR OBJETO COM OS ATRIBUTOS DOS ITEMS
@@ -112,17 +120,14 @@ export class CartaoPage implements OnInit {
       hash: PagSeguroDirectPayment.getSenderHash(),
       method: this.paymentMethod,
       installments: 1,
-      total: "4999"
+      total: this.amount
     });
+
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    //  let options = new HttpParamsOptions ({
-    //    headers: headers
-    //  });
-    this.http.post("http://127.0.0.1:8000/api/post_final_payment", 
-      bodyString, { headers: headers })
-      .subscribe(response => {
+
+    this.api.finalPayment(bodyString, headers).subscribe(response => {
           console.log(JSON.stringify(response));
       }, e => {
         console.log(JSON.stringify(e))
@@ -130,97 +135,9 @@ export class CartaoPage implements OnInit {
       // .error((error:any) => Observable.throw(error.json().error || 'Serve Erro'));
 
   }
-
-
   
   
-  
-  
-
-
-  // PAGAR COM ASAAS
-  payAsaas()
-  {
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'access_token': ''
-    });
-
-    let reqBody = JSON.stringify(
-      {
-        "customer": "cus_000004885397",
-        "billingType": "CREDIT_CARD",
-        "dueDate": "2017-03-15",
-        "value": 3999.00,
-        "description": "Pedido 056984",
-        "externalReference": "056984",
-        "creditCard": {
-            "holderName": "Robertinho",
-            "number": "5162306219378829",
-            "expiryMonth": "05",
-            "expiryYear": "2021",
-            "ccv": "318"
-        },
-        "creditCardHolderInfo": {
-            "name": "Robertinho",
-            "email": "robertinho1@gmail.com",
-            "cpfCnpj": "24971563792",
-            "postalCode": "01310-000",
-            "addressNumber": "150",
-            "addressComplement": null,
-            "phone": "4738010919",
-            "mobilePhone": "4799376637"
-        },
-        "creditCardToken": ""
-    }
-    )
-
-     this.http.post("https://sandbox.asaas.com/api/v3/payments", reqBody, 
-     { headers: headers })
-     .subscribe(response => 
-      {
-        console.log(JSON.stringify(response));
-      })
-  }
-
-
-  // NOVO CLIENTE
-  criarClienteAsaas()
-  {
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'access_token': ''
-    });
-
-    let reqBody = JSON.stringify({
-        name:"Robertinho",
-        email:"robertinho1@gmail.com",
-        phone:"4738010919",
-        mobilePhone:"4799376637",
-        cpfCnpj:"24971563792",
-        postalCode:"01310-000",
-        address:"Av. Paulista",
-        addressNumber:"150",
-        complement:"Sala201",
-        province:"Centro",
-        externalReference:"12987382",
-        notificationDisabled:false,
-        additionalEmails:"marcelo.almeida2@gmail.com, marcelo.almeida3@gmail.com",
-        municipalInscription:"46683695908",
-        stateInscription:"646681195275",
-        observations:""
-    })
-
-     this.http.post("https://sandbox.asaas.com/api/v3/customers", reqBody, 
-     { headers: headers })
-     .subscribe(response => 
-      {
-        console.log(response);
-      })
-  }
-  
-  
-  
+  // MENSSAGENS
   myPopover()
   {
     this.isOpen = !this.isOpen;
