@@ -8,8 +8,10 @@ import { HttpHeaders, HttpParamsOptions } from '@angular/common/http';
 })
 export class ApiService {
 
-  url:string = "https://sperenet-api.herokuapp.com/api"
-  // url:string = "http://127.0.0.1:8000/api"
+  // url:string = "https://sperenet-api.herokuapp.com/api"
+  url:string = "http://127.0.0.1:8000/api"
+  pagamento:string = "https://sandbox.asaas.com/api/v3/"
+  token = ""
   
 
   constructor(
@@ -207,5 +209,23 @@ export class ApiService {
   apiTransacaoComAsaas(value)
   {
     return this.http.post(this.url+"/post_pay_transaction", value)
+  }
+
+
+
+
+  // PAGAMENTO ASAAS
+
+  criarClienteAsaas(value)
+  {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'access_token': this.token
+    });
+    
+    return this.http.post(this.pagamento+"customers", value, 
+    {
+      headers: headers
+    })
   }
 }

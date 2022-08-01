@@ -14,6 +14,8 @@ export class PagamentoPage implements OnInit {
   idCompra:number;
   id_user;
 
+  dadosCliente = {};
+
   constructor(
     private router: Router,
     private load: LoadingController,
@@ -47,17 +49,7 @@ export class PagamentoPage implements OnInit {
     {
       if(res["success"] == true)
       {
-        // INICIAR TRANSAÇÃO AQUI
-        if(this.transaction() == true)
-        {
-          if(metodo == "pix"){ this.router.navigate(["/pix"]) }
-          if(metodo == "cartao"){ this.router.navigate(["/cartao"]) }
-          if(metodo == "boleto"){ this.router.navigate(["/boleto"]) }
-        }
-        else
-        {
-          this.toastBox("Ocorreu um erro ineperado", "danger")
-        }
+        this.transaction(metodo);
       }
       else
       {
@@ -72,36 +64,72 @@ export class PagamentoPage implements OnInit {
 
 
   // INICIAR TRANSAÇÃO
-  transaction():boolean
+  transaction(metodo)
   {
     let body = 
     {
       id_user: parseInt(this.id_user),
       id_compra: this.idCompra
     }
-    let retornar: boolean;
     this.api.apiTransacaoComAsaas(body).subscribe((res) => 
     {
       if(res["success"] == true)
       {
-        console.log(res)
-        retornar = true;
+        this.dadosCliente = res["data"]
+        this.toastBox("Ocorreu um erro ineperado", "danger")
+
+        // ----- TESTAR PAGAMENTO NO APP ------
+
+        let reqBody = JSON.stringify({
+          name: this.dadosCliente["name"],
+          email: this.dadosCliente["email"],
+          phone: this.dadosCliente["phone"],
+          mobilePhone: this.dadosCliente["mobilePhone"],
+          cpfCnpj: this.dadosCliente["cpfCnpj"],
+          postalCode: this.dadosCliente["postalCode"],
+          address: this.dadosCliente["address"],
+          addressNumber: this.dadosCliente["addressNumber"],
+          complement: "",
+          province: this.dadosCliente["province"],
+          externalReference: this.dadosCliente["externalReference"],
+          notificationDisabled: false,
+          additionalEmails: "",
+          municipalInscription:"",
+          stateInscription:"",
+          observations:""
+        })
+        // OUTRA CHAMADA
+        this.api.criarClienteAsaas(reqBody).subscribe((res) => 
+        {
+          console.log(res)
+          if(metodo == "pix"){ this.router.navigate(["/pix"]) }
+          if(metodo == "cartao"){ this.router.navigate(["/cartao"]) }
+          if(metodo == "boleto"){ this.router.navigate(["/boleto"]) }
+        },
+        e => 
+        {
+          console.log(e)
+          this.toastBox("Ocorreu um erro ineperado", "danger")
+        })
+        // FECHA OUTRA CHAMADA
       }
       else
       {
-        console.log(res)
-        retornar = false
+        this.toastBox("Ocorreu um erro ineperado", "danger")
       }
-      
     },
     e => 
     {
       console.log(e)
-      retornar = false;
+      this.toastBox("Ocorreu um erro ineperado", "danger")
     })
 
-    return retornar;
+    
+
   }
+
+
+
 
   // ALERTA DE ESCOLHA
   alerta(page)
