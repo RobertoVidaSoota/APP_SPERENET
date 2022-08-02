@@ -100,49 +100,27 @@
   <ion-popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
     <ng-template>
       <ion-content>
-        <!-- <p (click)="alterarCarrinho()"
-        class="link-alterar">
-          <ion-icon name="create-outline"></ion-icon>
-          <span>
-            Alterar pedido
-          </span>
-        </p> -->
 
+        <div *ngFor="let p of products">
+          <ion-item class="item-detalhes" button>
+            <ion-thumbnail slot="start">
+              <img src="{{ p.link_imagem }}" />
+            </ion-thumbnail>
+  
+            <ion-label>
+              <h3> 
+                 {{ p.nome_produto }}
+              </h3>
+              <p class="preco-item"> {{ p.preco_produto }} </p>
+            </ion-label>
+        
+            <h2 slot="end">
+              {{ p.quantidade_produto }}
+            </h2>
+          </ion-item>
+        </div>
+        
 
-        <ion-item class="item-detalhes" button>
-          <ion-thumbnail slot="start">
-            <img src="../../../assets/NOTEBOOK_1.png" />
-          </ion-thumbnail>
-
-          <ion-label>
-            <h3> 
-              Notebook Gamer 
-            </h3>
-            <p class="preco-item"> R$ 7.499,00 </p>
-          </ion-label>
-      
-          <h2 slot="end">
-            1
-          </h2>
-        </ion-item>
-
-
-        <ion-item class="item-detalhes" button>
-          <ion-thumbnail slot="start">
-            <img src="../../../assets/CAIXA_DE_SOM_1.png" />
-          </ion-thumbnail>
-
-          <ion-label>
-            <h3> 
-              Caixa de som
-            </h3>
-            <p class="preco-item"> R$ 338,99 </p>
-          </ion-label>
-      
-          <h2 slot="end">
-            2
-          </h2>
-        </ion-item>
 
       </ion-content>
     </ng-template>
