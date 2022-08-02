@@ -198,11 +198,6 @@ export class ApiService {
   {
     return this.http.get(this.url+"/get_session_pagseguro");
   }
-  // PAGAMENTO CARTÃO
-  paymentCard(body:any)
-  {    
-    return this.http.post(this.url, body);
-  }
   finalPayment(bodyString, headers)
   {
     return this.http.post(this.url+"/post_final_payment",

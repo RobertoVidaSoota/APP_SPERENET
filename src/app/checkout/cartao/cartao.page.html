@@ -23,38 +23,67 @@
   <ion-row>
 
     <ion-col size="12">
-      <input type="text" placeholder="Nome">
+      <input [(ngModel)]="creditCard.name"
+      maxlength="100"
+      type="text" placeholder="Nome">
     </ion-col>
 
-    <!-- <ion-col size="12">
-      <input type="text" placeholder="CPF" inputmode="numeric">
-    </ion-col> -->
-
     <ion-col size="12">
-      <input type="text" placeholder="Número do cartão" inputmode="numeric"
+      <input [(ngModel)]="creditCard.num"
+      (blur)="getCreditCardBrand()"
+      maxlength="16"
+      type="text" placeholder="Número do cartão" inputmode="numeric"
       class="numero_cartao">
     </ion-col>
 
     <ion-col size="6">
-      <input type="number" placeholder="Código" inputmode="numeric">
+      <input [(ngModel)]="creditCard.cvv"
+      maxlength="3"
+      type="text" placeholder="Código" inputmode="numeric">
     </ion-col>
 
     <ion-col size="3">
-      <input type="text" placeholder="Mês" inputmode="numeric">
+      <input [(ngModel)]="creditCard.monthExp"
+      maxlength="2"
+      type="text" placeholder="Mês ex:08" inputmode="numeric">
     </ion-col>
 
     <ion-col size="3">
-      <input type="text" placeholder="Ano" inputmode="numeric">
+      <input [(ngModel)]="creditCard.yearExp"
+      maxlength="4"
+      type="text" placeholder="Ano ex:2080" inputmode="numeric">
     </ion-col>
 
     <ion-col size="12">
-      <input type="number" placeholder="Pacelas" inputmode="numeric">
+      <select
+      [(ngModel)]="installments"
+      (change)="getInstallmentsCompra()"
+      maxlength="2"
+      type="text" placeholder="Pacelas" inputmode="numeric"
+      >
+        <option value="1">1 vezes</option>
+        <option value="2">2 vezes</option>
+        <option value="3">3 vezes</option>
+        <option value="4">4 vezes</option>
+        <option value="5">5 vezes</option>
+        <option value="6">6 vezes</option>
+        <option value="7">8 vezes</option>
+        <option value="8">8 vezes</option>
+        <option value="9">9 vezes</option>
+        <option value="10">10 vezes</option>
+        <option value="11">11 vezes</option>
+        <option value="12">12 vezes</option>
+      </select>
     </ion-col>
 
   </ion-row>
 
+  <p *ngIf="valorPorParcela" class="parcelado">
+    {{ installments }} vezes de {{ valorPorParcela }}
+  </p>
 
-  <button (click)="payAsaas()">
+
+  <button (click)="paymentCreditCart()">
     Confirmar
   </button>
 
@@ -64,28 +93,29 @@
   </b>
 
 
+
+  
   <!-- POPOVER -->
   
-  <ion-popover [isOpen]="isOpen" (didDismiss)="myPopover()">
+  <ion-popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
     <ng-template>
       <ion-content>
-
-
-        <p class="link-alterar" routerLink="/carrinho">
+        <!-- <p (click)="alterarCarrinho()"
+        class="link-alterar">
           <ion-icon name="create-outline"></ion-icon>
           <span>
             Alterar pedido
           </span>
-        </p>
+        </p> -->
 
 
         <ion-item class="item-detalhes" button>
-          <ion-thumbnail slot="start" routerLink="/tabs/tab1/produto">
+          <ion-thumbnail slot="start">
             <img src="../../../assets/NOTEBOOK_1.png" />
           </ion-thumbnail>
 
           <ion-label>
-            <h3 routerLink="/tabs/tab1/produto"> 
+            <h3> 
               Notebook Gamer 
             </h3>
             <p class="preco-item"> R$ 7.499,00 </p>
@@ -98,12 +128,12 @@
 
 
         <ion-item class="item-detalhes" button>
-          <ion-thumbnail slot="start" routerLink="/tabs/tab1/produto">
+          <ion-thumbnail slot="start">
             <img src="../../../assets/CAIXA_DE_SOM_1.png" />
           </ion-thumbnail>
 
           <ion-label>
-            <h3 routerLink="/tabs/tab1/produto"> 
+            <h3> 
               Caixa de som
             </h3>
             <p class="preco-item"> R$ 338,99 </p>
