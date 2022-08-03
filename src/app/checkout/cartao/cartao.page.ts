@@ -32,7 +32,8 @@ export class CartaoPage implements OnInit {
     token: "",
     name: ""
   };
-  installments:number = 1
+  installments:number = 1;
+  cpf = "";
 
   products = [];
   amount;
@@ -40,7 +41,7 @@ export class CartaoPage implements OnInit {
   valueCart;
   valorPorParcela;
 
-  valotTotalDetalhes:string;
+  valorTotalDetalhes:string;
   valorParcelaMostrar:string;
 
 
@@ -69,11 +70,24 @@ export class CartaoPage implements OnInit {
     {
       this.products = res["carrinho"]
       this.valueCart = res["carrinho"][0]["valor_total"]
-      this.valotTotalDetalhes = this.valueCart.toLocaleString('pt-br', 
+      this.valorTotalDetalhes = this.valueCart.toLocaleString('pt-br', 
       {
         style: "currency",
         currency: "BRL"
       });
+      let precoString;
+      let dividir;
+      let tiraVirgula;
+      let flutuar;
+      for(let i = 0; i < this.products.length; i++)
+      {
+        precoString = this.products[i].preco_produto
+        dividir = precoString.replace("R$", "")
+        dividir = dividir.replace(".", "")
+        tiraVirgula = dividir.replace(",", ".")
+        flutuar = parseFloat(tiraVirgula)
+        this.products[i]["preco_float"] = flutuar
+      }
 
     scriptjs('https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js', () => {
       this.api.getSessionPagseguro()
@@ -187,13 +201,18 @@ export class CartaoPage implements OnInit {
   // ENVIAR PAGAMENTO AO SERVIDOR
   sendPayment()
   {
+    // FORMAR OBJETO COM OS ATRIBUTOS DOS ITEMS
     let bodyString = JSON.stringify({
-      // FORMAR OBJETO COM OS ATRIBUTOS DOS ITEMS
-      items: "(roteador, mouse)",
+      id_compra: this.products[0].id_compra,
+      id_user: this.id_user,
+      name: this.creditCard.name,
+      cpf: this.cpf,
+      items: this.products,
       token: this.creditCard.token,
       hash: PagSeguroDirectPayment.getSenderHash(),
       method: this.paymentMethod,
-      installments: this.installments,
+      parcelas: this.installments,
+      valorPorParcela: this.valorPorParcela,
       total: this.amount
     });
 
@@ -201,12 +220,25 @@ export class CartaoPage implements OnInit {
       'Content-Type': 'application/json'
     });
 
-    this.api.finalPayment(bodyString, headers).subscribe(response => {
-          console.log(JSON.stringify(response));
+    this.myLoading().then(() => 
+    {
+      this.api.finalPayment(bodyString, headers).subscribe(res => 
+      {
+          if(res["success"] == true)
+          {
+            this.toastBox("Compra realizada com successo", "success")
+            this.router.navigate(["/tabs/tab3/compras"])
+          }
+          else
+          {
+            this.toastBox("Ocorreu um erro, tente novamente", "danger")
+          }
       }, e => {
         console.log(JSON.stringify(e))
         this.toastBox("Ocorreu um erro, tente novamente", "danger")
       })
+    })
+    
   }
   
   
@@ -220,9 +252,9 @@ export class CartaoPage implements OnInit {
 
   myLoading()
   {
-    let myLoad = this.load.create({
+    return this.load.create({
       backdropDismiss: false,
-      duration: 100,
+      duration: 1000,
       cssClass: "load-class"
     }).then(res => res.present())
   }
