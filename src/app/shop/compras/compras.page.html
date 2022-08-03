@@ -30,7 +30,7 @@
   <div *ngFor="let compraTal of compras"
   class="item-compra">
 
-    <ion-row *ngFor="let produtoTal of produto1">
+    <ion-row *ngFor="let produtoTal of compraTal.produto1">
       <!-- IMAGEM DO PRODUTO -->
       <ion-col size="4">
         <ion-thumbnail>
@@ -48,13 +48,14 @@
           {{ produtoTal.preco_produto }} 
         </p>
       </ion-col>
-    </ion-row> 
-      
-    <ion-row>
-        <p (click)="myPopover()" class="ver_mais">
+
+      <ion-col size="10">
+        <p (click)="verMais(compraTal.verMais)" class="ver_mais">
           ver mais.
         </p>
-    </ion-row>
+      </ion-col>
+    </ion-row> 
+   
 
     <ion-row>
       <p>
@@ -115,12 +116,13 @@
   </div>
 
 
-  <!-- JANELA PARA VER MAIS PRODUTOS -->
-  <ion-popover [isOpen]="isOpen" (didDismiss)="myPopover()">
+
+   <!-- JANELA PARA VER MAIS PRODUTOS -->
+   <ion-popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
     <ng-template>
       <ion-content>
 
-        <div *ngFor="let p of verMais">
+        <div *ngFor="let p of verMaisProdutos">
           <ion-item class="item-detalhes" button>
             <ion-thumbnail slot="start">
               <img src="{{ p.link_imagem }}" />

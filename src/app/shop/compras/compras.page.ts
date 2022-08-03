@@ -15,8 +15,7 @@ export class ComprasPage implements OnInit {
   checkLogin = "";
 
   compras:any = [];
-  produto1 = [];
-  verMais = [];
+  verMaisProdutos = [];
 
   isOpen:boolean = false;
 
@@ -66,9 +65,21 @@ export class ComprasPage implements OnInit {
         {
           if(res["compras"][position]["status"] !== "carrinho")
           {
-            this.compras.push(res["compras"][position])
-            this.produto1[position] = this.compras[position].produtos[0]
-            this.verMais[position] = this.compras[position].produtos[position+1]
+            this.compras.push(res["compras"][position])            
+          }
+        }
+        for(let position = 0; position < this.compras.length; position++)
+        {
+          this.compras[position]["produto1"] = []
+          this.compras[position]["verMais"] = []
+
+          for(let position2 = 0; position2 < 1; position2++)
+          {
+            this.compras[position]["produto1"][position2] = this.compras[position].produtos[0]
+          }
+          for(let position3 = 0; position3 < this.compras[position].produtos.length-1; position3++)
+          {
+            this.compras[position]["verMais"][position3] = this.compras[position].produtos[position3+1]
           }
         }
       },
@@ -79,7 +90,18 @@ export class ComprasPage implements OnInit {
     }
   }
 
+
+  // VER OS OUTROS PRODUTOS DA COMPRA
+  verMais(produtos)
+  {
+    this.verMaisProdutos = produtos
+    setTimeout(() => 
+    {
+      this.isOpen = true;
+    }, 200)
+  }
   
+  // ABRIR E FECHA POPOVER
   myPopover()
   {
     this.isOpen = !this.isOpen;

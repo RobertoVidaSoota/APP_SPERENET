@@ -220,10 +220,11 @@ export class CartaoPage implements OnInit {
       'Content-Type': 'application/json'
     });
 
-    this.myLoading().then(() => 
-    {
+    
       this.api.finalPayment(bodyString, headers).subscribe(res => 
       {
+        this.myLoading().then(() => 
+        {
           if(res["success"] == true)
           {
             this.toastBox("Compra realizada com successo", "success")
@@ -233,11 +234,12 @@ export class CartaoPage implements OnInit {
           {
             this.toastBox("Ocorreu um erro, tente novamente", "danger")
           }
+        })
       }, e => {
         console.log(JSON.stringify(e))
         this.toastBox("Ocorreu um erro, tente novamente", "danger")
       })
-    })
+    
     
   }
   
