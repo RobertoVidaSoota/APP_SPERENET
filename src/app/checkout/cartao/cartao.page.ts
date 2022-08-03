@@ -40,6 +40,10 @@ export class CartaoPage implements OnInit {
   valueCart;
   valorPorParcela;
 
+  valotTotalDetalhes:string;
+  valorParcelaMostrar:string;
+
+
   paymentMethod: string = 'CREDIT_CARD';
 
   constructor(
@@ -65,6 +69,11 @@ export class CartaoPage implements OnInit {
     {
       this.products = res["carrinho"]
       this.valueCart = res["carrinho"][0]["valor_total"]
+      this.valotTotalDetalhes = this.valueCart.toLocaleString('pt-br', 
+      {
+        style: "currency",
+        currency: "BRL"
+      });
 
     scriptjs('https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js', () => {
       this.api.getSessionPagseguro()
@@ -123,8 +132,11 @@ export class CartaoPage implements OnInit {
         this.amount = response.installments[brand][i].totalAmount;
         this.valorPorParcela = 
           response.installments[brand][i].installmentAmount;
-        
-        
+        this.valorParcelaMostrar = this.valorPorParcela.toLocaleString('pt-br', 
+        {
+          style: "currency",
+          currency: "BRL"
+        });
         this.ref.detectChanges();
       } 
     })

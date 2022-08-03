@@ -172,7 +172,10 @@ ion-popover::part(content)
 {
     border: 1px solid var(--ion-color-verde2);
 }
-
+ion-popover ion-content
+{
+    --padding-bottom: 15px;
+}
 // CLASSES
 
 .titulo1

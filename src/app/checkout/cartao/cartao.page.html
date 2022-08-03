@@ -79,7 +79,7 @@
   </ion-row>
 
   <p *ngIf="valorPorParcela" class="parcelado">
-    {{ installments }} vezes de {{ valorPorParcela }}
+    {{ installments }} vezes de <b>{{ valorParcelaMostrar }}</b>
   </p>
 
 
@@ -97,9 +97,17 @@
   
   <!-- POPOVER -->
   
-  <ion-popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
+  <ion-popover [isOpen]="isOpen" (didDismiss)="isOpen = false"
+  alignment="top">
     <ng-template>
       <ion-content>
+
+        <div>
+          <ion-button (click)="myPopover()" fill="clear" 
+          class="close_pop">
+            x
+          </ion-button>
+        </div>
 
         <div *ngFor="let p of products">
           <ion-item class="item-detalhes" button>
@@ -120,7 +128,10 @@
           </ion-item>
         </div>
         
-
+        
+        <div class="valor_total_detalhes">
+          Total: <b>{{ valotTotalDetalhes }}</b>
+        </div>
 
       </ion-content>
     </ng-template>

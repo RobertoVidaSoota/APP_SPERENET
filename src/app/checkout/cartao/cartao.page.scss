@@ -50,6 +50,20 @@ button
     color: var(--ion-color-cinza1);
     cursor: pointer;
 }
+.valor_total_detalhes
+{
+    width: 82%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 18px;
+    color: var(--ion-color-branco1);
+}
+.close_pop
+{
+    color: var(--ion-color-cinza1);
+}
 ion-icon
 {
     display: inline-block;
