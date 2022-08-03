@@ -50,7 +50,7 @@ export class PagamentoPage implements OnInit {
       if(res["success"] == true)
       {
          if(metodo == "pix"){ this.router.navigate(["/pix"]) }
-         if(metodo == "cartao"){ this.router.navigate(["/cartao"]) }
+         if(metodo == "cartão"){ this.router.navigate(["/cartao"]) }
          if(metodo == "boleto"){ this.router.navigate(["/boleto"]) }
       }
       else
