@@ -193,7 +193,7 @@ export class ApiService {
     return this.http.post(this.url+"/post_pay_method", value)
   }
 
-  // PEGAR SESSÃO DA TRANSAÇÃO
+  // PAGAR PAGSEGURO
   getSessionPagseguro()
   {
     return this.http.get(this.url+"/get_session_pagseguro");
@@ -201,6 +201,11 @@ export class ApiService {
   finalPayment(bodyString, headers)
   {
     return this.http.post(this.url+"/post_final_payment",
+      bodyString, { headers: headers })
+  }
+  boletoPayment(bodyString, headers)
+  {
+    return this.http.post(this.url+"/post_boleto_payment",
       bodyString, { headers: headers })
   }
   

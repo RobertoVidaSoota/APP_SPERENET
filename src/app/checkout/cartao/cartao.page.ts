@@ -1,12 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/api/api.service';
 import scriptjs from 'scriptjs';
 import { HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators'
 
 
 declare let PagSeguroDirectPayment;
@@ -239,8 +236,6 @@ export class CartaoPage implements OnInit {
         console.log(JSON.stringify(e))
         this.toastBox("Ocorreu um erro, tente novamente", "danger")
       })
-    
-    
   }
   
   
