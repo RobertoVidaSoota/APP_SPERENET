@@ -45,6 +45,8 @@ export class BoletoPage implements OnInit {
     {
       id_user: this.id_user
     }
+
+    // PEGAR PRODUTOS DO CARRINHO
     this.api.apiPegarCarrinho(value).subscribe((res) => 
     {
       this.products = res["carrinho"]
@@ -68,6 +70,7 @@ export class BoletoPage implements OnInit {
         this.products[i]["preco_float"] = flutuar
       }
 
+    // PEGAR A BIBLIOTECA DO PAGSEGURO
     scriptjs('https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js', () => {
       this.api.getSessionPagseguro()
           .subscribe(data => 
@@ -82,6 +85,7 @@ export class BoletoPage implements OnInit {
                     this.paymentMethods = Object.keys(paymentMethods).map((k) => 
                     paymentMethods[k]);
 
+                    this.sendPayment()
                     // Detecção de mudanças
                     this.ref.detectChanges();
                     //this.segment.ngAfterContentInit();
