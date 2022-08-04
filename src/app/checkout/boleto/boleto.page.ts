@@ -85,7 +85,6 @@ export class BoletoPage implements OnInit {
                     this.paymentMethods = Object.keys(paymentMethods).map((k) => 
                     paymentMethods[k]);
 
-                    this.sendPayment()
                     // Detecção de mudanças
                     this.ref.detectChanges();
                     //this.segment.ngAfterContentInit();
@@ -127,25 +126,27 @@ export class BoletoPage implements OnInit {
       'Content-Type': 'application/json'
     });
 
-    
+    this.myLoading().then(() => 
+    {
       this.api.boletoPayment(bodyString, headers).subscribe(res => 
       {
-        this.myLoading().then(() => 
-        {
+        
           if(res["success"] == true)
           {
             this.toastBox("Compra realizada com successo", "success")
+            localStorage.setItem("reload", "1")
             this.router.navigate(["/tabs/tab3/compras"])
           }
           else
           {
             this.toastBox("Ocorreu um erro, tente novamente", "danger")
           }
-        })
+        
       }, e => {
         console.log(JSON.stringify(e))
         this.toastBox("Ocorreu um erro, tente novamente", "danger")
       })
+    })
   }
 
 

@@ -1,8 +1,17 @@
-<ion-content>
+<ion-header>
+  <ion-toolbar>
 
-  <h2 class="titulo1">
-    Cole esse código em uma plataforma de pagamentos.
-  </h2>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+      Boleto
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
 
   <p class="detalhes" (click)="myPopover()">
     <ion-icon name="information-circle"></ion-icon>
@@ -11,14 +20,17 @@
     </span>
   </p>
 
+  <h2 class="titulo1">
+    Cole esse código em uma plataforma de pagamentos.
+  </h2>
+
   <div class="codigo_boleto no-centro-dentro">
     <p class="no-centro-dentro">
-      22121.02022 22222.121222 14211.110001  9 
-      11110000011100
+      Código aparece aqui.
     </p>
   </div>
 
-  <ion-item class="item-boleto" button>
+  <!-- <ion-item class="item-boleto" button>
     <ion-icon slot="start" name="share-social"></ion-icon>
     <ion-label>Compartilhar</ion-label>
   </ion-item>
@@ -26,10 +38,10 @@
   <ion-item class="item-boleto" button>
     <ion-icon slot="start" name="mail"></ion-icon>
     <ion-label>Enviar por e-mail cadastrado</ion-label>
-  </ion-item>
+  </ion-item> -->
 
-  <button (click)="myLoading()">
-    Copiar
+  <button (click)="sendPayment()">
+    Gerar Boleto
   </button>
 
   <b class="voltar-inicio no-centro-dentro" routerLink="/tabs/tab1/inicio">
@@ -41,53 +53,41 @@
   
   <!-- POPOVER PEDIDO -->
   
-  <ion-popover [isOpen]="isOpen" (didDismiss)="myPopover()">
+  <ion-popover [isOpen]="isOpen" (didDismiss)="isOpen = false"
+  alignment="top">
     <ng-template>
       <ion-content>
 
+        <div>
+          <ion-button (click)="myPopover()" fill="clear" 
+          class="close_pop">
+            x
+          </ion-button>
+        </div>
 
-        <p class="link-alterar" routerLink="/carrinho">
-          <ion-icon name="create-outline"></ion-icon>
-          <span>
-            Alterar pedido
-          </span>
-        </p>
-
-
-        <ion-item class="item-detalhes" button>
-          <ion-thumbnail slot="start" routerLink="/tabs/tab1/produto">
-            <img src="../../../assets/NOTEBOOK_1.png" />
-          </ion-thumbnail>
-
-          <ion-label>
-            <h3 routerLink="/tabs/tab1/produto"> 
-              Notebook Gamer 
-            </h3>
-            <p class="preco-item"> R$ 7.499,00 </p>
-          </ion-label>
-      
-          <h2 slot="end">
-            1
-          </h2>
-        </ion-item>
-
-
-        <ion-item class="item-detalhes" button>
-          <ion-thumbnail slot="start" routerLink="/tabs/tab1/produto">
-            <img src="../../../assets/CAIXA_DE_SOM_1.png" />
-          </ion-thumbnail>
-
-          <ion-label>
-            <h3 routerLink="/tabs/tab1/produto"> 
-              Caixa de som
-            </h3>
-            <p class="preco-item"> R$ 338,99 </p>
-          </ion-label>
-      
-          <h2 slot="end">
-            2
-          </h2>
-        </ion-item>
+        <div *ngFor="let p of products">
+          <ion-item class="item-detalhes" button>
+            <ion-thumbnail slot="start">
+              <img src="{{ p.link_imagem }}" />
+            </ion-thumbnail>
+  
+            <ion-label>
+              <h3> 
+                 {{ p.nome_produto }}
+              </h3>
+              <p class="preco-item"> {{ p.preco_produto }} </p>
+            </ion-label>
+        
+            <h2 slot="end">
+              {{ p.quantidade_produto }}
+            </h2>
+          </ion-item>
+        </div>
+        
+        
+        <div class="valor_total_detalhes">
+          Total: <b>{{ valotTotalDetalhes }}</b>
+        </div>
 
       </ion-content>
     </ng-template>

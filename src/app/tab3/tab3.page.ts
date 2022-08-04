@@ -17,6 +17,12 @@ export class Tab3Page {
   ngOnInit()
   {
     this.router.navigate(["/tabs/tab3/compras"])
+
+    if(localStorage.getItem("reload") == '1')
+    {
+      localStorage.setItem("reload", "0")
+      location.reload()
+    }
   }
 
 }

@@ -220,25 +220,26 @@ export class CartaoPage implements OnInit {
       'Content-Type': 'application/json'
     });
 
-    
+    this.myLoading().then(() => 
+    {
       this.api.finalPayment(bodyString, headers).subscribe(res => 
       {
-        this.myLoading().then(() => 
-        {
+        
           if(res["success"] == true)
           {
             this.toastBox("Compra realizada com successo", "success")
+            localStorage.setItem("reload", "1")
             this.router.navigate(["/tabs/tab3/compras"])
           }
           else
           {
             this.toastBox("Ocorreu um erro, tente novamente", "danger")
           }
-        })
       }, e => {
         console.log(JSON.stringify(e))
         this.toastBox("Ocorreu um erro, tente novamente", "danger")
       })
+    })
   }
   
   

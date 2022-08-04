@@ -8,7 +8,7 @@ ion-content
 }
 .titulo1
 {
-    margin-bottom: 2.2em;
+    margin-top: 2.2em;
 }
 .voltar-inicio
 {
@@ -27,6 +27,7 @@ button
     font-size: 14px;
     line-height: 17px;
     color: var(--ion-color-cinza1);
+    cursor: pointer;
 }
 .detalhes ion-icon
 {
@@ -36,6 +37,20 @@ button
     font-size: 14px;
     margin-right: 0.6em;
     vertical-align: middle;
+}
+.valor_total_detalhes
+{
+    width: 82%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 18px;
+    color: var(--ion-color-branco1);
+}
+.close_pop
+{
+    color: var(--ion-color-cinza1);
 }
 span
 {
