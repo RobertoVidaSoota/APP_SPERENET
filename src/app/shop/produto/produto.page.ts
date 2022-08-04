@@ -17,6 +17,7 @@ export class ProdutoPage{
   checkLogin = "";
 
   dadosProdutos = [];
+  prestacaoProduto = false;
   especificacoes = [];
   comentarios = [];
   inputPostComentario = "";

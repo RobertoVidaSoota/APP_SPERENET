@@ -28,6 +28,7 @@ export class InicioPage implements OnInit {
   novosProdutos = [];
   produtosPopulares = [];
   maisPopulares = [];
+  prestacaoProduto = false;
 
   constructor(
     private router: Router,

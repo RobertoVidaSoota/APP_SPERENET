@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
 
-    <ion-searchbar [(ngModel)]="inputEnviarPesquisa" (keyup)="pesquisarProduto($event)"
+    <ion-searchbar (keyup)="pesquisarProduto($event)"
     placeholder="gabinete, notebooks..." #search class="barra-pesquisa"></ion-searchbar>
 
   </ion-toolbar>

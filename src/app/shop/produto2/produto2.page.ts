@@ -17,6 +17,7 @@ export class Produto2Page implements OnInit {
   checkLogin = "";
 
   dadosProdutos = [];
+  prestacaoProduto = false;
   especificacoes = [];
   comentarios = [];
   inputPostComentario = "";

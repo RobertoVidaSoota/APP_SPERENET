@@ -12,6 +12,7 @@ export class BuscarCategoriaPage implements OnInit {
 
   produtos = [];
   NomeCategoria = "";
+  prestacaoProduto = false;
 
   constructor(
     private api: ApiService,
