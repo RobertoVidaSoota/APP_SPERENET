@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/api/api.service';
 
@@ -34,6 +34,7 @@ export class ProdutoPage{
   constructor(
     private navCtrl: NavController,
     private actRoute: ActivatedRoute,
+    private router: Router,
     private toast: ToastController,
     private api: ApiService
   )
@@ -521,6 +522,14 @@ export class ProdutoPage{
         duration: 2000
       }).then((t) => { t.present() })
     })
+  }
+
+
+  // COMPRAR PRODUTO
+  comprar(id_produto)
+  {
+    this.addCart(id_produto)
+    this.router.navigate(["/carrinho"])
   }
 
 

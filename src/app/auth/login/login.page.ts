@@ -75,7 +75,7 @@ export class LoginPage implements OnInit {
       }
     }, e => 
     {
-      this.toast("Ocorreu um erro inesperado", "danger")
+      this.toast(JSON.stringify(e), "danger")
     })
   }
 
