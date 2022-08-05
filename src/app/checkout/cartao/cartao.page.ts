@@ -5,6 +5,10 @@ import { ApiService } from 'src/app/api/api.service';
 import scriptjs from 'scriptjs';
 import { HttpHeaders } from '@angular/common/http';
 
+// num: "4111111111111111",
+// cvv: "123",
+// monthExp: "12",
+// yearExp: "2030",
 
 declare let PagSeguroDirectPayment;
 
@@ -21,10 +25,10 @@ export class CartaoPage implements OnInit {
 
   paymentMethods: Array<any> = [];
   creditCard = {
-    num: "4111111111111111",
-    cvv: "123",
-    monthExp: "12",
-    yearExp: "2030",
+    num: "",
+    cvv: "",
+    monthExp: "",
+    yearExp: "",
     brand: "",
     token: "",
     name: ""
