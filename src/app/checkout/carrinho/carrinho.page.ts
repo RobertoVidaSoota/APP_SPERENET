@@ -25,7 +25,10 @@ export class CarrinhoPage implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit()
+  ngOnInit(){}
+
+
+  ionViewWillEnter()
   {
     // VERIFICAR ID DO USUÁRIO LOGADO
     this.id_user = localStorage.getItem("id_usuario_logado_app") ?
@@ -70,6 +73,9 @@ export class CarrinhoPage implements OnInit {
             this.carrinho[p].preco_produto = precoProdutoAgora
           }
           this.id_compra = res["carrinho"][0]["fk_id_compras"]
+        }else
+        {
+          this.carrinho = []
         }
       },
       e => 
@@ -228,7 +234,10 @@ export class CarrinhoPage implements OnInit {
       if(res["success"] == true)
       {
         this.toastBox("Removido do carrinho", "success")
-        this.ngOnInit()
+        this.qtItems = 0;
+        this.valorTotal = 0
+        this.valorTotalReal = "0"
+        this.ionViewWillEnter()
       }
     }, 
     e => 

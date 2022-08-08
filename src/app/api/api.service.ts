@@ -8,23 +8,16 @@ import { HttpHeaders, HttpParamsOptions } from '@angular/common/http';
 })
 export class ApiService {
 
-  url:string = "https://sperenet-api.herokuapp.com/api"
-  headers;
-  // url:string = "http://127.0.0.1:8000/api"
-  // pagamento:string = "https://sandbox.asaas.com/api/v3/"
-  // token = ""
+  // url:string = "https://sperenet-api.herokuapp.com/api"
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });;
+  url:string = "http://127.0.0.1:8000/api"
   
 
   constructor(
     private http: HttpClient
   ) { }
-
-  ngOnInit()
-  {
-    this.headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-  }
 
   // --------------------------------------------------------------------
   // ------------------------------- AUTH ------------------------------- 
