@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { List } from 'postcss/lib/list';
 import { ApiService } from 'src/app/api/api.service';
 
@@ -20,6 +20,7 @@ export class CarrinhoPage implements OnInit {
 
   constructor(
     private api: ApiService,
+    private alert: AlertController,
     private toast: ToastController,
     private router: Router
   ) { }
@@ -213,6 +214,32 @@ export class CarrinhoPage implements OnInit {
     })
   }
 
+  // REMOVER DO CARRINHO
+  removeCart(id)
+  {
+    let id_compra = localStorage.getItem("id_compra_atual")
+    let body = 
+    {
+      id_compra: id_compra,
+      id_produto: id
+    }
+    this.api.apiRemoverCarrinho(body).subscribe((res) => 
+    {
+      if(res["success"] == true)
+      {
+        this.toastBox("Removido do carrinho", "success")
+        this.ngOnInit()
+      }
+    }, 
+    e => 
+    {
+      this.toastBox("Ocorreu um erro inesperado", "danger") 
+      console.log(e)
+    })
+  }
+
+
+
 
   // TORRADA DE MENSAGEM
   toastBox(msg, color) 
@@ -226,6 +253,33 @@ export class CarrinhoPage implements OnInit {
     {
       t.present()
     });
+  }
+
+  // ALERTA DE ESCOLHA
+  alerta(page)
+  {
+    return this.alert.create({
+      header: "Deseja remover esse item ?",
+      buttons: 
+      [
+        {
+          text: "Sim",
+          role: "confirm",
+          handler:() =>
+          {
+            this.removeCart(page)
+          }
+        },
+        {
+          text: "Não",
+          role: "cancel"
+        }
+      ]
+    })
+    .then((a) => 
+    {
+      a.present()
+    })
   }
     
 }

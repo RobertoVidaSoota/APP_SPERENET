@@ -220,27 +220,25 @@ export class CartaoPage implements OnInit {
       total: this.amount
     });
 
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
+    
 
     this.myLoading().then(() => 
     {
-      this.api.finalPayment(bodyString, headers).subscribe(res => 
+      this.api.finalPayment(bodyString).subscribe(res => 
       {
         
           if(res["success"] == true)
           {
             this.toastBox("Compra realizada com successo", "success")
             localStorage.setItem("reload", "1")
-            this.router.navigate(["/tabs/tab3/compras"])
+            this.router.navigate(["/tabs"])
           }
           else
           {
             this.toastBox("Ocorreu um erro, tente novamente", "danger")
           }
       }, e => {
-        console.log(JSON.stringify(e))
+        console.log(e)
         this.toastBox("Ocorreu um erro, tente novamente", "danger")
       })
     })
@@ -260,7 +258,7 @@ export class CartaoPage implements OnInit {
     return this.load.create({
       backdropDismiss: false,
       duration: 1000,
-      cssClass: "load-class"
+      cssClass: "my-load-class"
     }).then(res => res.present())
   }
 

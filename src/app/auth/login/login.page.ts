@@ -64,6 +64,7 @@ export class LoginPage implements OnInit {
         localStorage.setItem("reload", "1")
         localStorage.setItem("login_usuario", "true")
         localStorage.setItem("id_usuario_logado_app", res["user"]["id"])
+        localStorage.setItem("id_compra_atual", res["id_compra"])
         setTimeout(() => {
           this.toast("Login confirmado", "success")
           this.loadCtrl.dismiss()

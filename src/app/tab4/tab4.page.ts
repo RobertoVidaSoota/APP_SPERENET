@@ -72,6 +72,7 @@ export class Tab4Page implements OnInit {
     {
       localStorage.removeItem("login_usuario");
       localStorage.removeItem("id_usuario_logado_app")
+      localStorage.removeItem("id_compra_atual")
       this.nav.navigateRoot("/login");
     }
   }

@@ -24,7 +24,14 @@
     <ion-col *ngFor="let car of carrinho"
      size="6">
 
+      
       <div class="card-item">
+
+        <div (click)="alerta(car.fk_id_produto)"
+        class="remover_cart">
+             x
+        </div>
+
         <img class="img-item" src="{{ car.link_imagem }}">
         <p class="pruduto-item">
           {{ car.nome_produto }}
