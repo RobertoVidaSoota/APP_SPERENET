@@ -8,11 +8,12 @@ import { HttpHeaders, HttpParamsOptions } from '@angular/common/http';
 })
 export class ApiService {
 
-  url:string = "https://sperenet-api.herokuapp.com/api"
+  // url:string = "https://sperenet-api.herokuapp.com/api"
   headers = new HttpHeaders({
     'Content-Type': 'application/json'
-  });;
-  // url:string = "http://127.0.0.1:8000/api"
+  });
+  url:string = "http://127.0.0.1:8000/api"
+  apiPagSeguro:string = "https://sandbox.api.pagseguro.com";
   
 
   constructor(
@@ -208,6 +209,17 @@ export class ApiService {
   {
     return this.http.post(this.url+"/post_boleto_payment",
       bodyString, { headers: this.headers })
+  }
+
+  // ENVIAR PAGAMENTO DO APP
+  boletoAppToSeguro(bodyString, token)
+  {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    });
+    return this.http.post(this.apiPagSeguro+"/charges",
+    bodyString, { headers: headers })
   }
   
 

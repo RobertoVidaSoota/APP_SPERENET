@@ -21,7 +21,7 @@ export class BoletoPage implements OnInit {
   products = [];
   
   paymentMethods: Array<any> = [];
-  amount;
+  amount = 0;
   amountString;
   valueCart;
   valorTotalDetalhes:string;
@@ -68,33 +68,34 @@ export class BoletoPage implements OnInit {
         tiraVirgula = dividir.replace(",", ".")
         flutuar = parseFloat(tiraVirgula)
         this.products[i]["preco_float"] = flutuar
+        this.amount += flutuar
       }
 
     // PEGAR A BIBLIOTECA DO PAGSEGURO
-    scriptjs('https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js', () => {
-      this.api.getSessionPagseguro()
-          .subscribe(data => 
-            {
-              this.initSession(data);
+    // scriptjs('https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js', () => {
+    //   this.api.getSessionPagseguro()
+    //       .subscribe(data => 
+    //         {
+    //           this.initSession(data);
 
-                PagSeguroDirectPayment.getPaymentMethods({
-                  amount: this.amount,
-                  success: response => {
-                    let paymentMethods = response.paymentMethods;
-                    // Mapeamento de um objeto transforma em um array
-                    this.paymentMethods = Object.keys(paymentMethods).map((k) => 
-                    paymentMethods[k]);
+    //             PagSeguroDirectPayment.getPaymentMethods({
+    //               amount: this.amount,
+    //               success: response => {
+    //                 let paymentMethods = response.paymentMethods;
+    //                 // Mapeamento de um objeto transforma em um array
+    //                 this.paymentMethods = Object.keys(paymentMethods).map((k) => 
+    //                 paymentMethods[k]);
 
-                    // Detecção de mudanças
-                    this.ref.detectChanges();
-                    //this.segment.ngAfterContentInit();
-                  }
-                });
-          },
-          e => {
-            this.toastBox("Ocorreu um erro, tente novamente", "danger")
-          })
-    })
+    //                 // Detecção de mudanças
+    //                 this.ref.detectChanges();
+    //                 //this.segment.ngAfterContentInit();
+    //               }
+    //             });
+    //       },
+    //       e => {
+    //         this.toastBox("Ocorreu um erro, tente novamente", "danger")
+    //       })
+    // })
     },
     e => 
     {
@@ -104,9 +105,9 @@ export class BoletoPage implements OnInit {
 
   
   // PEGA A CHAVE DA SESSÃO DA API
-  initSession(data) {
-    PagSeguroDirectPayment.setSessionId(data.pag_id.sessionID);
-  }
+  // initSession(data) {
+  //   PagSeguroDirectPayment.setSessionId(data.pag_id.sessionID);
+  // }
 
 
   // ENVIAR PAGAMENTO AO SERVIDOR
@@ -117,13 +118,8 @@ export class BoletoPage implements OnInit {
       id_compra: this.products[0].id_compra,
       id_user: this.id_user,
       items: this.products,
-      hash: PagSeguroDirectPayment.getSenderHash(),
       method: this.paymentMethod,
       total: this.amount
-    });
-
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json'
     });
 
     this.myLoading().then(() => 
@@ -133,9 +129,17 @@ export class BoletoPage implements OnInit {
         
           if(res["success"] == true)
           {
-            this.toastBox("Compra realizada com successo", "success")
-            localStorage.setItem("reload", "1")
-            this.router.navigate(["/tabs"])
+            this.api.boletoAppToSeguro(res["result"], res["token"]).subscribe((res) => 
+            {
+              this.toastBox("Compra realizada com successo", "success")
+              localStorage.setItem("reload", "1")
+              this.router.navigate(["/tabs"])
+            }, 
+            e => {
+              console.log(e)
+              this.toastBox("Ocorreu um erro, tente novamente", "danger")
+            })
+            
           }
           else
           {

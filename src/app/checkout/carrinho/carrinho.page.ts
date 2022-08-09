@@ -264,6 +264,7 @@ export class CarrinhoPage implements OnInit {
     });
   }
 
+  
   // ALERTA DE ESCOLHA
   alerta(page)
   {
