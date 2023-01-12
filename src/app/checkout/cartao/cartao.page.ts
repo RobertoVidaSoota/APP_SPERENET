@@ -93,33 +93,33 @@ export class CartaoPage implements OnInit {
       }
 
     // PEGAR A BIBLIOTECA DO PAGSEGURO
-    scriptjs('https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js', () => {
-      this.api.getSessionPagseguro()
-          .subscribe(data => 
-            {
-              this.initSession(data);
+    // scriptjs('https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js', () => {
+    //   this.api.getSessionPagseguro()
+    //       .subscribe(data => 
+    //         {
+    //           this.initSession(data);
 
-                PagSeguroDirectPayment.getPaymentMethods({
-                  amount: this.amount,
-                  success: response => {
-                    let paymentMethods = response.paymentMethods;
-                    // Mapeamento de um objeto transforma em um array
-                    this.paymentMethods = Object.keys(paymentMethods).map((k) => 
-                    paymentMethods[k]);
+    //             PagSeguroDirectPayment.getPaymentMethods({
+    //               amount: this.amount,
+    //               success: response => {
+    //                 let paymentMethods = response.paymentMethods;
+    //                 // Mapeamento de um objeto transforma em um array
+    //                 this.paymentMethods = Object.keys(paymentMethods).map((k) => 
+    //                 paymentMethods[k]);
 
-                    // PEGAR A BANDEIRA E O VALOR DAS PARCELAS
-                    this.getCreditCardBrand()
+    //                 // PEGAR A BANDEIRA E O VALOR DAS PARCELAS
+    //                 this.getCreditCardBrand()
 
-                    // Detecção de mudanças
-                    this.ref.detectChanges();
-                    //this.segment.ngAfterContentInit();
-                  }
-                });
-          },
-          e => {
-            this.toastBox("Ocorreu um erro, tente novamente", "danger")
-          })
-    })
+    //                 // Detecção de mudanças
+    //                 this.ref.detectChanges();
+    //                 //this.segment.ngAfterContentInit();
+    //               }
+    //             });
+    //       },
+    //       e => {
+    //         this.toastBox("Ocorreu um erro, tente novamente", "danger")
+    //       })
+    // })
     },
     e => 
     {
@@ -129,121 +129,131 @@ export class CartaoPage implements OnInit {
 
 
   // PEGA A CHAVE DA SESSÃO DA API
-  initSession(data) {
-      PagSeguroDirectPayment.setSessionId(data.pag_id.sessionID);
-  }
+  // initSession(data) {
+  //     PagSeguroDirectPayment.setSessionId(data.pag_id.sessionID);
+  // }
 
 
   // PEGAR VALORES DAS PARCELAS E MUDAR O VALOR TOTAL
-  getInstallmentsCompra()
-  {
-    let brand = this.creditCard.brand
-    let installments = this.installments
+  // getInstallmentsCompra()
+  // {
+  //   let brand = this.creditCard.brand
+  //   let installments = this.installments
 
-    PagSeguroDirectPayment.getInstallments({
-      amount: this.valueCart,
-      maxInstallmentsNoInterest: 2,
-      brand: brand,
-      success: response =>  
-      {
-        let i = installments - 1
-        this.amount = response.installments[brand][i].totalAmount;
-        this.valorPorParcela = 
-          response.installments[brand][i].installmentAmount;
-        this.valorParcelaMostrar = this.valorPorParcela.toLocaleString('pt-br', 
-        {
-          style: "currency",
-          currency: "BRL"
-        });
-        this.ref.detectChanges();
-      } 
-    })
-  }
+  //   PagSeguroDirectPayment.getInstallments({
+  //     amount: this.valueCart,
+  //     maxInstallmentsNoInterest: 2,
+  //     brand: brand,
+  //     success: response =>  
+  //     {
+  //       let i = installments - 1
+  //       this.amount = response.installments[brand][i].totalAmount;
+  //       this.valorPorParcela = 
+  //         response.installments[brand][i].installmentAmount;
+  //       this.valorParcelaMostrar = this.valorPorParcela.toLocaleString('pt-br', 
+  //       {
+  //         style: "currency",
+  //         currency: "BRL"
+  //       });
+  //       this.ref.detectChanges();
+  //     } 
+  //   })
+  // }
 
 
   // PEGAR BANDEIRA
-  getCreditCardBrand()
-  {
-    PagSeguroDirectPayment.getBrand({
-      cardBin: this.creditCard.num.substring(0, 6),
-      success: response => {
-        this.creditCard.brand = response.brand.name;
-        this.getInstallmentsCompra();
+  // getCreditCardBrand()
+  // {
+  //   PagSeguroDirectPayment.getBrand({
+  //     cardBin: this.creditCard.num.substring(0, 6),
+  //     success: response => {
+  //       this.creditCard.brand = response.brand.name;
+  //       this.getInstallmentsCompra();
 
-        this.ref.detectChanges();
-      }
-    });
-  }
+  //       this.ref.detectChanges();
+  //     }
+  //   });
+  // }
 
 
   // INICIAR PAGAMENTO
-  paymentCreditCart()
-  {
-    this.getCrediCartToken();
-  }
+  // paymentCreditCart()
+  // {
+  //   this.getCrediCartToken();
+  // }
   
 
   // PEGAR TOKEN DO CARTAO
-  getCrediCartToken()
-  {
-    PagSeguroDirectPayment.createCardToken({
-      cardNumber: this.creditCard.num,
-      brand: this.creditCard.brand,
-      cvv: this.creditCard.cvv,
-      expirationMonth: this.creditCard.monthExp,
-      expirationYear: this.creditCard.yearExp,
-      success: response => {
-        this.creditCard.token = response.card.token;
-        // Detecção de mudanças
-        this.ref.detectChanges();
-        this.sendPayment();
-      }
-    });
-  }
+  // getCrediCartToken()
+  // {
+  //   PagSeguroDirectPayment.createCardToken({
+  //     cardNumber: this.creditCard.num,
+  //     brand: this.creditCard.brand,
+  //     cvv: this.creditCard.cvv,
+  //     expirationMonth: this.creditCard.monthExp,
+  //     expirationYear: this.creditCard.yearExp,
+  //     success: response => {
+  //       this.creditCard.token = response.card.token;
+  //       // Detecção de mudanças
+  //       this.ref.detectChanges();
+  //       this.sendPayment();
+  //     }
+  //   });
+  // }
 
 
   // ENVIAR PAGAMENTO AO SERVIDOR
-  sendPayment()
-  {
-    // FORMAR OBJETO COM OS ATRIBUTOS DOS ITEMS
-    let bodyString = JSON.stringify({
-      id_compra: this.products[0].id_compra,
-      id_user: this.id_user,
-      name: this.creditCard.name,
-      cpf: this.cpf,
-      items: this.products,
-      token: this.creditCard.token,
-      hash: PagSeguroDirectPayment.getSenderHash(),
-      method: this.paymentMethod,
-      parcelas: this.installments,
-      valorPorParcela: this.valorPorParcela,
-      total: this.amount
-    });
+  // sendPayment()
+  // {
+  //   // FORMAR OBJETO COM OS ATRIBUTOS DOS ITEMS
+  //   let bodyString = JSON.stringify({
+  //     id_compra: this.products[0].id_compra,
+  //     id_user: this.id_user,
+  //     name: this.creditCard.name,
+  //     cpf: this.cpf,
+  //     items: this.products,
+  //     token: this.creditCard.token,
+  //     hash: PagSeguroDirectPayment.getSenderHash(),
+  //     method: this.paymentMethod,
+  //     parcelas: this.installments,
+  //     valorPorParcela: this.valorPorParcela,
+  //     total: this.amount
+  //   });
 
     
 
-    this.myLoading().then(() => 
-    {
-      this.api.finalPayment(bodyString).subscribe(res => 
-      {
+  //   this.myLoading().then(() => 
+  //   {
+  //     this.api.finalPayment(bodyString).subscribe(res => 
+  //     {
         
-          if(res["success"] == true)
-          {
-            this.toastBox("Compra realizada com successo", "success")
-            localStorage.setItem("reload", "1")
-            this.router.navigate(["/tabs"])
-          }
-          else
-          {
-            this.toastBox("Ocorreu um erro, tente novamente", "danger")
-          }
-      }, e => {
-        console.log(e)
-        this.toastBox("Ocorreu um erro, tente novamente", "danger")
-      })
-    })
+  //         if(res["success"] == true)
+  //         {
+  //           this.toastBox("Compra realizada com successo", "success")
+  //           localStorage.setItem("reload", "1")
+  //           this.router.navigate(["/tabs"])
+  //         }
+  //         else
+  //         {
+  //           this.toastBox("Ocorreu um erro, tente novamente", "danger")
+  //         }
+  //     }, e => {
+  //       console.log(e)
+  //       this.toastBox("Ocorreu um erro, tente novamente", "danger")
+  //     })
+  //   })
+  // }
+
+
+
+  // PAGAR COM ASAAS
+  sendPayment()
+  {
+    
   }
   
+
+
   
 
 

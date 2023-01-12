@@ -38,61 +38,62 @@ export class PagamentoPage implements OnInit {
 
 
   // MANDAR O MÉTODO DE PAGAMENTO (JA CRIAR CLIENTE NO ASAAS)
-  method(metodo)
-  {
-    let body = 
-    {
-      id_compra: this.idCompra,
-      metodo: metodo
-    }
-    this.api.apiEscolherPagamento(body).subscribe((res) => 
-    {
-      if(res["success"] == true)
-      {
-         if(metodo == "pix"){ this.router.navigate(["/pix"]) }
-         if(metodo == "cartão"){ this.router.navigate(["/cartao"]) }
-         if(metodo == "boleto"){ this.router.navigate(["/boleto"]) }
-      }
-      else
-      {
-        this.toastBox("Ocorreu um erro ineperado", "danger")
-      }
-    }, e => 
-    {
-      this.toastBox("Ocorreu um erro ineperado", "danger")
-      console.log(e)
-    })
-  }
-
-
-  // INICIAR TRANSAÇÃO ASAAS (INTERDITADO)
-  // transaction(metodo)
+  // method(metodo)
   // {
   //   let body = 
   //   {
-  //     id_user: parseInt(this.id_user),
-  //     id_compra: this.idCompra
+  //     id_compra: this.idCompra,
+  //     metodo: metodo
   //   }
-  //   this.api.apiTransacaoComAsaas(body).subscribe((res) => 
+  //   this.api.apiEscolherPagamento(body).subscribe((res) => 
   //   {
   //     if(res["success"] == true)
   //     {
-  //       console.log(res)
-  //       if(metodo == "pix"){ this.router.navigate(["/pix"]) }
-  //       if(metodo == "cartao"){ this.router.navigate(["/cartao"]) }
-  //       if(metodo == "boleto"){ this.router.navigate(["/boleto"]) }
+  //        if(metodo == "pix"){ this.router.navigate(["/pix"]) }
+  //        if(metodo == "cartão"){ this.router.navigate(["/cartao"]) }
+  //        if(metodo == "boleto"){ this.router.navigate(["/boleto"]) }
   //     }
   //     else
   //     {
   //       this.toastBox("Ocorreu um erro ineperado", "danger")
   //     }
-  //   },
-  //   e => 
+  //   }, e => 
   //   {
-  //     console.log(e)
   //     this.toastBox("Ocorreu um erro ineperado", "danger")
+  //     console.log(e)
   //   })
   // }
+
+
+  // INICIAR TRANSAÇÃO ASAAS (INTERDITADO)
+  transaction(metodo)
+  {
+    let body = 
+    {
+      id_user: parseInt(this.id_user),
+      id_compra: this.idCompra
+    }
+    this.api.apiTransacaoComAsaas(body).subscribe((res) => 
+    {
+      console.log(res)
+      // if(res["success"] == true)
+      // {
+      //   console.log(res)
+      //   if(metodo == "pix"){ this.router.navigate(["/pix"]) }
+      //   if(metodo == "cartao"){ this.router.navigate(["/cartao"]) }
+      //   if(metodo == "boleto"){ this.router.navigate(["/boleto"]) }
+      // }
+      // else
+      // {
+      //   this.toastBox("Ocorreu um erro ineperado", "danger")
+      // }
+    },
+    e => 
+    {
+      console.log(e)
+      this.toastBox("Ocorreu um erro ineperado", "danger")
+    })
+  }
 
 
 
@@ -138,7 +139,7 @@ export class PagamentoPage implements OnInit {
 
       l.onDidDismiss().then(() => 
       {
-        this.method(page)
+        this.transaction(page)
       })
     })
   }

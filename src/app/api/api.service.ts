@@ -8,12 +8,12 @@ import { HttpHeaders, HttpParamsOptions } from '@angular/common/http';
 })
 export class ApiService {
 
-  url:string = "https://sperenet-api.herokuapp.com/api"
+  url:string = "https://web-sperenet.vercel.app/api2"
   // url:string = "http://127.0.0.1:8000/api"
   headers = new HttpHeaders({
     'Content-Type': 'application/json'
   });
-  apiPagSeguro:string = "https://sandbox.api.pagseguro.com";
+  // apiPagSeguro:string = "https://sandbox.api.pagseguro.com";
   
 
   constructor(
@@ -196,31 +196,31 @@ export class ApiService {
   }
 
   // PAGAR PAGSEGURO
-  getSessionPagseguro()
-  {
-    return this.http.get(this.url+"/get_session_pagseguro");
-  }
-  finalPayment(bodyString)
-  {
-    return this.http.post(this.url+"/post_final_payment",
-      bodyString, { headers: this.headers })
-  }
-  boletoPayment(bodyString)
-  {
-    return this.http.post(this.url+"/post_boleto_payment",
-      bodyString, { headers: this.headers })
-  }
+  // getSessionPagseguro()
+  // {
+  //   return this.http.get(this.url+"/get_session_pagseguro");
+  // }
+  // finalPayment(bodyString)
+  // {
+  //   return this.http.post(this.url+"/post_final_payment",
+  //     bodyString, { headers: this.headers })
+  // }
+  // boletoPayment(bodyString)
+  // {
+  //   return this.http.post(this.url+"/post_boleto_payment",
+  //     bodyString, { headers: this.headers })
+  // }
 
   // ENVIAR PAGAMENTO DO APP
-  boletoAppToSeguro(bodyString, token)
-  {
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': token
-    });
-    return this.http.post(this.apiPagSeguro+"/charges",
-    bodyString, { headers: headers })
-  }
+  // boletoAppToSeguro(bodyString, token)
+  // {
+  //   let headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Authorization': token
+  //   });
+  //   return this.http.post(this.apiPagSeguro+"/charges",
+  //   bodyString, { headers: headers })
+  // }
   
 
 
@@ -228,21 +228,17 @@ export class ApiService {
 
   // PAGAMENTO ASAAS (interditado)
 
-  // apiTransacaoComAsaas(value)
-  // {
-  //   return this.http.post(this.url+"/post_pay_transaction", value)
-  // }
+  apiTransacaoComAsaas(value)
+  {
+    return this.http.post(this.url+"/post_pay_transaction", value)
+  }
+  boletoPayment(bodyString)
+  {
+      return this.http.post(this.url+"/post_boleto_payment",
+        bodyString, { headers: this.headers })
+  }
+  cardPayment(bodyString)
+  {
 
-  // criarClienteAsaas(value)
-  // {
-  //   let headers = new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     'access_token': this.token
-  //   });
-    
-  //   return this.http.post(this.pagamento+"customers", value, 
-  //   {
-  //     headers: headers
-  //   })
-  // }
+  }
 }

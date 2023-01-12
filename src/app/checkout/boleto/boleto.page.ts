@@ -129,16 +129,16 @@ export class BoletoPage implements OnInit {
         
           if(res["success"] == true)
           {
-            this.api.boletoAppToSeguro(res["result"], res["token"]).subscribe((res) => 
-            {
-              this.toastBox("Compra realizada com successo", "success")
-              localStorage.setItem("reload", "1")
-              this.router.navigate(["/tabs"])
-            }, 
-            e => {
-              console.log(e)
-              this.toastBox("Ocorreu um erro, tente novamente", "danger")
-            })
+            // this.api.boletoAppToSeguro(res["result"], res["token"]).subscribe((res) => 
+            // {
+            //   this.toastBox("Compra realizada com successo", "success")
+            //   localStorage.setItem("reload", "1")
+            //   this.router.navigate(["/tabs"])
+            // }, 
+            // e => {
+            //   console.log(e)
+            //   this.toastBox("Ocorreu um erro, tente novamente", "danger")
+            // })
             
           }
           else
