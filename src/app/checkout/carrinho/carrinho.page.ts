@@ -190,13 +190,19 @@ export class CarrinhoPage implements OnInit {
 
 
   // PÁGINA DE PAGAMENTO
-  pagar(valorTotal)
+  pagar(valorTotalReal)
   {
+    let valorTotalIntDol
+    valorTotalIntDol = valorTotalReal.replace("R$", "")
+    valorTotalIntDol = valorTotalIntDol.replace(".", "")
+    valorTotalIntDol = valorTotalIntDol.replace(",", ".")
+    valorTotalIntDol = parseFloat(valorTotalIntDol)
+    let id_user = parseInt(this.id_user)
     let body = 
     {
       id_compra: this.id_compra,
-      id_user: this.id_user,
-      valorTotal: valorTotal
+      id_user: id_user,
+      valorTotal: valorTotalIntDol
     }
     this.api.apiIniciarPagamento(body).subscribe((res) => 
     {
