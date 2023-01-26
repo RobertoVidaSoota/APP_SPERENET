@@ -29,11 +29,8 @@ export class CartaoPage implements OnInit {
     cvv: "",
     monthExp: "",
     yearExp: "",
-    brand: "",
-    token: "",
     name: ""
   };
-  installments:number = 1;
   cpf = "";
 
   products = [];
