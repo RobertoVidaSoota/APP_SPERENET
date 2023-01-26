@@ -71,7 +71,8 @@ export class PagamentoPage implements OnInit {
     let body = 
     {
       id_user: parseInt(this.id_user),
-      id_compra: this.idCompra
+      id_compra: this.idCompra,
+      metodo: metodo
     }
     this.api.apiTransacaoComAsaas(body).subscribe((res) => 
     {
