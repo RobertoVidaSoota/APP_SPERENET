@@ -32,6 +32,7 @@ export class CartaoPage implements OnInit {
     name: ""
   };
   cpf = "";
+  installments = ""
 
   products = [];
   amount;
@@ -88,35 +89,6 @@ export class CartaoPage implements OnInit {
         flutuar = parseFloat(tiraVirgula)
         this.products[i]["preco_float"] = flutuar
       }
-
-    // PEGAR A BIBLIOTECA DO PAGSEGURO
-    // scriptjs('https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js', () => {
-    //   this.api.getSessionPagseguro()
-    //       .subscribe(data => 
-    //         {
-    //           this.initSession(data);
-
-    //             PagSeguroDirectPayment.getPaymentMethods({
-    //               amount: this.amount,
-    //               success: response => {
-    //                 let paymentMethods = response.paymentMethods;
-    //                 // Mapeamento de um objeto transforma em um array
-    //                 this.paymentMethods = Object.keys(paymentMethods).map((k) => 
-    //                 paymentMethods[k]);
-
-    //                 // PEGAR A BANDEIRA E O VALOR DAS PARCELAS
-    //                 this.getCreditCardBrand()
-
-    //                 // Detecção de mudanças
-    //                 this.ref.detectChanges();
-    //                 //this.segment.ngAfterContentInit();
-    //               }
-    //             });
-    //       },
-    //       e => {
-    //         this.toastBox("Ocorreu um erro, tente novamente", "danger")
-    //       })
-    // })
     },
     e => 
     {
@@ -246,7 +218,20 @@ export class CartaoPage implements OnInit {
   // PAGAR COM ASAAS
   sendPayment()
   {
-    
+      let bodyString = JSON.stringify({
+      id_compra: this.products[0].id_compra,
+      id_user: this.id_user,
+      name: this.creditCard.name,
+      number: this.creditCard.num,
+      cvv: this.creditCard.cvv,
+      mouthExp: this.creditCard.monthExp,
+      year: this.creditCard.yearExp,
+      cpf: this.cpf,
+      items: this.products,
+      parcelas: this.installments,
+      valorPorParcela: this.valorPorParcela,
+      total: this.amount
+    });
   }
   
 

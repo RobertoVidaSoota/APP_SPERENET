@@ -37,7 +37,7 @@ export class PagamentoPage implements OnInit {
   }
 
 
-  // INICIAR TRANSAÇÃO ASAAS (INTERDITADO)
+  // INICIAR TRANSAÇÃO ASAAS
   transaction(metodo)
   {
     let body = 

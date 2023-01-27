@@ -8,8 +8,8 @@ import { HttpHeaders, HttpParamsOptions } from '@angular/common/http';
 })
 export class ApiService {
 
-  url:string = "https://web-sperenet.vercel.app/api2"
-  // url:string = "http://127.0.0.1:8000/api"
+  // url:string = "https://web-sperenet.vercel.app/api2"
+  url:string = "http://127.0.0.1:8000/api2"
   headers = new HttpHeaders({
     'Content-Type': 'application/json'
   });
