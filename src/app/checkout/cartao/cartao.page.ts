@@ -198,7 +198,7 @@ export class CartaoPage implements OnInit {
   // PAGAR COM ASAAS
   sendPayment()
   {
-      let bodyString = JSON.stringify({
+      let bodyString = {
       id_compra: this.products[0].id_compra,
       id_user: this.id_user,
       name: this.creditCard.name,
@@ -211,7 +211,7 @@ export class CartaoPage implements OnInit {
       parcelas: this.installments,
       valorPorParcela: this.valorPorParcela,
       total: this.amount
-    });
+    };
   }
   
 
