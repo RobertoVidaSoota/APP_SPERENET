@@ -63,6 +63,7 @@
     <ion-col size="12">
       <select
       [(ngModel)]="installments"
+      (change)="mudarParcela()"
       maxlength="2"
       type="text" placeholder="Pacelas" inputmode="numeric"
       >

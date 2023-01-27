@@ -32,12 +32,11 @@ export class CartaoPage implements OnInit {
     name: ""
   };
   cpf = "";
-  installments = ""
+  installments:number;
 
   products = [];
   amount;
   amountString;
-  valueCart;
   valorPorParcela;
 
   valorTotalDetalhes:string;
@@ -70,8 +69,8 @@ export class CartaoPage implements OnInit {
     this.api.apiPegarCarrinho(value).subscribe((res) => 
     {
       this.products = res["carrinho"]
-      this.valueCart = res["carrinho"][0]["valor_total"]
-      this.valorTotalDetalhes = this.valueCart.toLocaleString('pt-br', 
+      this.amount = res["carrinho"][0]["valor_total"]
+      this.valorTotalDetalhes = this.amount.toLocaleString('pt-br', 
       {
         style: "currency",
         currency: "BRL"
@@ -89,6 +88,7 @@ export class CartaoPage implements OnInit {
         flutuar = parseFloat(tiraVirgula)
         this.products[i]["preco_float"] = flutuar
       }
+      console.log(this.products)
     },
     e => 
     {
@@ -104,30 +104,10 @@ export class CartaoPage implements OnInit {
 
 
   // PEGAR VALORES DAS PARCELAS E MUDAR O VALOR TOTAL
-  // getInstallmentsCompra()
-  // {
-  //   let brand = this.creditCard.brand
-  //   let installments = this.installments
-
-  //   PagSeguroDirectPayment.getInstallments({
-  //     amount: this.valueCart,
-  //     maxInstallmentsNoInterest: 2,
-  //     brand: brand,
-  //     success: response =>  
-  //     {
-  //       let i = installments - 1
-  //       this.amount = response.installments[brand][i].totalAmount;
-  //       this.valorPorParcela = 
-  //         response.installments[brand][i].installmentAmount;
-  //       this.valorParcelaMostrar = this.valorPorParcela.toLocaleString('pt-br', 
-  //       {
-  //         style: "currency",
-  //         currency: "BRL"
-  //       });
-  //       this.ref.detectChanges();
-  //     } 
-  //   })
-  // }
+  mudarParcela()
+  {
+    this.valorPorParcela = this.amount / this.installments
+  }
 
 
   // PEGAR BANDEIRA
