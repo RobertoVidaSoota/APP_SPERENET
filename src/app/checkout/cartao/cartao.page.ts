@@ -206,7 +206,6 @@ export class CartaoPage implements OnInit {
       cvv: this.creditCard.cvv,
       mouthExp: this.creditCard.monthExp,
       year: this.creditCard.yearExp,
-      cpf: this.cpf,
       items: this.products,
       parcelas: this.installments,
       valorPorParcela: this.valorPorParcela,
