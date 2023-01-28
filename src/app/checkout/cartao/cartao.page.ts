@@ -101,14 +101,19 @@ export class CartaoPage implements OnInit {
   mudarParcela()
   {
     this.valorPorParcela = this.amount / this.installments
+    this.valorTotalDetalhes = this.valorPorParcela.toLocaleString('pt-br', 
+      {
+        style: "currency",
+        currency: "BRL"
+      });
   }
 
-  
+
 
   // PAGAR COM ASAAS
-  sendPayment()
+  async sendPayment()
   {
-      let bodyString = {
+    let bodyString = {
       id_compra: this.products[0].id_compra,
       id_user: this.id_user,
       name: this.creditCard.name,
@@ -121,25 +126,27 @@ export class CartaoPage implements OnInit {
       valorPorParcela: this.valorPorParcela,
       total: this.amount
     };
-
-    this.myLoading().then(() => 
-    {
-      this.api.cardPayment(bodyString).subscribe(res => 
-      {        
-          if(res["success"] == true)
-          {
-            this.toastBox("Compra realizada com successo", "success")
-            localStorage.setItem("reload", "1")
-            this.router.navigate(["/tabs"])
-          }
-          else
-          {
-            this.toastBox("Ocorreu um erro, tente novamente", "danger")
-          }
-      }, e => {
-        console.log(e)
-        this.toastBox("Ocorreu um erro, tente novamente", "danger")
-      })
+    this.load.create().then(e => e.present())
+    await this.api.cardPayment(bodyString).subscribe(res => 
+    {        
+        if(res["success"] == true)
+        {
+          console.log(res)
+          this.toastBox("Compra realizada com successo", "success")
+          localStorage.setItem("reload", "1")
+          this.load.dismiss()
+          // this.router.navigate(["/tabs"])
+        }
+        else
+        {
+          console.log(res)
+          this.toastBox("Ocorreu um erro, tente novamente", "danger")
+          this.load.dismiss()
+        }
+    }, e => {
+      console.log(e)
+      this.toastBox("Ocorreu um erro, tente novamente", "danger")
+      this.load.dismiss()
     })
   }
   
@@ -154,14 +161,14 @@ export class CartaoPage implements OnInit {
     this.isOpen = !this.isOpen;
   }
 
-  myLoading()
-  {
-    return this.load.create({
-      backdropDismiss: false,
-      duration: 1000,
-      cssClass: "my-load-class"
-    }).then(res => res.present())
-  }
+  // myLoading()
+  // {
+  //   return this.load.create({
+  //     backdropDismiss: false,
+  //     duration: Infinity,
+  //     cssClass: "my-load-class"
+  //   }).then(res => res.present())
+  // }
 
   // TORRADA DE MENSAGEM
   toastBox(msg, color) 
