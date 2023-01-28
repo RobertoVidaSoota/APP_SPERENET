@@ -224,9 +224,9 @@ export class ApiService {
 
   // PAGAMENTO ASAAS (interditado)
 
-  apiTransacaoComAsaas(value)
+  apiTransacaoComAsaas(bodyString)
   {
-    return this.http.post(this.url+"/post_pay_transaction", value)
+    return this.http.post(this.url+"/post_pay_transaction", bodyString)
   }
   boletoPayment(bodyString)
   {
@@ -235,6 +235,6 @@ export class ApiService {
   }
   cardPayment(bodyString)
   {
-
+    return this.http.post(this.url+"/post_card_payment", bodyString)
   }
 }

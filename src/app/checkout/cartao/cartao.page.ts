@@ -40,7 +40,6 @@ export class CartaoPage implements OnInit {
   valorPorParcela;
 
   valorTotalDetalhes:string;
-  valorParcelaMostrar:string;
 
 
   paymentMethod: string = 'CREDIT_CARD';
@@ -97,11 +96,6 @@ export class CartaoPage implements OnInit {
   }
 
 
-  // PEGA A CHAVE DA SESSÃO DA API
-  // initSession(data) {
-  //     PagSeguroDirectPayment.setSessionId(data.pag_id.sessionID);
-  // }
-
 
   // PEGAR VALORES DAS PARCELAS E MUDAR O VALOR TOTAL
   mudarParcela()
@@ -109,91 +103,7 @@ export class CartaoPage implements OnInit {
     this.valorPorParcela = this.amount / this.installments
   }
 
-
-  // PEGAR BANDEIRA
-  // getCreditCardBrand()
-  // {
-  //   PagSeguroDirectPayment.getBrand({
-  //     cardBin: this.creditCard.num.substring(0, 6),
-  //     success: response => {
-  //       this.creditCard.brand = response.brand.name;
-  //       this.getInstallmentsCompra();
-
-  //       this.ref.detectChanges();
-  //     }
-  //   });
-  // }
-
-
-  // INICIAR PAGAMENTO
-  // paymentCreditCart()
-  // {
-  //   this.getCrediCartToken();
-  // }
   
-
-  // PEGAR TOKEN DO CARTAO
-  // getCrediCartToken()
-  // {
-  //   PagSeguroDirectPayment.createCardToken({
-  //     cardNumber: this.creditCard.num,
-  //     brand: this.creditCard.brand,
-  //     cvv: this.creditCard.cvv,
-  //     expirationMonth: this.creditCard.monthExp,
-  //     expirationYear: this.creditCard.yearExp,
-  //     success: response => {
-  //       this.creditCard.token = response.card.token;
-  //       // Detecção de mudanças
-  //       this.ref.detectChanges();
-  //       this.sendPayment();
-  //     }
-  //   });
-  // }
-
-
-  // ENVIAR PAGAMENTO AO SERVIDOR
-  // sendPayment()
-  // {
-  //   // FORMAR OBJETO COM OS ATRIBUTOS DOS ITEMS
-  //   let bodyString = JSON.stringify({
-  //     id_compra: this.products[0].id_compra,
-  //     id_user: this.id_user,
-  //     name: this.creditCard.name,
-  //     cpf: this.cpf,
-  //     items: this.products,
-  //     token: this.creditCard.token,
-  //     hash: PagSeguroDirectPayment.getSenderHash(),
-  //     method: this.paymentMethod,
-  //     parcelas: this.installments,
-  //     valorPorParcela: this.valorPorParcela,
-  //     total: this.amount
-  //   });
-
-    
-
-  //   this.myLoading().then(() => 
-  //   {
-  //     this.api.finalPayment(bodyString).subscribe(res => 
-  //     {
-        
-  //         if(res["success"] == true)
-  //         {
-  //           this.toastBox("Compra realizada com successo", "success")
-  //           localStorage.setItem("reload", "1")
-  //           this.router.navigate(["/tabs"])
-  //         }
-  //         else
-  //         {
-  //           this.toastBox("Ocorreu um erro, tente novamente", "danger")
-  //         }
-  //     }, e => {
-  //       console.log(e)
-  //       this.toastBox("Ocorreu um erro, tente novamente", "danger")
-  //     })
-  //   })
-  // }
-
-
 
   // PAGAR COM ASAAS
   sendPayment()
@@ -211,6 +121,26 @@ export class CartaoPage implements OnInit {
       valorPorParcela: this.valorPorParcela,
       total: this.amount
     };
+
+    this.myLoading().then(() => 
+    {
+      this.api.cardPayment(bodyString).subscribe(res => 
+      {        
+          if(res["success"] == true)
+          {
+            this.toastBox("Compra realizada com successo", "success")
+            localStorage.setItem("reload", "1")
+            this.router.navigate(["/tabs"])
+          }
+          else
+          {
+            this.toastBox("Ocorreu um erro, tente novamente", "danger")
+          }
+      }, e => {
+        console.log(e)
+        this.toastBox("Ocorreu um erro, tente novamente", "danger")
+      })
+    })
   }
   
 
