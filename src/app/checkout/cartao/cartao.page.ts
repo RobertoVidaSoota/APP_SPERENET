@@ -32,6 +32,8 @@ export class CartaoPage implements OnInit {
     name: ""
   };
   cpf = "";
+  cep = "";
+  numeroCasa = "";
   installments:number;
 
   products = [];
@@ -121,6 +123,8 @@ export class CartaoPage implements OnInit {
       cvv: this.creditCard.cvv,
       mouthExp: this.creditCard.monthExp,
       year: this.creditCard.yearExp,
+      cep: this.cep,
+      numero_endereco: this.numeroCasa,
       items: this.products,
       parcelas: this.installments,
       valorPorParcela: this.valorPorParcela,
@@ -135,12 +139,12 @@ export class CartaoPage implements OnInit {
           this.toastBox("Compra realizada com successo", "success")
           localStorage.setItem("reload", "1")
           this.load.dismiss()
-          // this.router.navigate(["/tabs"])
+          this.router.navigate(["/tabs"])
         }
         else
         {
           console.log(res)
-          this.toastBox("Ocorreu um erro, tente novamente", "danger")
+          this.toastBox("Ocorreu um erro, verifique se os dados estão corretos", "danger")
           this.load.dismiss()
         }
     }, e => {
