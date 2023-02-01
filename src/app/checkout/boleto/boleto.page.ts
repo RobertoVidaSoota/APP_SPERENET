@@ -19,14 +19,16 @@ export class BoletoPage implements OnInit {
   isOpen:boolean = false;
 
   products = [];
+
+  boleto = {
+    code: "Código aparece aqui."
+  }
   
   paymentMethods: Array<any> = [];
   amount = 0;
   amountString;
   valueCart;
   valorTotalDetalhes:string;
-
-  paymentMethod: string = 'BOLETO';
 
   constructor(
     private load: LoadingController,
@@ -50,8 +52,8 @@ export class BoletoPage implements OnInit {
     this.api.apiPegarCarrinho(value).subscribe((res) => 
     {
       this.products = res["carrinho"]
-      this.valueCart = res["carrinho"][0]["valor_total"]
-      this.valorTotalDetalhes = this.valueCart.toLocaleString('pt-br', 
+      this.amount = res["carrinho"][0]["valor_total"]
+      this.valorTotalDetalhes = this.amount.toLocaleString('pt-br', 
       {
         style: "currency",
         currency: "BRL"
@@ -68,34 +70,7 @@ export class BoletoPage implements OnInit {
         tiraVirgula = dividir.replace(",", ".")
         flutuar = parseFloat(tiraVirgula)
         this.products[i]["preco_float"] = flutuar
-        this.amount += flutuar
       }
-
-    // PEGAR A BIBLIOTECA DO PAGSEGURO
-    // scriptjs('https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js', () => {
-    //   this.api.getSessionPagseguro()
-    //       .subscribe(data => 
-    //         {
-    //           this.initSession(data);
-
-    //             PagSeguroDirectPayment.getPaymentMethods({
-    //               amount: this.amount,
-    //               success: response => {
-    //                 let paymentMethods = response.paymentMethods;
-    //                 // Mapeamento de um objeto transforma em um array
-    //                 this.paymentMethods = Object.keys(paymentMethods).map((k) => 
-    //                 paymentMethods[k]);
-
-    //                 // Detecção de mudanças
-    //                 this.ref.detectChanges();
-    //                 //this.segment.ngAfterContentInit();
-    //               }
-    //             });
-    //       },
-    //       e => {
-    //         this.toastBox("Ocorreu um erro, tente novamente", "danger")
-    //       })
-    // })
     },
     e => 
     {
@@ -104,52 +79,38 @@ export class BoletoPage implements OnInit {
   }
 
   
-  // PEGA A CHAVE DA SESSÃO DA API
-  // initSession(data) {
-  //   PagSeguroDirectPayment.setSessionId(data.pag_id.sessionID);
-  // }
+  
 
-
-  // ENVIAR PAGAMENTO AO SERVIDOR
-  sendPayment()
+  async sendPayment()
   {
-    // FORMAR OBJETO COM OS ATRIBUTOS DOS ITEMS
-    let bodyString = JSON.stringify({
+    let bodyString = {
       id_compra: this.products[0].id_compra,
       id_user: this.id_user,
       items: this.products,
-      method: this.paymentMethod,
+      parcelas: "1",
+      valorPorParcela: this.amount,
       total: this.amount
-    });
-
-    this.myLoading().then(() => 
-    {
-      this.api.boletoPayment(bodyString).subscribe(res => 
-      {
-        
-          if(res["success"] == true)
-          {
-            // this.api.boletoAppToSeguro(res["result"], res["token"]).subscribe((res) => 
-            // {
-            //   this.toastBox("Compra realizada com successo", "success")
-            //   localStorage.setItem("reload", "1")
-            //   this.router.navigate(["/tabs"])
-            // }, 
-            // e => {
-            //   console.log(e)
-            //   this.toastBox("Ocorreu um erro, tente novamente", "danger")
-            // })
-            
-          }
-          else
-          {
-            this.toastBox("Ocorreu um erro, tente novamente", "danger")
-          }
-        
-      }, e => {
-        console.log(e)
-        this.toastBox("Ocorreu um erro, tente novamente", "danger")
-      })
+    };
+    this.load.create().then(e => e.present())
+    await this.api.boletoPayment(bodyString).subscribe(res => 
+    {        
+        if(res["success"] == true)
+        {
+          console.log(res)
+          this.toastBox("Boleto gerado com success", "success")
+          this.boleto.code = res["barCode"]
+          this.load.dismiss()
+        }
+        else
+        {
+          console.log(res)
+          this.toastBox("Ocorreu um erro, verifique se os dados estão corretos", "danger")
+          this.load.dismiss()
+        }
+    }, e => {
+      console.log(e)
+      this.toastBox("Ocorreu um erro, tente novamente", "danger")
+      this.load.dismiss()
     })
   }
 
@@ -177,7 +138,7 @@ export class BoletoPage implements OnInit {
       message: msg,
       color: color,
       position: "top", 
-      duration: 2000
+      duration: 4000
     }).then((t) => 
     {
       t.present()

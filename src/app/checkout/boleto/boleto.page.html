@@ -26,7 +26,7 @@
 
   <div class="codigo_boleto no-centro-dentro">
     <p class="no-centro-dentro">
-      Código aparece aqui.
+      {{ boleto.code }}
     </p>
   </div>
 
@@ -41,7 +41,11 @@
   </ion-item> -->
 
   <button (click)="sendPayment()">
-    Gerar Boleto
+    Gerar boleto
+  </button>
+
+  <button routerLink="/tabs/tab1/" style="background-color: black;" fill="outline">
+    Voltar ao inicio
   </button>
   
   

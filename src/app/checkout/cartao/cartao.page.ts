@@ -34,7 +34,7 @@ export class CartaoPage implements OnInit {
   cpf = "";
   cep = "";
   numeroCasa = "";
-  installments:number;
+  installments:number = 1;
 
   products = [];
   amount;
@@ -89,7 +89,6 @@ export class CartaoPage implements OnInit {
         flutuar = parseFloat(tiraVirgula)
         this.products[i]["preco_float"] = flutuar
       }
-      console.log(this.products)
     },
     e => 
     {
